@@ -22,6 +22,8 @@
 		1842B49C1877BCB3009EF61B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1842B49A1877BCB3009EF61B /* InfoPlist.strings */; };
 		1842B49E1877BCB3009EF61B /* WXYZSudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B49D1877BCB3009EF61B /* WXYZSudokuTests.m */; };
 		1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AC1877E147009EF61B /* SudokuGridView.m */; };
+		1842B4B0187971E0009EF61B /* Sudoku.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AF187971E0009EF61B /* Sudoku.m */; };
+		1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4B31879803A009EF61B /* SudokuGrid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,10 @@
 		1842B49D1877BCB3009EF61B /* WXYZSudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZSudokuTests.m; sourceTree = "<group>"; };
 		1842B4AB1877E147009EF61B /* SudokuGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuGridView.h; path = View/SudokuGridView.h; sourceTree = "<group>"; };
 		1842B4AC1877E147009EF61B /* SudokuGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuGridView.m; path = View/SudokuGridView.m; sourceTree = "<group>"; };
+		1842B4AE187971E0009EF61B /* Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sudoku.h; path = Model/Sudoku.h; sourceTree = "<group>"; };
+		1842B4AF187971E0009EF61B /* Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sudoku.m; path = Model/Sudoku.m; sourceTree = "<group>"; };
+		1842B4B21879803A009EF61B /* SudokuGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuGrid.h; path = Model/SudokuGrid.h; sourceTree = "<group>"; };
+		1842B4B31879803A009EF61B /* SudokuGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuGrid.m; path = Model/SudokuGrid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 		1842B4781877BCB3009EF61B /* WXYZSudoku */ = {
 			isa = PBXGroup;
 			children = (
+				1842B4B1187971EA009EF61B /* Model */,
 				1842B4AA1877E064009EF61B /* View */,
 				1842B4841877BCB3009EF61B /* Main.storyboard */,
 				1842B4871877BCB3009EF61B /* SudokuViewController.h */,
@@ -163,6 +170,17 @@
 				1842B4AC1877E147009EF61B /* SudokuGridView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		1842B4B1187971EA009EF61B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1842B4B21879803A009EF61B /* SudokuGrid.h */,
+				1842B4B31879803A009EF61B /* SudokuGrid.m */,
+				1842B4AE187971E0009EF61B /* Sudoku.h */,
+				1842B4AF187971E0009EF61B /* Sudoku.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +285,8 @@
 				1842B47F1877BCB3009EF61B /* main.m in Sources */,
 				1842B4831877BCB3009EF61B /* SudokuAppDelegate.m in Sources */,
 				1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */,
+				1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */,
+				1842B4B0187971E0009EF61B /* Sudoku.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
