@@ -10,7 +10,6 @@
 
 @interface SudokuGridView : UIView
 
-- (void)createButtonWithRow:(NSUInteger)row withColumn:(NSUInteger)column;
-//- (UIButton *)getButtonWithRow:(NSUInteger)row withColumn:(NSUInteger)column;
+- (UIButton *)getButtonWithRow:(NSUInteger)row withColumn:(NSUInteger)column;
 
 @end
