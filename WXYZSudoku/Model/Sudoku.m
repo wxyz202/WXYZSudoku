@@ -10,14 +10,14 @@
 
 @interface Sudoku ()
 
-@property (strong, nonatomic) NSMutableArray *grids;
+@property (strong, nonatomic) NSArray *grids;
 
 @end
 
 
 @implementation Sudoku
 
-- (NSMutableArray *)grids
+- (NSArray *)grids
 {
     if (!_grids) {
         _grids = [self createEmptyGrids];
@@ -25,17 +25,40 @@
     return _grids;
 }
 
-- (NSMutableArray *)createEmptyGrids
+- (NSArray *)createEmptyGrids
 {
     NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {
         NSMutableArray *rowGrids = [[NSMutableArray alloc] init];
         for (int column = 0; column < 9; column++) {
-            [rowGrids addObject:[[SudokuGrid alloc] initGridEmptyInRow:row inColumn:column]];
+            [rowGrids addObject:[[SudokuGrid alloc] initGridEmpty]];
         }
-        [totalGrids addObject:rowGrids];
+        [totalGrids addObject:[NSArray arrayWithArray:rowGrids]];
     }
-    return totalGrids;
+    return [NSArray arrayWithArray:totalGrids];
+}
+
+- (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column
+{
+    return self.grids[row][column];
+}
+
+- (void)clearAllGridsStatus
+{
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            SudokuGrid *grid = self.grids[row][column];
+            grid.chosen = NO;
+            grid.confilcting = NO;
+        }
+    }
+}
+
+- (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column
+{
+    [self clearAllGridsStatus];
+    SudokuGrid *chonsenGrid = [self getGridInRow:row inColumn:column];
+    chonsenGrid.chosen = YES;
 }
 
 @end

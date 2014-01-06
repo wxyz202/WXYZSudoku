@@ -10,6 +10,10 @@
 
 @interface SudokuGridView : UIView
 
-- (UIButton *)getButtonWithRow:(NSUInteger)row withColumn:(NSUInteger)column;
++ (UIColor *)chosenGridBackgroundColor;
++ (UIColor *)otherGridBackgroundColor;
++ (UIColor *)otherGridTitleColor;
+
+- (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
 @end

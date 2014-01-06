@@ -10,13 +10,26 @@
 
 @interface SudokuGridView ()
 @property (strong, nonatomic) UIColor *lineColor;
-@property (nonatomic) CGPoint origin;
-@property (nonatomic) CGSize size;
 @property (nonatomic) CGFloat gridSize;
-@property (strong, nonatomic) NSMutableArray *buttons;
+@property (strong, nonatomic) NSArray *buttons;
 @end
 
 @implementation SudokuGridView
+
++ (UIColor *)chosenGridBackgroundColor
+{
+    return [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+}
+
++ (UIColor *)otherGridBackgroundColor
+{
+    return [UIColor clearColor];
+}
+
++ (UIColor *)otherGridTitleColor
+{
+    return [UIColor blackColor];
+}
 
 - (UIColor *)lineColor
 {
@@ -38,17 +51,12 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    self.origin = rect.origin;
-    self.size = rect.size;
     self.gridSize = [self calGridSize:rect.size];
-    [self updateColor];
-    [self drawGrids:rect];
-}
-
-- (void)updateColor
-{
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [self.lineColor CGColor]);
+
+    [self drawGrids:rect];
 }
 
 static const CGFloat LINE_WIDTH = 1.0;
@@ -127,9 +135,10 @@ static const CGFloat EDGE_SIZE = 10.0;
 {
     [self drawBoldLines:rect];
     [self drawNormalLines:rect];
+    [self drawButtons:rect];
 }
 
-- (void)createButtons
+- (void)drawButtons:(CGRect)rect
 {
     CGFloat pos1 = EDGE_SIZE + BOLD_LINE_WIDTH;
     CGFloat pos2 = pos1 + self.gridSize + LINE_WIDTH;
@@ -141,33 +150,44 @@ static const CGFloat EDGE_SIZE = 10.0;
     CGFloat pos8 = pos7 + self.gridSize + LINE_WIDTH;
     CGFloat pos9 = pos8 + self.gridSize + LINE_WIDTH;
     CGFloat pos[9] = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9};
+    
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            CGFloat xstartPos = pos[row] + rect.origin.x;
+            CGFloat ystartPos = pos[column] + rect.origin.y;
+            CGRect frame = CGRectMake(xstartPos, ystartPos, self.gridSize, self.gridSize);
+            UIButton *button = [self getButtonInRow:row inColumn:column];
+            button.frame = frame;
+            [self addSubview:button];
+        }
+    }
+}
 
-    self.buttons = [[NSMutableArray alloc] init];
+- (NSArray *)createButtons
+{
+
+    NSMutableArray *buttons = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {
         NSMutableArray *rowButtons = [[NSMutableArray alloc] init];
         for (int column = 0; column < 9; column++) {
-            CGFloat xstartPos = pos[row] + self.origin.x;
-            CGFloat ystartPos = pos[column] + self.origin.y;
-            CGRect frame = CGRectMake(xstartPos, ystartPos, self.gridSize, self.gridSize);
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            button.frame = frame;
             [button setTitle:[NSString stringWithFormat:@"%d_%d", row, column] forState:UIControlStateNormal];
-            [self addSubview:button];
             [rowButtons addObject:button];
         }
-        [self.buttons addObject:rowButtons];
+        [buttons addObject:[NSArray arrayWithArray:rowButtons]];
     }
+    return [NSArray arrayWithArray:buttons];
 }
 
 - (NSArray *)buttons
 {
     if (!_buttons){
-        [self createButtons];
+        _buttons = [self createButtons];
     }
     return _buttons;
 }
 
-- (UIButton *)getButtonWithRow:(NSUInteger)row withColumn:(NSUInteger)column
+- (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
     return [[self.buttons objectAtIndex:row] objectAtIndex:column];
 }

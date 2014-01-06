@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SudokuGridView.h"
+#import "Sudoku.h"
 
 @interface SudokuViewController : UIViewController
 

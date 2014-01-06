@@ -16,11 +16,14 @@ typedef NS_ENUM(NSInteger, SudokuGridType){
 
 @interface SudokuGrid : NSObject
 
+@property (nonatomic) NSUInteger value;
+
 @property (nonatomic, getter = isChosen) BOOL chosen;
+@property (nonatomic, getter = isConfilcting) BOOL confilcting;
 
-- (instancetype)initGridEmptyInRow:(NSUInteger)row inColumn:(NSUInteger)column;
-- (instancetype)initGridConstInRow:(NSUInteger)row inColumn:(NSUInteger)column withValue:(NSUInteger)value;
+- (BOOL)isConst;
 
-- (BOOL)matchWithRow:(NSUInteger)row withColumn:(NSUInteger)column;
+- (instancetype)initGridEmpty;
+- (instancetype)initGridConstWithValue:(NSUInteger)value;
 
 @end

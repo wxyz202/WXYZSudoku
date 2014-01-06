@@ -11,4 +11,8 @@
 
 @interface Sudoku : NSObject
 
+- (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
+
+- (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
+
 @end
