@@ -8,20 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, SudokuGridType){
-    SudokuGridTypeEmpty,
-    SudokuGridTypeConst,
-    SudokuGridTypeFilled
-};
-
 @interface SudokuGrid : NSObject
 
 @property (nonatomic) NSUInteger value;
 
 @property (nonatomic, getter = isChosen) BOOL chosen;
+@property (nonatomic, getter = isRelated) BOOL related;
 @property (nonatomic, getter = isConfilcting) BOOL confilcting;
-
-- (BOOL)isConst;
+@property (nonatomic, readonly, getter = isConstant) BOOL constant;
+@property (nonatomic, getter = isFilled) BOOL filled;
 
 - (instancetype)initGridEmpty;
 - (instancetype)initGridConstWithValue:(NSUInteger)value;

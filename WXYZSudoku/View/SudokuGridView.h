@@ -11,6 +11,7 @@
 @interface SudokuGridView : UIView
 
 + (UIColor *)chosenGridBackgroundColor;
++ (UIColor *)relatedGridBackgroundColor;
 + (UIColor *)otherGridBackgroundColor;
 + (UIColor *)otherGridTitleColor;
 

@@ -10,7 +10,7 @@
 
 @interface SudokuGrid ()
 
-@property (nonatomic) SudokuGridType gridType;
+@property (nonatomic, readwrite, getter = isConstant) BOOL constant;
 
 @end
 
@@ -20,22 +20,22 @@
 
 - (void)setValue:(NSUInteger)value
 {
-    if ([self isConst]){
+    if ([self isConstant]){
         return;
+    }
+    if (1 <= value && value <= 9) {
+        self.filled = YES;
+    } else {
+        self.filled = NO;
     }
     _value = value;
 }
 
-- (BOOL)isConst
-{
-    return self.gridType == SudokuGridTypeConst;
-}
-        
 - (instancetype)initGridEmpty
 {
     self = [super init];
     if (self){
-        self.gridType = SudokuGridTypeEmpty;
+        self.constant = NO;
         self.value = 0;
     }
     return self;
@@ -45,7 +45,7 @@
 {
     self = [super init];
     if (self){
-        self.gridType = SudokuGridTypeConst;
+        self.constant = YES;
         self.value = value;
     }
     return self;

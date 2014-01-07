@@ -18,7 +18,12 @@
 
 + (UIColor *)chosenGridBackgroundColor
 {
-    return [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+    return [UIColor colorWithRed:1.0 green:0.92 blue:0.5 alpha:1.0];
+}
+
++ (UIColor *)relatedGridBackgroundColor
+{
+    return [UIColor colorWithRed:1.0 green:1.0 blue:0.8 alpha:1.0];
 }
 
 + (UIColor *)otherGridBackgroundColor
@@ -171,7 +176,7 @@ static const CGFloat EDGE_SIZE = 10.0;
         NSMutableArray *rowButtons = [[NSMutableArray alloc] init];
         for (int column = 0; column < 9; column++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button setTitle:[NSString stringWithFormat:@"%d_%d", row, column] forState:UIControlStateNormal];
+            //[button setTitle:[NSString stringWithFormat:@"%d_%d", row, column] forState:UIControlStateNormal];
             [rowButtons addObject:button];
         }
         [buttons addObject:[NSArray arrayWithArray:rowButtons]];

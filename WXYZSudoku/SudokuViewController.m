@@ -15,7 +15,7 @@
 
 @implementation SudokuViewController
 
-static const int SUDOKU_VIEW_TAG = 1;
+static const int SUDOKU_VIEW_TAG = 100;
 
 - (Sudoku *)sudoku
 {
@@ -55,14 +55,31 @@ static const int SUDOKU_VIEW_TAG = 1;
     [self updateUI];
 }
 
+- (IBAction)chooseNumber:(UIButton *)sender {
+    [self.sudoku fillChosenGridWithValue:[sender.currentTitle intValue]];
+    [self updateUI];
+}
+
+- (IBAction)clearGrid {
+    [self.sudoku clearChosenGrid];
+    [self updateUI];
+}
+
 - (void)updateUI
 {
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column < 9; column++) {
             UIButton *button = [self.sudokuView getButtonInRow:row inColumn:column];
             SudokuGrid *grid = [self.sudoku getGridInRow:row inColumn:column];
+            if (grid.isFilled) {
+                [button setTitle:[NSString stringWithFormat:@"%d", grid.value] forState:UIControlStateNormal];
+            } else {
+                [button setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
+            }
             if (grid.isChosen) {
                 [button setBackgroundColor:[SudokuGridView chosenGridBackgroundColor]];
+            } else if (grid.isRelated){
+                [button setBackgroundColor:[SudokuGridView relatedGridBackgroundColor]];
             } else {
                  [button setBackgroundColor:[SudokuGridView otherGridBackgroundColor]];
             }

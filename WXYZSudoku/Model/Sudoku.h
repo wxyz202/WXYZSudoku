@@ -14,5 +14,7 @@
 - (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
+- (void)clearChosenGrid;
+- (void)fillChosenGridWithValue:(NSUInteger)value;
 
 @end
