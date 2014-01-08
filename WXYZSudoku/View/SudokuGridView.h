@@ -13,6 +13,7 @@
 + (UIColor *)chosenGridBackgroundColor;
 + (UIColor *)relatedGridBackgroundColor;
 + (UIColor *)otherGridBackgroundColor;
++ (UIColor *)conflictingGridTitleColor;
 + (UIColor *)otherGridTitleColor;
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;

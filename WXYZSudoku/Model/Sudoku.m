@@ -55,10 +55,55 @@
     }
 }
 
+- (NSArray *)getRelatedGridsWithRow:(NSUInteger)row withColumn:(NSUInteger)column
+{
+    NSMutableArray* relatedGrids = [[NSMutableArray alloc] init];
+    for (int rowIndex = 0; rowIndex < 9; rowIndex++) {
+        if (row == rowIndex) {
+            continue;
+        }
+        [relatedGrids addObject:[self getGridInRow:rowIndex inColumn:column]];
+    }
+    for (int columnIndex = 0; columnIndex < 9; columnIndex++) {
+        if (column == columnIndex) {
+            continue;
+        }
+        [relatedGrids addObject:[self getGridInRow:row inColumn:columnIndex]];
+    }
+    for (int rowIndex = row / 3 * 3; rowIndex < row / 3 * 3 + 3; rowIndex++) {
+        for (int columnIndex = column / 3 * 3; columnIndex < column / 3 * 3 + 3; columnIndex++) {
+            if (row != rowIndex && column !=columnIndex) {
+                [relatedGrids addObject:[self getGridInRow:rowIndex inColumn:columnIndex]];
+            }
+        }
+    }
+    return [NSArray arrayWithArray:relatedGrids];
+}
+
+- (void)updateConflicting
+{
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+            if (!grid.isFilled) {
+                continue;
+            }
+            
+            NSArray *relatedGrids = [self getRelatedGridsWithRow:row withColumn:column];
+            for (SudokuGrid *candidateGrid in relatedGrids) {
+                if (candidateGrid.value == grid.value) {
+                    grid.confilcting = YES;
+                    candidateGrid.confilcting = YES;
+                }
+            }
+        }
+    }
+}
+
 - (void)updateAllGridsStatus
 {
-    int row = -1;
-    int column = -1;
+    int row = 0;
+    int column = 0;
     for (int rowIndex = 0; rowIndex < 9; rowIndex++) {
         for (int columnIndex = 0; columnIndex < 9; columnIndex++) {
             if ([self getGridInRow:rowIndex inColumn:columnIndex].isChosen) {
@@ -67,17 +112,13 @@
             }
         }
     }
-    for (int rowIndex = 0; rowIndex < 9; rowIndex++) {
-        [self getGridInRow:rowIndex inColumn:column].related = YES;
+    
+    NSArray *relatedGrids = [self getRelatedGridsWithRow:row withColumn:column];
+    for (SudokuGrid *grid in relatedGrids) {
+        grid.related = YES;
     }
-    for (int columnIndex = 0; columnIndex < 9; columnIndex++) {
-        [self getGridInRow:row inColumn:columnIndex].related = YES;
-    }
-    for (int rowIndex = row / 3 * 3; rowIndex < row / 3 * 3 + 3; rowIndex++) {
-        for (int columnIndex = column / 3 * 3; columnIndex < column / 3 * 3 + 3; columnIndex++) {
-            [self getGridInRow:rowIndex inColumn:columnIndex].related = YES;
-        }
-    }
+    
+    [self updateConflicting];
 }
 
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column
@@ -90,28 +131,31 @@
 
 - (void)clearChosenGrid
 {
-    for (int row = 0; row < 9; row++) {
-        for (int column = 0; column < 9; column++) {
+    BOOL finished = NO;
+    for (int row = 0; !finished && row < 9; row++) {
+        for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
                 grid.value = 0;
+                [self chooseGridInRow:row inColumn:column];
+                finished = YES;
             }
         }
     }
-    [self updateAllGridsStatus];
 }
 
 - (void)fillChosenGridWithValue:(NSUInteger)value
 {
-    for (int row = 0; row < 9; row++) {
-        for (int column = 0; column < 9; column++) {
+    BOOL finished = NO;
+    for (int row = 0; !finished && row < 9; row++) {
+        for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
-            if (grid.isChosen && !grid.isConstant) {
-                grid.value = value;
+            if (grid.isChosen && !grid.isConstant) {                grid.value = value;
+                [self chooseGridInRow:row inColumn:column];
+                finished = YES;
             }
         }
     }
-    [self updateAllGridsStatus];
 }
 
 @end

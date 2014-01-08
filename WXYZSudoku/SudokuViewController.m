@@ -76,6 +76,7 @@ static const int SUDOKU_VIEW_TAG = 100;
             } else {
                 [button setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
             }
+            
             if (grid.isChosen) {
                 [button setBackgroundColor:[SudokuGridView chosenGridBackgroundColor]];
             } else if (grid.isRelated){
@@ -83,7 +84,12 @@ static const int SUDOKU_VIEW_TAG = 100;
             } else {
                  [button setBackgroundColor:[SudokuGridView otherGridBackgroundColor]];
             }
-            [button setTitleColor:[SudokuGridView otherGridTitleColor] forState:UIControlStateNormal];
+            
+            if (grid.isConfilcting) {
+                [button setTitleColor:[SudokuGridView conflictingGridTitleColor] forState:UIControlStateNormal];
+            } else {
+                [button setTitleColor:[SudokuGridView otherGridTitleColor] forState:UIControlStateNormal];
+            }
         }
     }
 }

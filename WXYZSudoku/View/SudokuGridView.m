@@ -31,6 +31,11 @@
     return [UIColor clearColor];
 }
 
++ (UIColor *)conflictingGridTitleColor
+{
+    return [UIColor redColor];
+}
+
 + (UIColor *)otherGridTitleColor
 {
     return [UIColor blackColor];
@@ -158,8 +163,8 @@ static const CGFloat EDGE_SIZE = 10.0;
     
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column < 9; column++) {
-            CGFloat xstartPos = pos[row] + rect.origin.x;
-            CGFloat ystartPos = pos[column] + rect.origin.y;
+            CGFloat xstartPos = pos[column] + rect.origin.x;
+            CGFloat ystartPos = pos[row] + rect.origin.y;
             CGRect frame = CGRectMake(xstartPos, ystartPos, self.gridSize, self.gridSize);
             UIButton *button = [self getButtonInRow:row inColumn:column];
             button.frame = frame;
