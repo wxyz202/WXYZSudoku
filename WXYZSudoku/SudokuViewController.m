@@ -87,6 +87,8 @@ static const int SUDOKU_VIEW_TAG = 100;
             
             if (grid.isConfilcting) {
                 [button setTitleColor:[SudokuGridView conflictingGridTitleColor] forState:UIControlStateNormal];
+            } else if (grid.isSameAsChosen) {
+                [button setTitleColor:[SudokuGridView sameValueGridTitileColor] forState:UIControlStateNormal];
             } else {
                 [button setTitleColor:[SudokuGridView otherGridTitleColor] forState:UIControlStateNormal];
             }

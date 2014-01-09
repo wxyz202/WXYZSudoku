@@ -51,6 +51,7 @@
             grid.chosen = NO;
             grid.confilcting = NO;
             grid.related = NO;
+            grid.sameAsChosne = NO;
         }
     }
 }
@@ -78,6 +79,25 @@
         }
     }
     return [NSArray arrayWithArray:relatedGrids];
+}
+
+- (NSArray *)getGridsWithValue:(NSUInteger)value
+{
+    NSMutableArray *grids = [[NSMutableArray alloc] init];
+    
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+            if (!grid.isFilled) {
+                continue;
+            }
+            if (grid.value == value) {
+                [grids addObject:grid];
+            }
+        }
+    }
+
+    return [NSArray arrayWithArray:grids];
 }
 
 - (void)updateConflicting
@@ -116,6 +136,14 @@
     NSArray *relatedGrids = [self getRelatedGridsWithRow:row withColumn:column];
     for (SudokuGrid *grid in relatedGrids) {
         grid.related = YES;
+    }
+    
+    SudokuGrid *chosenGrid = [self getGridInRow:row inColumn:column];
+    if (chosenGrid.isFilled) {
+        NSArray *sameGrids = [self getGridsWithValue:chosenGrid.value];
+        for (SudokuGrid *grid in sameGrids) {
+            grid.sameAsChosne = YES;
+        }
     }
     
     [self updateConflicting];

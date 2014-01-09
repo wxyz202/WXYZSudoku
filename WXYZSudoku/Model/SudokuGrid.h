@@ -17,6 +17,7 @@
 @property (nonatomic, getter = isConfilcting) BOOL confilcting;
 @property (nonatomic, readonly, getter = isConstant) BOOL constant;
 @property (nonatomic, getter = isFilled) BOOL filled;
+@property (nonatomic, getter = isSameAsChosen) BOOL sameAsChosne;
 
 - (instancetype)initGridEmpty;
 - (instancetype)initGridConstWithValue:(NSUInteger)value;

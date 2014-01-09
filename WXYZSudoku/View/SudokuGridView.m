@@ -36,6 +36,11 @@
     return [UIColor redColor];
 }
 
++ (UIColor *)sameValueGridTitileColor
+{
+    return [UIColor blueColor];
+}
+
 + (UIColor *)otherGridTitleColor
 {
     return [UIColor blackColor];
