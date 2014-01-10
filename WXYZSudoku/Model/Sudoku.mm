@@ -7,6 +7,7 @@
 //
 
 #import "Sudoku.h"
+#import "SudokuSolver.h"
 
 @interface Sudoku ()
 
@@ -182,6 +183,24 @@
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
             }
+        }
+    }
+}
+
+- (void)solve
+{
+    int input[9][9];
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++){
+            input[row][column] = [self getGridInRow:row inColumn:column].value;
+        }
+    }
+    
+    solve(input);
+    
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++){
+            [self getGridInRow:row inColumn:column].value = input[row][column];
         }
     }
 }

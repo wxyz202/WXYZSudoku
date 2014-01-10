@@ -96,6 +96,11 @@ static const int SUDOKU_VIEW_TAG = 100;
     }
 }
 
+- (IBAction)clickSolveButton {
+    [self.sudoku solve];
+    [self updateUI];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

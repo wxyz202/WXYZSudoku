@@ -16,5 +16,6 @@
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (void)clearChosenGrid;
 - (void)fillChosenGridWithValue:(NSUInteger)value;
+- (void)solve;
 
 @end

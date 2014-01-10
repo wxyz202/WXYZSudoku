@@ -22,8 +22,9 @@
 		1842B49C1877BCB3009EF61B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1842B49A1877BCB3009EF61B /* InfoPlist.strings */; };
 		1842B49E1877BCB3009EF61B /* WXYZSudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B49D1877BCB3009EF61B /* WXYZSudokuTests.m */; };
 		1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AC1877E147009EF61B /* SudokuGridView.m */; };
-		1842B4B0187971E0009EF61B /* Sudoku.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AF187971E0009EF61B /* Sudoku.m */; };
+		1842B4B0187971E0009EF61B /* Sudoku.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AF187971E0009EF61B /* Sudoku.mm */; };
 		1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4B31879803A009EF61B /* SudokuGrid.m */; };
+		18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A01A1880499000771855 /* SudokuSolver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,9 +60,11 @@
 		1842B4AB1877E147009EF61B /* SudokuGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuGridView.h; path = View/SudokuGridView.h; sourceTree = "<group>"; };
 		1842B4AC1877E147009EF61B /* SudokuGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuGridView.m; path = View/SudokuGridView.m; sourceTree = "<group>"; };
 		1842B4AE187971E0009EF61B /* Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sudoku.h; path = Model/Sudoku.h; sourceTree = "<group>"; };
-		1842B4AF187971E0009EF61B /* Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sudoku.m; path = Model/Sudoku.m; sourceTree = "<group>"; };
+		1842B4AF187971E0009EF61B /* Sudoku.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Sudoku.mm; path = Model/Sudoku.mm; sourceTree = "<group>"; };
 		1842B4B21879803A009EF61B /* SudokuGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuGrid.h; path = Model/SudokuGrid.h; sourceTree = "<group>"; };
 		1842B4B31879803A009EF61B /* SudokuGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuGrid.m; path = Model/SudokuGrid.m; sourceTree = "<group>"; };
+		18B6A0191880497A00771855 /* SudokuSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuSolver.h; path = Model/SudokuSolver.h; sourceTree = "<group>"; };
+		18B6A01A1880499000771855 /* SudokuSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuSolver.cpp; path = Model/SudokuSolver.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,10 +178,12 @@
 		1842B4B1187971EA009EF61B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18B6A0191880497A00771855 /* SudokuSolver.h */,
+				18B6A01A1880499000771855 /* SudokuSolver.cpp */,
 				1842B4B21879803A009EF61B /* SudokuGrid.h */,
 				1842B4B31879803A009EF61B /* SudokuGrid.m */,
 				1842B4AE187971E0009EF61B /* Sudoku.h */,
-				1842B4AF187971E0009EF61B /* Sudoku.m */,
+				1842B4AF187971E0009EF61B /* Sudoku.mm */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,10 +288,11 @@
 			files = (
 				1842B4891877BCB3009EF61B /* SudokuViewController.m in Sources */,
 				1842B47F1877BCB3009EF61B /* main.m in Sources */,
+				18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */,
 				1842B4831877BCB3009EF61B /* SudokuAppDelegate.m in Sources */,
 				1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */,
 				1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */,
-				1842B4B0187971E0009EF61B /* Sudoku.m in Sources */,
+				1842B4B0187971E0009EF61B /* Sudoku.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +501,7 @@
 				1842B4A31877BCB3009EF61B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1842B4A41877BCB3009EF61B /* Build configuration list for PBXNativeTarget "WXYZSudokuTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +510,7 @@
 				1842B4A61877BCB3009EF61B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
