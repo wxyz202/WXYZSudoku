@@ -15,6 +15,7 @@
 + (UIColor *)otherGridBackgroundColor;
 + (UIColor *)conflictingGridTitleColor;
 + (UIColor *)sameValueGridTitileColor;
++ (UIColor *)constantValueGridTitleColor;
 + (UIColor *)otherGridTitleColor;
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;

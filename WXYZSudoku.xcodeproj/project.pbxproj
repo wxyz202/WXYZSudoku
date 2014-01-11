@@ -25,6 +25,7 @@
 		1842B4B0187971E0009EF61B /* Sudoku.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4AF187971E0009EF61B /* Sudoku.mm */; };
 		1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4B31879803A009EF61B /* SudokuGrid.m */; };
 		18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A01A1880499000771855 /* SudokuSolver.cpp */; };
+		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		1842B4B31879803A009EF61B /* SudokuGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuGrid.m; path = Model/SudokuGrid.m; sourceTree = "<group>"; };
 		18B6A0191880497A00771855 /* SudokuSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuSolver.h; path = Model/SudokuSolver.h; sourceTree = "<group>"; };
 		18B6A01A1880499000771855 /* SudokuSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuSolver.cpp; path = Model/SudokuSolver.cpp; sourceTree = "<group>"; };
+		18D7CDAA188113EC00E6786D /* SudokuGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuGenerator.h; path = Model/SudokuGenerator.h; sourceTree = "<group>"; };
+		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 			children = (
 				18B6A0191880497A00771855 /* SudokuSolver.h */,
 				18B6A01A1880499000771855 /* SudokuSolver.cpp */,
+				18D7CDAA188113EC00E6786D /* SudokuGenerator.h */,
+				18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */,
 				1842B4B21879803A009EF61B /* SudokuGrid.h */,
 				1842B4B31879803A009EF61B /* SudokuGrid.m */,
 				1842B4AE187971E0009EF61B /* Sudoku.h */,
@@ -292,6 +297,7 @@
 				1842B4831877BCB3009EF61B /* SudokuAppDelegate.m in Sources */,
 				1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */,
 				1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */,
+				18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */,
 				1842B4B0187971E0009EF61B /* Sudoku.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -46,6 +46,9 @@ int Block(int r,int c)
 
 void Preprocess()
 {
+    memset(ep, 0, sizeof(ep));
+    memset(lis, 0, sizeof(lis));
+    memset(len, 0, sizeof(len));
 	int i,j,n,k=(1<<9)-1;
 	for(i=0;i<k;i++)
 	{
@@ -85,6 +88,9 @@ void search(int cur)
 		row[r]^=(1<<i); col[c]^=(1<<i); block[b]^=(1<<i);
 		map[r][c]=i+1;
 		search(cur+1);
+        if (ans>1) {
+            return;
+        }
 		row[r]^=(1<<i); col[c]^=(1<<i); block[b]^=(1<<i);
 	}
 }

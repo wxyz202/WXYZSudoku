@@ -45,8 +45,8 @@
 {
     self = [super init];
     if (self){
-        self.constant = YES;
         self.value = value;
+        self.constant = YES;
     }
     return self;
 }

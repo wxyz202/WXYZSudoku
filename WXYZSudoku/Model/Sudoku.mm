@@ -8,6 +8,7 @@
 
 #import "Sudoku.h"
 #import "SudokuSolver.h"
+#import "SudokuGenerator.h"
 
 @interface Sudoku ()
 
@@ -21,7 +22,7 @@
 - (NSArray *)grids
 {
     if (!_grids) {
-        _grids = [self createEmptyGrids];
+        _grids = [self createRandomGeneratedGrids];
     }
     return _grids;
 }
@@ -203,6 +204,31 @@
             [self getGridInRow:row inColumn:column].value = input[row][column];
         }
     }
+}
+
+- (NSArray *)createRandomGeneratedGrids
+{
+    int input[9][9];
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++){
+            input[row][column]=0;
+        }
+    }
+    generate(input);
+    
+    NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
+    for (int row = 0; row < 9; row++) {
+        NSMutableArray *rowGrids = [[NSMutableArray alloc] init];
+        for (int column = 0; column < 9; column++) {
+            if (input[row][column] > 0) {
+                [rowGrids addObject:[[SudokuGrid alloc] initGridConstWithValue:input[row][column]]];
+            } else {
+                [rowGrids addObject:[[SudokuGrid alloc] initGridEmpty]];
+            }
+        }
+        [totalGrids addObject:[NSArray arrayWithArray:rowGrids]];
+    }
+    return [NSArray arrayWithArray:totalGrids];
 }
 
 @end

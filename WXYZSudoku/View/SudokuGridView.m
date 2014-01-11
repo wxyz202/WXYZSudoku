@@ -41,9 +41,14 @@
     return [UIColor blueColor];
 }
 
-+ (UIColor *)otherGridTitleColor
++ (UIColor *)constantValueGridTitleColor
 {
     return [UIColor blackColor];
+}
+
++ (UIColor *)otherGridTitleColor
+{
+    return [UIColor brownColor];
 }
 
 - (UIColor *)lineColor
