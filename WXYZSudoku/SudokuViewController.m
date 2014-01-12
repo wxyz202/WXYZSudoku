@@ -96,6 +96,16 @@ static const int SUDOKU_VIEW_TAG = 100;
             }
         }
     }
+    
+    for (NSUInteger value = 1; value <= 9; value++) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:value];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        button.enabled = YES;
+        if ([self.sudoku gridsWithValueFinish:value]) {
+            [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            button.enabled = NO;
+        }
+    }
 }
 
 - (IBAction)clickSolveButton {

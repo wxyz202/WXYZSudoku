@@ -45,12 +45,17 @@ void randomChange(int input[][9])
     }
 }
 
+int try_time(int count)
+{
+    return (8-count)*(9-count);
+}
+
 void randomRemove(int input[][9])
 {
     int i,j;
     int z=7,t;
     int temp[9][9],ex[81],ey[81],ec[81],en;
-    t=(8-z)*(8-z);
+    t=try_time(z);
     while (z > 0) {
         en=0;
         for (i=0;i<9;i++)
@@ -80,7 +85,7 @@ void randomRemove(int input[][9])
             }
             else {
                 z--;
-                t=(8-z)*(8-z);
+                t=try_time(z);
             }
         }
     }

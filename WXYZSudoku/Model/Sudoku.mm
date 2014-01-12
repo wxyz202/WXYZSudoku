@@ -102,6 +102,11 @@
     return [NSArray arrayWithArray:grids];
 }
 
+- (BOOL)gridsWithValueFinish:(NSUInteger)value
+{
+    return [[self getGridsWithValue:value] count] == 9;
+}
+
 - (void)updateConflicting
 {
     for (int row = 0; row < 9; row++) {
