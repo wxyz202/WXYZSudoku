@@ -9,10 +9,12 @@
 #import "Sudoku.h"
 #import "SudokuSolver.h"
 #import "SudokuGenerator.h"
+#import "SudokuActionRecord.h"
 
 @interface Sudoku ()
 
 @property (strong, nonatomic) NSArray *grids;
+@property (strong, nonatomic) SudokuActionRecord *actionRecord;
 
 @end
 
@@ -171,6 +173,8 @@
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
+                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:0];
+                [self.actionRecord pushAction:action];
                 grid.value = 0;
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
@@ -185,7 +189,10 @@
     for (int row = 0; !finished && row < 9; row++) {
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
-            if (grid.isChosen && !grid.isConstant) {                grid.value = value;
+            if (grid.isChosen && !grid.isConstant) {
+                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:value];
+                [self.actionRecord pushAction:action];
+                grid.value = value;
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
             }
@@ -198,7 +205,12 @@
     int input[9][9];
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column < 9; column++){
-            input[row][column] = [self getGridInRow:row inColumn:column].value;
+            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+            if (grid.isConstant) {
+                input[row][column] = grid.value;
+            } else {
+                input[row][column] = 0;
+            }
         }
     }
     
@@ -234,6 +246,42 @@
         [totalGrids addObject:[NSArray arrayWithArray:rowGrids]];
     }
     return [NSArray arrayWithArray:totalGrids];
+}
+
+- (SudokuActionRecord *)actionRecord
+{
+    if (!_actionRecord) {
+        _actionRecord = [[SudokuActionRecord alloc] init];
+    }
+    return _actionRecord;
+}
+
+- (BOOL)canUndo
+{
+    return [self.actionRecord canUndo];
+}
+
+- (BOOL)canRedo
+{
+    return [self.actionRecord canRedo];
+}
+
+- (void)undo
+{
+    SudokuAction *action = [self.actionRecord undo];
+    if (action) {
+        [self getGridInRow:action.row inColumn:action.column].value = action.fromValue;
+        [self chooseGridInRow:action.row inColumn:action.column];
+    }
+}
+
+- (void)redo
+{
+    SudokuAction *action = [self.actionRecord redo];
+    if (action) {
+        [self getGridInRow:action.row inColumn:action.column].value = action.toValue;
+        [self chooseGridInRow:action.row inColumn:action.column];
+    }
 }
 
 @end

@@ -178,6 +178,7 @@ static const CGFloat EDGE_SIZE = 10.0;
             CGRect frame = CGRectMake(xstartPos, ystartPos, self.gridSize, self.gridSize);
             UIButton *button = [self getButtonInRow:row inColumn:column];
             button.frame = frame;
+            [button.titleLabel setFont:[UIFont systemFontOfSize:20.0]];
             [self addSubview:button];
         }
     }

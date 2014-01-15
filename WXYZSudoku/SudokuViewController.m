@@ -11,6 +11,8 @@
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
 @property (strong, nonatomic)Sudoku *sudoku;
+@property (weak, nonatomic) IBOutlet UIButton *undoButton;
+@property (weak, nonatomic) IBOutlet UIButton *redoButton;
 @end
 
 @implementation SudokuViewController
@@ -106,10 +108,40 @@ static const int SUDOKU_VIEW_TAG = 100;
             button.enabled = NO;
         }
     }
+    
+    if ([self.sudoku canUndo]) {
+        [self.undoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.undoButton.enabled = YES;
+    } else {
+        [self.undoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        self.undoButton.enabled = NO;
+    }
+    if ([self.sudoku canRedo]) {
+        [self.redoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.redoButton.enabled = YES;
+    } else {
+        [self.redoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        self.redoButton.enabled = NO;
+    }
 }
 
 - (IBAction)clickSolveButton {
     [self.sudoku solve];
+    [self updateUI];
+}
+
+- (IBAction)clickRestartButton {
+    self.sudoku = nil;
+    [self updateUI];
+}
+
+- (IBAction)clickUndoButton {
+    [self.sudoku undo];
+    [self updateUI];
+}
+
+- (IBAction)clickRedoButton {
+    [self.sudoku redo];
     [self updateUI];
 }
 
