@@ -9,6 +9,10 @@
 #ifndef WXYZSudoku_SudokuGenerator_h
 #define WXYZSudoku_SudokuGenerator_h
 
-void generate(int input[][9]);
+const int DIFFICULTY_EASY = 0;
+const int DIFFICULTY_NORMAL = 1;
+const int DIFFICULTY_HARD = 2;
+
+void generate(int input[][9], int difficulty=DIFFICULTY_NORMAL);
 
 #endif

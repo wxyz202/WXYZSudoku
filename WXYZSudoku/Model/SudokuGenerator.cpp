@@ -14,6 +14,9 @@
 
 using namespace std;
 
+const int MAX_EMPTY_GRIDS[3] = {50, 55, 60};
+const int MAX_EMPTY_GRIDS_PER_BLOCK[3] = {5, 6, 9};
+
 const int sudokuCount = 2;
 
 const int initSudoku[sudokuCount][9][9] = {
@@ -60,12 +63,64 @@ void randomChange(int input[][9])
     }
 }
 
-int try_time(int count)
+bool check_difficulty(int temp[][9], int difficulty)
 {
-    return (8-count)*(9-count);
+    int i,j,u,v;
+    int empty_grid = 0;
+    for (i=0; i<9; i++) {
+        for (j=0; j<9; j++) {
+            if (temp[i][j]==0) {
+                empty_grid++;
+            }
+        }
+    }
+    if (empty_grid > MAX_EMPTY_GRIDS[difficulty]) {
+        return false;
+    }
+    for (i=0; i<9; i++) {
+        empty_grid = 0;
+        for (j=0; j<9; j++) {
+            if (temp[i][j]==0) {
+                empty_grid++;
+            }
+        }
+        if (empty_grid > MAX_EMPTY_GRIDS_PER_BLOCK[difficulty]) {
+            return false;
+        }
+        empty_grid = 0;
+        for (j=0; j<9; j++) {
+            if (temp[j][i]==0) {
+                empty_grid++;
+            }
+        }
+        if (empty_grid > MAX_EMPTY_GRIDS_PER_BLOCK[difficulty]) {
+            return false;
+        }
+    }
+    for (i=0; i<3; i++) {
+        for (j=0; j<3; j++) {
+            empty_grid = 0;
+            for (u=0; u<3; u++) {
+                for (v=0; v<3; v++) {
+                    if (temp[i*3+u][j*3+v]==0) {
+                        empty_grid++;
+                    }
+                }
+            }
+            if (empty_grid > MAX_EMPTY_GRIDS_PER_BLOCK[difficulty]) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
-void randomRemove(int input[][9])
+int try_time(int count)
+{
+    return (8-count)*(8-count);
+}
+
+void randomRemove(int input[][9], int difficulty)
 {
     int i,j;
     int z=7,t;
@@ -89,8 +144,8 @@ void randomRemove(int input[][9])
         for (i=0; i<z; i++) {
             temp[ex[ec[i]]][ey[ec[i]]]=0;
         }
-        int ans = solve(temp);
-        if (ans == 1) {
+        bool cd = check_difficulty(temp, difficulty);
+        if (cd && solve(temp) == 1) {
             for (i=0; i<z; i++) {
                 input[ex[ec[i]]][ey[ec[i]]]=0;
             }
@@ -104,9 +159,25 @@ void randomRemove(int input[][9])
             }
         }
     }
+    for (i=0; i<9; i++) {
+        for (j=0; j<9; j++) {
+            if (input[i][j]!=0) {
+                for (int u=0;u<9;u++) {
+                    for (int v=0; v<9; v++) {
+                        temp[u][v]=input[u][v];
+                    }
+                }
+                temp[i][j]=0;
+                bool cd = check_difficulty(temp, difficulty);
+                if (cd && solve(temp) == 1) {
+                    input[i][j]=0;
+                }
+            }
+        }
+    }
 }
 
-void generate(int input[][9])
+void generate(int input[][9], int difficulty)
 {
     srand(time(NULL));
     
@@ -120,5 +191,5 @@ void generate(int input[][9])
         }
     }
     randomChange(input);
-    randomRemove(input);
+    randomRemove(input, difficulty);
 }

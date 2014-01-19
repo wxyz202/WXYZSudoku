@@ -13,6 +13,7 @@
 
 @interface Sudoku ()
 
+@property (nonatomic) NSUInteger difficulty;
 @property (strong, nonatomic) NSArray *grids;
 @property (strong, nonatomic) SudokuActionRecord *actionRecord;
 
@@ -21,10 +22,19 @@
 
 @implementation Sudoku
 
+- (instancetype)initWithDifficulty:(NSUInteger)difficulty
+{
+    self = [super init];
+    if (self) {
+        self.difficulty = difficulty;
+    }
+    return self;
+}
+
 - (NSArray *)grids
 {
     if (!_grids) {
-        _grids = [self createRandomGeneratedGrids];
+        _grids = [self createRandomGeneratedGridsWithDifficulty:self.difficulty];
     }
     return _grids;
 }
@@ -232,6 +242,31 @@
         }
     }
     generate(input);
+    
+    NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
+    for (int row = 0; row < 9; row++) {
+        NSMutableArray *rowGrids = [[NSMutableArray alloc] init];
+        for (int column = 0; column < 9; column++) {
+            if (input[row][column] > 0) {
+                [rowGrids addObject:[[SudokuGrid alloc] initGridConstWithValue:input[row][column]]];
+            } else {
+                [rowGrids addObject:[[SudokuGrid alloc] initGridEmpty]];
+            }
+        }
+        [totalGrids addObject:[NSArray arrayWithArray:rowGrids]];
+    }
+    return [NSArray arrayWithArray:totalGrids];
+}
+
+- (NSArray *)createRandomGeneratedGridsWithDifficulty:(NSUInteger)difficulty
+{
+    int input[9][9];
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++){
+            input[row][column]=0;
+        }
+    }
+    generate(input, self.difficulty);
     
     NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {

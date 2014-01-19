@@ -13,6 +13,7 @@
 @property (strong, nonatomic)Sudoku *sudoku;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedControl;
 @end
 
 @implementation SudokuViewController
@@ -22,7 +23,7 @@ static const int SUDOKU_VIEW_TAG = 100;
 - (Sudoku *)sudoku
 {
     if (!_sudoku) {
-        _sudoku = [[Sudoku alloc] init];
+        _sudoku = [[Sudoku alloc] initWithDifficulty:[self.difficultySegmentedControl selectedSegmentIndex]];
     }
     return _sudoku;
 }

@@ -11,6 +11,8 @@
 
 @interface Sudoku : NSObject
 
+- (instancetype)initWithDifficulty:(NSUInteger)difficulty;
+
 - (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
 - (BOOL)gridsWithValueFinish:(NSUInteger)value;
