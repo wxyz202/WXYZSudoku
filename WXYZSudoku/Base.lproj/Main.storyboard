@@ -196,8 +196,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="clearGridButton" destination="ctm-wN-AJj" id="5rh-kF-yLx"/>
                         <outlet property="difficultySegmentedControl" destination="0RD-0Z-jGP" id="DB7-9L-r8o"/>
                         <outlet property="redoButton" destination="cbZ-bv-qFi" id="bdT-J4-lHA"/>
+                        <outlet property="solveButton" destination="eHo-24-P9p" id="Fzi-6J-Tne"/>
                         <outlet property="undoButton" destination="i6Q-Fd-kg7" id="tY2-sr-zda"/>
                     </connections>
                 </viewController>

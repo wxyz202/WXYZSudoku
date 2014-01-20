@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedControl;
+@property (weak, nonatomic) IBOutlet UIButton *clearGridButton;
+@property (weak, nonatomic) IBOutlet UIButton *solveButton;
 @end
 
 @implementation SudokuViewController
@@ -129,6 +131,10 @@ static const int SUDOKU_VIEW_TAG = 100;
 - (IBAction)clickSolveButton {
     [self.sudoku solve];
     [self updateUI];
+    self.undoButton.enabled = NO;
+    self.redoButton.enabled = NO;
+    self.clearGridButton.enabled = NO;
+    self.solveButton.enabled = NO;
 }
 
 - (IBAction)clickRestartButton {
@@ -142,6 +148,7 @@ static const int SUDOKU_VIEW_TAG = 100;
     }
     else {
         self.sudoku = nil;
+        self.solveButton.enabled = YES;
         [self updateUI];
     }
 }

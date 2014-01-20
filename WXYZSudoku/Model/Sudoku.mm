@@ -143,13 +143,18 @@
 {
     int row = 0;
     int column = 0;
+    BOOL hasChosenGrid = NO;
     for (int rowIndex = 0; rowIndex < 9; rowIndex++) {
         for (int columnIndex = 0; columnIndex < 9; columnIndex++) {
             if ([self getGridInRow:rowIndex inColumn:columnIndex].isChosen) {
                 row = rowIndex;
                 column = columnIndex;
+                hasChosenGrid = YES;
             }
         }
+    }
+    if (!hasChosenGrid) {
+        return;
     }
     
     NSArray *relatedGrids = [self getRelatedGridsWithRow:row withColumn:column];
@@ -231,6 +236,9 @@
             [self getGridInRow:row inColumn:column].value = input[row][column];
         }
     }
+    
+    [self clearAllGridsStatus];
+    [self updateAllGridsStatus];
 }
 
 - (NSArray *)createRandomGeneratedGrids
