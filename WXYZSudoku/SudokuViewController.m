@@ -132,8 +132,18 @@ static const int SUDOKU_VIEW_TAG = 100;
 }
 
 - (IBAction)clickRestartButton {
-    self.sudoku = nil;
-    [self updateUI];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure to restart?" message:nil delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == [alertView cancelButtonIndex]) {
+        // do nothing
+    }
+    else {
+        self.sudoku = nil;
+        [self updateUI];
+    }
 }
 
 - (IBAction)clickUndoButton {
