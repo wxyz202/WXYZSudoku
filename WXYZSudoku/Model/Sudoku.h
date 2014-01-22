@@ -25,5 +25,6 @@
 - (void)undo;
 - (void)redo;
 - (void)solve;
+- (BOOL)isFinished;
 
 @end

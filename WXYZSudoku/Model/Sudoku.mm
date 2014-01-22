@@ -327,4 +327,17 @@
     }
 }
 
+- (BOOL)isFinished
+{
+    for (NSUInteger row = 0; row < 9; row++) {
+        for (NSUInteger column = 0; column < 9; column++) {
+            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+            if (!grid.isConstant && !grid.isFilled) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
 @end

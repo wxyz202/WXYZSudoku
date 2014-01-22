@@ -188,12 +188,12 @@
 				18B6A01A1880499000771855 /* SudokuSolver.cpp */,
 				18D7CDAA188113EC00E6786D /* SudokuGenerator.h */,
 				18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */,
+				186A53A91886C5EC0055C3A0 /* SudokuActionRecord.h */,
+				186A53AA1886C5EC0055C3A0 /* SudokuActionRecord.m */,
 				1842B4B21879803A009EF61B /* SudokuGrid.h */,
 				1842B4B31879803A009EF61B /* SudokuGrid.m */,
 				1842B4AE187971E0009EF61B /* Sudoku.h */,
 				1842B4AF187971E0009EF61B /* Sudoku.mm */,
-				186A53A91886C5EC0055C3A0 /* SudokuActionRecord.h */,
-				186A53AA1886C5EC0055C3A0 /* SudokuActionRecord.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

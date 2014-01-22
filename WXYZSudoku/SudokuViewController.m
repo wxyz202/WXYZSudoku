@@ -20,7 +20,9 @@
 
 @implementation SudokuViewController
 
-static const int SUDOKU_VIEW_TAG = 100;
+static const NSInteger SUDOKU_VIEW_TAG = 100;
+static const NSInteger RESTART_ALERT_VIEW_TAG = 101;
+static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 
 - (Sudoku *)sudoku
 {
@@ -63,6 +65,12 @@ static const int SUDOKU_VIEW_TAG = 100;
 - (IBAction)chooseNumber:(UIButton *)sender {
     [self.sudoku fillChosenGridWithValue:[sender.currentTitle intValue]];
     [self updateUI];
+    if ([self.sudoku isFinished]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulaion!" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        alertView.tag = CONGRATULATION_ALERT_VIEW_TAG;
+        [alertView show];
+        [self finish];
+    }
 }
 
 - (IBAction)clearGrid {
@@ -131,25 +139,35 @@ static const int SUDOKU_VIEW_TAG = 100;
 - (IBAction)clickSolveButton {
     [self.sudoku solve];
     [self updateUI];
+    [self finish];
+}
+
+- (void)finish {
+    [self.undoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     self.undoButton.enabled = NO;
+    [self.redoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     self.redoButton.enabled = NO;
     self.clearGridButton.enabled = NO;
     self.solveButton.enabled = NO;
 }
 
 - (IBAction)clickRestartButton {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure to restart?" message:nil delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [alert show];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure to restart?" message:nil delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    alertView.tag = RESTART_ALERT_VIEW_TAG;
+    [alertView show];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == [alertView cancelButtonIndex]) {
         // do nothing
+        return;
     }
-    else {
+    if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
         self.sudoku = nil;
         self.solveButton.enabled = YES;
         [self updateUI];
+    } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
+        // do nothing
     }
 }
 
