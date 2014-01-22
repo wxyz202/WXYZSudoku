@@ -66,7 +66,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self.sudoku fillChosenGridWithValue:[sender.currentTitle intValue]];
     [self updateUI];
     if ([self.sudoku isFinished]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulaion!" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %d seconds.", self.sudoku.playSeconds] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         alertView.tag = CONGRATULATION_ALERT_VIEW_TAG;
         [alertView show];
         [self finish];
@@ -186,6 +186,18 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [super viewDidLoad];
     [self createSubView];
     [self updateUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.sudoku resume];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.sudoku pause];
 }
 
 - (void)didReceiveMemoryWarning

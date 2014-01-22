@@ -11,10 +11,11 @@
 
 @interface Sudoku : NSObject
 
+@property (nonatomic) NSUInteger playSeconds;
+
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty;
 
 - (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
-
 - (BOOL)gridsWithValueFinish:(NSUInteger)value;
 
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
@@ -26,5 +27,8 @@
 - (void)redo;
 - (void)solve;
 - (BOOL)isFinished;
+
+- (void)pause;
+- (void)resume;
 
 @end

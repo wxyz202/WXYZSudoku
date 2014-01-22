@@ -16,19 +16,35 @@
 @property (nonatomic) NSUInteger difficulty;
 @property (strong, nonatomic) NSArray *grids;
 @property (strong, nonatomic) SudokuActionRecord *actionRecord;
+@property (strong, nonatomic) NSTimer *oneSecondTimer;
 
 @end
 
 
 @implementation Sudoku
 
-- (instancetype)initWithDifficulty:(NSUInteger)difficulty
+- (instancetype)init
 {
     self = [super init];
+    if (self) {
+        self.playSeconds = 0;
+        self.oneSecondTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(passOneSecond:) userInfo:nil repeats:YES];
+    }
+    return self;
+}
+
+- (instancetype)initWithDifficulty:(NSUInteger)difficulty
+{
+    self = [self init];
     if (self) {
         self.difficulty = difficulty;
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [self.oneSecondTimer invalidate];
 }
 
 - (NSArray *)grids
@@ -338,6 +354,22 @@
         }
     }
     return YES;
+}
+
+
+- (void)passOneSecond:(NSTimer *)timer
+{
+    self.playSeconds++;
+}
+
+- (void)pause
+{
+    [self.oneSecondTimer setFireDate:[NSDate distantFuture]];
+}
+
+- (void)resume
+{
+    [self.oneSecondTimer setFireDate:[NSDate distantPast]];
 }
 
 @end
