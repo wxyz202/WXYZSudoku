@@ -32,6 +32,11 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     return _sudoku;
 }
 
+- (void)newGameWithDifficulty:(NSUInteger)difficulty
+{
+    self.sudoku = [[Sudoku alloc] initWithDifficulty:difficulty];
+}
+
 - (void)createSubView
 {
     self.sudokuView = (SudokuGridView *)[self.view viewWithTag:SUDOKU_VIEW_TAG];
@@ -185,12 +190,12 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 {
     [super viewDidLoad];
     [self createSubView];
-    [self updateUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self updateUI];
     [self.sudoku resume];
 }
 

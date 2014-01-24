@@ -13,6 +13,6 @@ const int DIFFICULTY_EASY = 0;
 const int DIFFICULTY_NORMAL = 1;
 const int DIFFICULTY_HARD = 2;
 
-void generate(int input[][9], int difficulty=DIFFICULTY_NORMAL);
+void generate(int input[][9], int difficulty);
 
 #endif

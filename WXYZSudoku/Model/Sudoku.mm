@@ -265,7 +265,7 @@
             input[row][column]=0;
         }
     }
-    generate(input);
+    generate(input, DIFFICULTY_NORMAL);
     
     NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {

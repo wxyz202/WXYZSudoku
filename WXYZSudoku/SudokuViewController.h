@@ -12,4 +12,6 @@
 
 @interface SudokuViewController : UIViewController
 
+- (void)newGameWithDifficulty:(NSUInteger)difficulty;
+
 @end
