@@ -29,6 +29,7 @@
     if (self) {
         self.playSeconds = 0;
         self.oneSecondTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(passOneSecond:) userInfo:nil repeats:YES];
+        [self pause];
     }
     return self;
 }

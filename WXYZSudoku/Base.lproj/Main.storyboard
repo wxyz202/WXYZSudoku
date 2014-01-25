@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGy-nR-wvh">
-                                <rect key="frame" x="200" y="444" width="46" height="30"/>
+                                <rect key="frame" x="137" y="444" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="restart">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,22 +218,22 @@
                                     <action selector="clickRedoButton" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uqb-EK-NuO"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0RD-0Z-jGP">
-                                <rect key="frame" x="20" y="446" width="172" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66a-Im-6TI">
+                                <rect key="frame" x="20" y="444" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="easy"/>
-                                    <segment title="normal"/>
-                                    <segment title="hard"/>
-                                </segments>
-                            </segmentedControl>
+                                <state key="normal" title="back to menu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickBackButton" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Oa4-dY-HFM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="wev-8Q-RYt"/>
                     <connections>
                         <outlet property="clearGridButton" destination="ctm-wN-AJj" id="5rh-kF-yLx"/>
-                        <outlet property="difficultySegmentedControl" destination="0RD-0Z-jGP" id="DB7-9L-r8o"/>
                         <outlet property="redoButton" destination="cbZ-bv-qFi" id="bdT-J4-lHA"/>
                         <outlet property="solveButton" destination="eHo-24-P9p" id="Fzi-6J-Tne"/>
                         <outlet property="undoButton" destination="i6Q-Fd-kg7" id="tY2-sr-zda"/>
@@ -241,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="-119"/>
+            <point key="canvasLocation" x="434" y="-119"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

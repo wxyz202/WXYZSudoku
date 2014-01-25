@@ -11,9 +11,9 @@
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
 @property (strong, nonatomic)Sudoku *sudoku;
+@property (nonatomic) NSUInteger sudokuDifficulty;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *clearGridButton;
 @property (weak, nonatomic) IBOutlet UIButton *solveButton;
 @end
@@ -27,14 +27,15 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 - (Sudoku *)sudoku
 {
     if (!_sudoku) {
-        _sudoku = [[Sudoku alloc] initWithDifficulty:[self.difficultySegmentedControl selectedSegmentIndex]];
+        _sudoku = [[Sudoku alloc] initWithDifficulty:self.sudokuDifficulty];
     }
     return _sudoku;
 }
 
 - (void)newGameWithDifficulty:(NSUInteger)difficulty
 {
-    self.sudoku = [[Sudoku alloc] initWithDifficulty:difficulty];
+    self.sudokuDifficulty = difficulty;
+    self.sudoku = nil;
 }
 
 - (void)createSubView
@@ -184,6 +185,10 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 - (IBAction)clickRedoButton {
     [self.sudoku redo];
     [self updateUI];
+}
+
+- (IBAction)clickBackButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad
