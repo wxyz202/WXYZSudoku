@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Sv-EZC">
-                                <rect key="frame" x="105" y="269" width="110" height="29"/>
+                                <rect key="frame" x="105" y="250" width="110" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="New Game">
@@ -27,12 +27,24 @@
                                     <action selector="touchNewGameButton" destination="CfZ-3F-fR1" eventType="touchUpInside" id="MAq-oU-W5O"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLw-So-Kde">
+                                <rect key="frame" x="105" y="287" width="110" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Resume">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchResumeButton" destination="CfZ-3F-fR1" eventType="touchUpInside" id="QtC-Me-07d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="GLs-sz-TNr"/>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="new game" modalTransitionStyle="flipHorizontal" id="grV-2j-DP9"/>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="resume" modalTransitionStyle="flipHorizontal" id="s9l-v7-Nch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slO-JL-e6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -249,4 +261,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="s9l-v7-Nch"/>
+    </inferredMetricsTieBreakers>
 </document>

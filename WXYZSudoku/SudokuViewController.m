@@ -70,6 +70,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 
 - (IBAction)chooseNumber:(UIButton *)sender {
     [self.sudoku fillChosenGridWithValue:[sender.currentTitle intValue]];
+    [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %d seconds.", self.sudoku.playSeconds] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -81,6 +82,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 
 - (IBAction)clearGrid {
     [self.sudoku clearChosenGrid];
+    [self saveSudoku];
     [self updateUI];
 }
 
@@ -179,12 +181,29 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 
 - (IBAction)clickUndoButton {
     [self.sudoku undo];
+    [self saveSudoku];
     [self updateUI];
 }
 
 - (IBAction)clickRedoButton {
     [self.sudoku redo];
+    [self saveSudoku];
     [self updateUI];
+}
+
+- (void)saveSudoku
+{
+    NSData *sudokuData = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:sudokuData forKey:@"sudoku"];
+    [defaults synchronize];
+}
+
+- (void)loadSudoku
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *sudokuData = [defaults objectForKey:@"sudoku"];
+    self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:sudokuData];
 }
 
 - (IBAction)clickBackButton {

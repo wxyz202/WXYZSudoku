@@ -17,6 +17,24 @@
 
 @implementation SudokuAction
 
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:@(self.row) forKey:@"row"];
+    [encoder encodeObject:@(self.column) forKey:@"column"];
+    [encoder encodeObject:@(self.fromValue) forKey:@"fromValue"];
+    [encoder encodeObject:@(self.toValue) forKey:@"toValue"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    NSUInteger row = [[decoder decodeObjectForKey:@"row"] unsignedIntegerValue];
+    NSUInteger column = [[decoder decodeObjectForKey:@"column"] unsignedIntegerValue];
+    NSUInteger fromValue = [[decoder decodeObjectForKey:@"fromValue"] unsignedIntegerValue];
+    NSUInteger toValue = [[decoder decodeObjectForKey:@"toValue"] unsignedIntegerValue];
+    
+    return [self initWithRow:row withColumn:column fromValue:fromValue toValue:toValue];
+}
+
 - (instancetype)initWithRow:(NSUInteger)row withColumn:(NSUInteger)column fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue
 {
     self = [super init];
@@ -37,6 +55,24 @@
 @end
 
 @implementation SudokuActionRecord
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.actions forKey:@"actions"];
+    [encoder encodeObject:@(self.currentIndex) forKey:@"currentIndex"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    NSMutableArray *actions = [decoder decodeObjectForKey:@"actions"];
+    NSUInteger currentIndex = [[decoder decodeObjectForKey:@"currentIndex"] integerValue];
+    self = [super init];
+    if (self) {
+        self.actions = actions;
+        self.currentIndex = currentIndex;
+    }
+    return self;
+}
 
 - (instancetype)init
 {

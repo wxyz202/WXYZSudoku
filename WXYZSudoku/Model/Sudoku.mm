@@ -17,11 +17,38 @@
 @property (strong, nonatomic) NSArray *grids;
 @property (strong, nonatomic) SudokuActionRecord *actionRecord;
 @property (strong, nonatomic) NSTimer *oneSecondTimer;
+@property (nonatomic, readwrite) NSUInteger playSeconds;
 
 @end
 
 
 @implementation Sudoku
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.grids forKey:@"grids"];
+    [encoder encodeObject:@(self.difficulty) forKey:@"difficulty"];
+    [encoder encodeObject:self.actionRecord forKey:@"actionRecord"];
+    [encoder encodeObject:@(self.playSeconds) forKey:@"playSeconds"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    NSArray *grids = [decoder decodeObjectForKey:@"grids"];
+    NSUInteger difficulty = [[decoder decodeObjectForKey:@"difficulty"] unsignedIntegerValue];
+    SudokuActionRecord *actionRecord = [decoder decodeObjectForKey:@"actionRecord"];
+    NSUInteger playSeconds = [[decoder decodeObjectForKey:@"playSeconds"] unsignedIntegerValue];
+    
+    self = [self init];
+    if (self) {
+        self.grids = grids;
+        self.difficulty = difficulty;
+        self.actionRecord = actionRecord;
+        self.playSeconds = playSeconds;
+        [self updateAllGridsStatus];
+    }
+    return self;
+}
 
 - (instancetype)init
 {
@@ -158,6 +185,8 @@
 
 - (void)updateAllGridsStatus
 {
+    [self updateConflicting];
+    
     int row = 0;
     int column = 0;
     BOOL hasChosenGrid = NO;
@@ -186,8 +215,6 @@
             grid.sameAsChosne = YES;
         }
     }
-    
-    [self updateConflicting];
 }
 
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column

@@ -24,6 +24,10 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     [alertView show];
 }
 
+- (IBAction)touchResumeButton {
+    [self performSegueWithIdentifier:@"resume" sender:nil];
+}
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == [alertView cancelButtonIndex]) {
         // do nothing
@@ -43,6 +47,9 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     if ([segue.identifier isEqualToString:@"new game"]) {
         SudokuViewController *viewController = segue.destinationViewController;
         [viewController newGameWithDifficulty:[sender unsignedIntegerValue]];
+    } else if ([segue.identifier isEqualToString:@"resume"]) {
+        SudokuViewController *viewController = segue.destinationViewController;
+        [viewController loadSudoku];
     }
 }
 

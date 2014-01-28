@@ -31,6 +31,27 @@
     _value = value;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:@(self.value) forKey:@"value"];
+    [encoder encodeObject:@(self.constant) forKey:@"constant"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    NSUInteger value = [[decoder decodeObjectForKey:@"value"] unsignedIntegerValue];
+    BOOL constant = [[decoder decodeObjectForKey:@"constant"] boolValue];
+    if (constant) {
+        return [self initGridConstWithValue:value];
+    } else {
+        self = [self initGridEmpty];
+        if (self) {
+            self.value = value;
+        }
+        return self;
+    }
+}
+
 - (instancetype)initGridEmpty
 {
     self = [super init];
