@@ -7,6 +7,7 @@
 //
 
 #import "SudokuViewController.h"
+#import "SudokuCongratulationAlertView.h"
 
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
@@ -64,9 +65,9 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %d seconds.", self.sudoku.playSeconds] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        alertView.tag = CONGRATULATION_ALERT_VIEW_TAG;
-        [alertView show];
+        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %d seconds. Please input your name.", self.sudoku.playSeconds] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
+        congratulationView.tag = CONGRATULATION_ALERT_VIEW_TAG;
+        [congratulationView show];
         [self finish];
     }
 }
@@ -155,6 +156,16 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure to restart?" message:nil delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     alertView.tag = RESTART_ALERT_VIEW_TAG;
     [alertView show];
+}
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+    if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
+        SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
+        if ([congratulationAlertView.inputName isEqualToString:@""]) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
