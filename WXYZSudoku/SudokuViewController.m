@@ -8,6 +8,7 @@
 
 #import "SudokuViewController.h"
 #import "SudokuCongratulationAlertView.h"
+#import "SudokuResultRecord.h"
 
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
@@ -175,10 +176,15 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     }
     if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
         [self newGameWithDifficulty:self.sudoku.difficulty];
+        [self.sudoku resume];
         self.solveButton.enabled = YES;
         [self updateUI];
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
-        // do nothing
+        SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
+        NSString *playerName = congratulationAlertView.inputName;
+        NSUInteger playSeconds = self.sudoku.playSeconds;
+        SudokuResultRecord *record = [[SudokuResultRecord alloc] initWithPlayerName:playerName playSeconds:playSeconds];
+        [SudokuResultRecordCollection addSudokuRecord:record difficulty:self.sudoku.difficulty];
     }
 }
 
