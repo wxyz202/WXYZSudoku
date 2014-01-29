@@ -13,7 +13,7 @@
 static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 
 @interface SudokuIndexViewController ()
-
+@property (weak, nonatomic) IBOutlet UIButton *resumeButton;
 @end
 
 @implementation SudokuIndexViewController
@@ -50,6 +50,17 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     } else if ([segue.identifier isEqualToString:@"resume"]) {
         SudokuViewController *viewController = segue.destinationViewController;
         [viewController loadSudoku];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"storedSudoku"] == nil) {
+        self.resumeButton.enabled = NO;
+    } else {
+        self.resumeButton.enabled = YES;
     }
 }
 

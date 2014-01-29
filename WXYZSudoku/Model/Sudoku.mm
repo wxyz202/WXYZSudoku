@@ -13,7 +13,7 @@
 
 @interface Sudoku ()
 
-@property (nonatomic) NSUInteger difficulty;
+@property (nonatomic, readwrite) NSUInteger difficulty;
 @property (strong, nonatomic) NSArray *grids;
 @property (strong, nonatomic) SudokuActionRecord *actionRecord;
 @property (strong, nonatomic) NSTimer *oneSecondTimer;

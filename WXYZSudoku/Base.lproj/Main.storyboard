@@ -43,6 +43,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="GLs-sz-TNr"/>
                     <connections>
+                        <outlet property="resumeButton" destination="XLw-So-Kde" id="1tN-R5-1qe"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="new game" modalTransitionStyle="flipHorizontal" id="grV-2j-DP9"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="resume" modalTransitionStyle="flipHorizontal" id="s9l-v7-Nch"/>
                     </connections>

@@ -11,6 +11,7 @@
 
 @interface Sudoku : NSObject
 
+@property (nonatomic, readonly) NSUInteger difficulty;
 @property (nonatomic, readonly) NSUInteger playSeconds;
 
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty;

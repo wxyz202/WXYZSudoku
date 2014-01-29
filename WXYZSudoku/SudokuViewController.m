@@ -11,7 +11,6 @@
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
 @property (strong, nonatomic)Sudoku *sudoku;
-@property (nonatomic) NSUInteger sudokuDifficulty;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearGridButton;
@@ -24,18 +23,10 @@ static const NSInteger SUDOKU_VIEW_TAG = 100;
 static const NSInteger RESTART_ALERT_VIEW_TAG = 101;
 static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 
-- (Sudoku *)sudoku
-{
-    if (!_sudoku) {
-        _sudoku = [[Sudoku alloc] initWithDifficulty:self.sudokuDifficulty];
-    }
-    return _sudoku;
-}
 
 - (void)newGameWithDifficulty:(NSUInteger)difficulty
 {
-    self.sudokuDifficulty = difficulty;
-    self.sudoku = nil;
+    self.sudoku = [[Sudoku alloc] initWithDifficulty:difficulty];
 }
 
 - (void)createSubView
@@ -157,6 +148,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     self.redoButton.enabled = NO;
     self.clearGridButton.enabled = NO;
     self.solveButton.enabled = NO;
+    [self removeSavedSudoku];
 }
 
 - (IBAction)clickRestartButton {
@@ -171,7 +163,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
         return;
     }
     if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
-        self.sudoku = nil;
+        [self newGameWithDifficulty:self.sudoku.difficulty];
         self.solveButton.enabled = YES;
         [self updateUI];
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
@@ -195,15 +187,22 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 {
     NSData *sudokuData = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:sudokuData forKey:@"sudoku"];
+    [defaults setObject:sudokuData forKey:@"storedSudoku"];
     [defaults synchronize];
 }
 
 - (void)loadSudoku
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *sudokuData = [defaults objectForKey:@"sudoku"];
+    NSData *sudokuData = [defaults objectForKey:@"storedSudoku"];
     self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:sudokuData];
+}
+
+- (void)removeSavedSudoku
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"storedSudoku"];
+    [defaults synchronize];
 }
 
 - (IBAction)clickBackButton {
