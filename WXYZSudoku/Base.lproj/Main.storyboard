@@ -318,7 +318,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sudoku" id="wev-8Q-RYt">
-                        <barButtonItem key="rightBarButtonItem" title="restart" id="Eid-RI-eTT">
+                        <barButtonItem key="rightBarButtonItem" title="Restart" id="Eid-RI-eTT">
                             <connections>
                                 <action selector="clickRestartButton" destination="vXZ-lx-hvc" id="Xll-U5-SOo"/>
                             </connections>
