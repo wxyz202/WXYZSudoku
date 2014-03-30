@@ -10,6 +10,7 @@
 #import "SudokuViewController.h"
 #import "SudokuCongratulationAlertView.h"
 #import "RankRecord+Create.h"
+#import "NSString+SecondsFormat.h"
 
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
@@ -78,10 +79,10 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
-        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@ seconds. Please input your name.", @(self.sudoku.playSeconds)] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
+        [self finish];
+        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.playSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
         congratulationView.tag = CONGRATULATION_ALERT_VIEW_TAG;
         [congratulationView show];
-        [self finish];
     }
 }
 

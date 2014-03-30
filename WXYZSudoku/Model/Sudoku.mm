@@ -313,11 +313,17 @@
 
 - (BOOL)canUndo
 {
+    if (self.isFinished) {
+        return NO;
+    }
     return [self.actionRecord canUndo];
 }
 
 - (BOOL)canRedo
 {
+    if (self.isFinished) {
+        return NO;
+    }
     return [self.actionRecord canRedo];
 }
 

@@ -9,6 +9,7 @@
 #import "SudokuRankRecordCDTVC.h"
 #import "RankRecord.h"
 #import "SudokuGenerator.h"
+#import "NSString+SecondsFormat.h"
 
 @interface SudokuRankRecordCDTVC ()
 
@@ -67,7 +68,7 @@
     RankRecord *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = record.playerName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ seconds", record.finishSeconds];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [NSString stringWithSeconds:record.finishSeconds.unsignedIntegerValue]];
     cell.imageView.image = nil;//[UIImage imageWithData:photo.thumbnail];
     
     return cell;

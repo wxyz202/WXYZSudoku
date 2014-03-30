@@ -16,9 +16,7 @@
 
 @end
 
-
-#define DOCUMENT_NAME @"RankRecordDataBaseDocument.txt"
-
+#define DOCUMENT_NAME @"RankRecordDBDocument.txt"
 
 @implementation SudokuAppDelegate
 
