@@ -183,7 +183,7 @@ void randomRemove(int input[][9], int difficulty)
 
 void generate(int input[][9], int difficulty)
 {
-    srand(time(NULL));
+    srand((unsigned)time(NULL));
     
     int i,j;
     int sudokuIndex = myrand(sudokuCount);

@@ -55,6 +55,7 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"storedSudoku"] == nil) {
@@ -62,6 +63,12 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     } else {
         self.resumeButton.enabled = YES;
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidLoad

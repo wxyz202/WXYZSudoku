@@ -129,8 +129,8 @@
         }
         [relatedGrids addObject:[self getGridInRow:row inColumn:columnIndex]];
     }
-    for (int rowIndex = row / 3 * 3; rowIndex < row / 3 * 3 + 3; rowIndex++) {
-        for (int columnIndex = column / 3 * 3; columnIndex < column / 3 * 3 + 3; columnIndex++) {
+    for (NSUInteger rowIndex = row / 3 * 3; rowIndex < row / 3 * 3 + 3; rowIndex++) {
+        for (NSUInteger columnIndex = column / 3 * 3; columnIndex < column / 3 * 3 + 3; columnIndex++) {
             if (row != rowIndex && column !=columnIndex) {
                 [relatedGrids addObject:[self getGridInRow:rowIndex inColumn:columnIndex]];
             }
@@ -266,7 +266,7 @@
         for (int column = 0; column < 9; column++){
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isConstant) {
-                input[row][column] = grid.value;
+                input[row][column] = (int)grid.value;
             } else {
                 input[row][column] = 0;
             }
@@ -318,7 +318,7 @@
             input[row][column]=0;
         }
     }
-    generate(input, self.difficulty);
+    generate(input, (int)(self.difficulty));
     
     NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {

@@ -66,7 +66,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
-        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %d seconds. Please input your name.", self.sudoku.playSeconds] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
+        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@ seconds. Please input your name.", @(self.sudoku.playSeconds)] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
         congratulationView.tag = CONGRATULATION_ALERT_VIEW_TAG;
         [congratulationView show];
         [self finish];
@@ -86,7 +86,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
             UIButton *button = [self.sudokuView getButtonInRow:row inColumn:column];
             SudokuGrid *grid = [self.sudoku getGridInRow:row inColumn:column];
             if (grid.isFilled) {
-                [button setTitle:[NSString stringWithFormat:@"%d", grid.value] forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"%@", @(grid.value)] forState:UIControlStateNormal];
             } else {
                 [button setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
             }
@@ -175,6 +175,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
         return;
     }
     if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
+        [self removeSavedSudoku];
         [self newGameWithDifficulty:self.sudoku.difficulty];
         [self.sudoku resume];
         self.solveButton.enabled = YES;
@@ -220,10 +221,6 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"storedSudoku"];
     [defaults synchronize];
-}
-
-- (IBAction)clickBackButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad
