@@ -7,12 +7,25 @@
 //
 
 #import "SudokuAppDelegate.h"
+#import "RankRecordDatabaseAvailability.h"
+
+@interface SudokuAppDelegate ()
+
+@property (strong, nonatomic) NSManagedObjectContext *rankRecordDatabaseContext;
+@property (strong, nonatomic) UIManagedDocument *document;
+
+@end
+
+
+#define DOCUMENT_NAME @"RankRecordDataBaseDocument.txt"
+
 
 @implementation SudokuAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self createRankRecordDatabaseContext];
     return YES;
 }
 							
@@ -41,6 +54,50 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Database Context
+
+- (void)createRankRecordDatabaseContext
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory
+                                                     inDomains:NSUserDomainMask] firstObject];
+    NSURL *url = [documentsDirectory URLByAppendingPathComponent:DOCUMENT_NAME];
+    self.document = [[UIManagedDocument alloc] initWithFileURL:url];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        [self.document openWithCompletionHandler:^(BOOL success) {
+            if (success) [self documentIsReady];
+            if (!success) NSLog(@"couldn’t open document at %@", url);
+        }];
+    } else {
+        [self.document saveToURL:url forSaveOperation:UIDocumentSaveForCreating
+               completionHandler:^(BOOL success) {
+                   if (success) [self documentIsReady];
+                   if (!success) NSLog(@"couldn’t create document at %@", url);
+               }];
+    }
+}
+
+- (void)documentIsReady
+{
+    if (self.document.documentState == UIDocumentStateNormal) {
+        self.rankRecordDatabaseContext = self.document.managedObjectContext;
+    }
+}
+
+- (void)setRankRecordDatabaseContext:(NSManagedObjectContext *)rankRecordDatabaseContext
+{
+    _rankRecordDatabaseContext = rankRecordDatabaseContext;
+    
+    // let everyone who might be interested know this context is available
+    // this happens very early in the running of our application
+    // it would make NO SENSE to listen to this radio station in a View Controller that was segued to, for example
+    // (but that's okay because a segued-to View Controller would presumably be "prepared" by being given a context to work in)
+    NSDictionary *userInfo = self.rankRecordDatabaseContext ? @{ RankRecordDatabaseAvailabilityContext : self.rankRecordDatabaseContext } : nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:RankRecordDatabaseAvailabilityNotification
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 @end
