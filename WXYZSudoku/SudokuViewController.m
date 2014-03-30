@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 wxyz. All rights reserved.
 //
 
+#import "SudokuGenerator.h"
 #import "SudokuViewController.h"
 #import "SudokuCongratulationAlertView.h"
 #import "SudokuResultRecord.h"
@@ -29,6 +30,18 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 - (void)newGameWithDifficulty:(NSUInteger)difficulty
 {
     self.sudoku = [[Sudoku alloc] initWithDifficulty:difficulty];
+    [self saveSudoku];
+    [self updateTitleWithDifficulty:difficulty];
+}
+
+- (void)updateTitleWithDifficulty:(NSUInteger)difficulty
+{
+    NSDictionary *difficultyDict = @{@(DIFFICULTY_EASY): @"Easy",
+                                 @(DIFFICULTY_NORMAL): @"Normal",
+                                 @(DIFFICULTY_HARD): @"Hard"
+                                 };
+    NSString *difficultyName = difficultyDict[@(difficulty)];
+    self.title = [NSString stringWithFormat:@"%@ Sudoku", difficultyName];
 }
 
 - (void)createSubView
@@ -214,6 +227,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *sudokuData = [defaults objectForKey:@"storedSudoku"];
     self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:sudokuData];
+    [self updateTitleWithDifficulty:self.sudoku.difficulty];
 }
 
 - (void)removeSavedSudoku

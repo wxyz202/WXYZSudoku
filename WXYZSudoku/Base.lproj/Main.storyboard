@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Sv-EZC">
-                                <rect key="frame" x="105" y="231" width="110" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Sv-EZC">
+                                <rect key="frame" x="108" y="227" width="104" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="New Game">
@@ -29,8 +29,8 @@
                                     <action selector="touchNewGameButton" destination="CfZ-3F-fR1" eventType="touchUpInside" id="MAq-oU-W5O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLw-So-Kde">
-                                <rect key="frame" x="105" y="269" width="110" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLw-So-Kde">
+                                <rect key="frame" x="122" y="265" width="77" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Resume">
@@ -40,8 +40,8 @@
                                     <action selector="touchResumeButton" destination="CfZ-3F-fR1" eventType="touchUpInside" id="QtC-Me-07d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ5-1W-nMx">
-                                <rect key="frame" x="105" y="307" width="110" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ5-1W-nMx">
+                                <rect key="frame" x="136" y="303" width="48" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Rank">
@@ -53,6 +53,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="XZ5-1W-nMx" secondAttribute="centerX" id="5bk-sq-REf"/>
+                            <constraint firstItem="XLw-So-Kde" firstAttribute="top" secondItem="We9-Sv-EZC" secondAttribute="bottom" id="7Lx-Tw-sZ7"/>
+                            <constraint firstAttribute="centerX" secondItem="XLw-So-Kde" secondAttribute="centerX" id="8r8-4a-YVN"/>
+                            <constraint firstAttribute="centerY" secondItem="XLw-So-Kde" secondAttribute="centerY" id="Tlh-tJ-Off"/>
+                            <constraint firstAttribute="centerX" secondItem="We9-Sv-EZC" secondAttribute="centerX" id="YJB-au-173"/>
+                            <constraint firstItem="XZ5-1W-nMx" firstAttribute="top" secondItem="XLw-So-Kde" secondAttribute="bottom" id="qMF-UJ-D1z"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GLs-sz-TNr"/>
                     <connections>
