@@ -10,6 +10,7 @@
 #import "RankRecord.h"
 #import "SudokuGenerator.h"
 #import "NSString+SecondsFormat.h"
+#import "SudokuViewController.h"
 
 @interface SudokuRankRecordCDTVC ()
 
@@ -72,6 +73,25 @@
     cell.imageView.image = nil;//[UIImage imageWithData:photo.thumbnail];
     
     return cell;
+}
+
+- (void)prepareInViewController:(SudokuViewController *)controller withRecord:(RankRecord *)record
+{
+    [controller loadSudokuWithData:record.sudoku];
+    controller.restartButton.enabled = NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            if ([segue.identifier isEqualToString:@"show record"]) {
+                [self prepareInViewController:segue.destinationViewController
+                                   withRecord:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+            }
+        }
+    }
 }
 
 @end

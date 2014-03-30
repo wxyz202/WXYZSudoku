@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slO-JL-e6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="-119"/>
+            <point key="canvasLocation" x="149" y="-119"/>
         </scene>
         <!--Sudoku View Controller - Sudoku-->
         <scene sceneID="ufC-wZ-h7g">
@@ -327,6 +327,7 @@
                     <connections>
                         <outlet property="clearGridButton" destination="ctm-wN-AJj" id="5rh-kF-yLx"/>
                         <outlet property="redoButton" destination="cbZ-bv-qFi" id="bdT-J4-lHA"/>
+                        <outlet property="restartButton" destination="Eid-RI-eTT" id="ARx-6I-okV"/>
                         <outlet property="undoButton" destination="i6Q-Fd-kg7" id="tY2-sr-zda"/>
                     </connections>
                 </viewController>
@@ -354,7 +355,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbh-12-5zi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="-119"/>
+            <point key="canvasLocation" x="-338" y="-119"/>
         </scene>
         <!--Sudoku Rank RecordCDTVC - Rank-->
         <scene sceneID="nr4-wZ-bbW">
@@ -365,11 +366,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Rank Record Cell" textLabel="nfB-Hl-O9S" detailTextLabel="hP9-Rd-U9v" style="IBUITableViewCellStyleValue1" id="tEf-xJ-96V">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Rank Record Cell" textLabel="nfB-Hl-O9S" detailTextLabel="hP9-Rd-U9v" style="IBUITableViewCellStyleValue1" id="tEf-xJ-96V">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEf-xJ-96V" id="Ds5-KU-DxZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nfB-Hl-O9S">
@@ -380,7 +381,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hP9-Rd-U9v">
-                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <rect key="frame" x="241" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -388,6 +389,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="push" identifier="show record" id="o2u-kt-ImP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -400,7 +404,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRj-qE-QWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="650"/>
+            <point key="canvasLocation" x="540" y="635"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -409,6 +413,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="s9l-v7-Nch"/>
+        <segue reference="o2u-kt-ImP"/>
     </inferredMetricsTieBreakers>
 </document>

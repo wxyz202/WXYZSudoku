@@ -201,7 +201,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     }
 }
 
-- (void) addRecordWithPlayerName:(NSString *)playerName withPlaySeconds:(NSNumber *)playSeconds
+- (void)addRecordWithPlayerName:(NSString *)playerName withPlaySeconds:(NSNumber *)playSeconds
 {
     RankRecord *record = [RankRecord newRankRecordInManagedObjectContext:self.managedObjectContext];
     record.sudoku = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
@@ -234,7 +234,12 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *sudokuData = [defaults objectForKey:@"storedSudoku"];
-    self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:sudokuData];
+    [self loadSudokuWithData:sudokuData];
+}
+
+- (void)loadSudokuWithData:(NSData *)data
+{
+    self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     [self updateTitleWithDifficulty:self.sudoku.difficulty];
 }
 

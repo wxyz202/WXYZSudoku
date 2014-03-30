@@ -13,8 +13,10 @@
 @interface SudokuViewController : UIViewController
 
 @property (strong, nonatomic)NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *restartButton;
 
 - (void)newGameWithDifficulty:(NSUInteger)difficulty;
 - (void)loadSudoku;
+- (void)loadSudokuWithData:(NSData *)data;
 
 @end
