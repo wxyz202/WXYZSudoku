@@ -7,7 +7,8 @@
 //
 
 #import "RankRecord.h"
+#import "Sudoku.h"
 
 @interface RankRecord (Create)
-
++ (RankRecord *)newRankRecordInManagedObjectContext:(NSManagedObjectContext *)context;
 @end

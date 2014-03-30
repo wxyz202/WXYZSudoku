@@ -12,6 +12,8 @@
 
 @interface SudokuViewController : UIViewController
 
+@property (strong, nonatomic)NSManagedObjectContext *managedObjectContext;
+
 - (void)newGameWithDifficulty:(NSUInteger)difficulty;
 - (void)loadSudoku;
 

@@ -14,9 +14,9 @@
 
 @property (nonatomic, retain) NSString * playerID;
 @property (nonatomic, retain) NSString * playerName;
-@property (nonatomic, retain) NSNumber * finishSecond;
+@property (nonatomic, retain) NSNumber * finishSeconds;
 @property (nonatomic, retain) NSDate * finishDate;
-@property (nonatomic, retain) NSString * sudokuID;
+@property (nonatomic, retain) NSData * sudoku;
 @property (nonatomic, retain) NSNumber * difficulty;
 
 @end

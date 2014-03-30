@@ -9,7 +9,7 @@
 #import "SudokuGenerator.h"
 #import "SudokuViewController.h"
 #import "SudokuCongratulationAlertView.h"
-#import "SudokuResultRecord.h"
+#import "RankRecord+Create.h"
 
 @interface SudokuViewController ()
 @property (strong, nonatomic)SudokuGridView *sudokuView;
@@ -25,7 +25,6 @@
 static const NSInteger SUDOKU_VIEW_TAG = 100;
 static const NSInteger RESTART_ALERT_VIEW_TAG = 101;
 static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
-
 
 - (void)newGameWithDifficulty:(NSUInteger)difficulty
 {
@@ -197,9 +196,17 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
         NSString *playerName = congratulationAlertView.inputName;
         NSUInteger playSeconds = self.sudoku.playSeconds;
-        SudokuResultRecord *record = [[SudokuResultRecord alloc] initWithPlayerName:playerName playSeconds:playSeconds];
-        [SudokuResultRecordCollection addSudokuRecord:record difficulty:self.sudoku.difficulty];
+        [self addRecordWithPlayerName:playerName withPlaySeconds:@(playSeconds)];
     }
+}
+
+- (void) addRecordWithPlayerName:(NSString *)playerName withPlaySeconds:(NSNumber *)playSeconds
+{
+    RankRecord *record = [RankRecord newRankRecordInManagedObjectContext:self.managedObjectContext];
+    record.sudoku = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
+    record.playerName = playerName;
+    record.finishSeconds = playSeconds;
+    record.difficulty = @(self.sudoku.difficulty);
 }
 
 - (IBAction)clickUndoButton {

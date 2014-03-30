@@ -9,14 +9,28 @@
 #import "SudokuIndexViewController.h"
 #import "SudokuGenerator.h"
 #import "SudokuViewController.h"
+#import "SudokuRankRecordCDTVC.h"
+#import "RankRecordDatabaseAvailability.h"
 
 static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 
 @interface SudokuIndexViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *resumeButton;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation SudokuIndexViewController
+
+- (void)awakeFromNib
+{
+    [[NSNotificationCenter defaultCenter] addObserverForName:RankRecordDatabaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[RankRecordDatabaseAvailabilityContext];
+                                                  }];
+}
+
 
 - (IBAction)touchNewGameButton {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"choose difficulty" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Easy", @"Normal", @"Hard", nil];
@@ -47,9 +61,14 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     if ([segue.identifier isEqualToString:@"new game"]) {
         SudokuViewController *viewController = segue.destinationViewController;
         [viewController newGameWithDifficulty:[sender unsignedIntegerValue]];
+        viewController.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"resume"]) {
         SudokuViewController *viewController = segue.destinationViewController;
         [viewController loadSudoku];
+        viewController.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"show rank"]) {
+        SudokuRankRecordCDTVC *sudokuRankRecordCDTVC = segue.destinationViewController;
+        sudokuRankRecordCDTVC.managedObjectContext = self.managedObjectContext;
     }
 }
 

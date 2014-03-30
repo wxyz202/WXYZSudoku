@@ -76,20 +76,6 @@
     [self.oneSecondTimer invalidate];
 }
 
-- (NSString *)identifer
-{
-    NSString *temp = [[NSString alloc] init];
-    for (NSUInteger row = 0; row < 9; row++) {
-        for (NSUInteger column = 0; column < 9; column++) {
-            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
-            if (grid.isConstant) {
-                temp = [NSString stringWithFormat:@"%@%d", temp, (int)(grid.value)];
-            }
-        }
-    }
-    return temp;
-}
-
 - (NSArray *)createEmptyGrids
 {
     NSMutableArray *totalGrids = [[NSMutableArray alloc] init];

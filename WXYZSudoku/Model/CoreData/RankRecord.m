@@ -13,9 +13,9 @@
 
 @dynamic playerID;
 @dynamic playerName;
-@dynamic finishSecond;
+@dynamic finishSeconds;
 @dynamic finishDate;
-@dynamic sudokuID;
+@dynamic sudoku;
 @dynamic difficulty;
 
 @end
