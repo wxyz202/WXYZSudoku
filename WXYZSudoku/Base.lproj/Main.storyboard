@@ -365,9 +365,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="pNU-ha-4HW">
+                            <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Easy"/>
+                                <segment title="Normal"/>
+                                <segment title="Hard"/>
+                            </segments>
+                            <connections>
+                                <action selector="changeDifficulty:" destination="ceY-Yf-okn" eventType="valueChanged" id="6tF-NC-hI9"/>
+                            </connections>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Rank Record Cell" textLabel="nfB-Hl-O9S" detailTextLabel="hP9-Rd-U9v" style="IBUITableViewCellStyleValue1" id="tEf-xJ-96V">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEf-xJ-96V" id="Ds5-KU-DxZ">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -401,6 +413,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="jam-dv-Ejj"/>
                     <navigationItem key="navigationItem" title="Rank" id="NEF-cC-DuP"/>
+                    <connections>
+                        <outlet property="difficultySegmentedController" destination="pNU-ha-4HW" id="1V0-7b-kOw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRj-qE-QWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

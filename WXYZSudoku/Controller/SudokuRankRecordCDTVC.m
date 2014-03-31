@@ -15,6 +15,7 @@
 @interface SudokuRankRecordCDTVC ()
 
 @property (nonatomic, strong) NSNumber *difficulty;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedController;
 
 @end
 
@@ -25,7 +26,11 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.difficulty = @(DIFFICULTY_EASY);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.difficulty = [defaults objectForKey:@"rankRecordDifficulty"];
+    if (!self.difficulty) {
+        self.difficulty = @(DIFFICULTY_EASY);
+    }
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -39,6 +44,10 @@
 - (void)setDifficulty:(NSNumber *)difficulty
 {
     _difficulty = difficulty;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:difficulty forKey:@"rankRecordDifficulty"];
+    [defaults synchronize];
+    
     if (self.managedObjectContext != nil && self.difficulty != nil) {
         [self startFetch];
     }
@@ -75,6 +84,10 @@
     return cell;
 }
 
+- (IBAction)changeDifficulty:(UISegmentedControl *)sender {
+    self.difficulty = @(sender.selectedSegmentIndex);
+}
+
 - (void)prepareInViewController:(SudokuViewController *)controller withRecord:(RankRecord *)record
 {
     [controller loadSudokuWithData:record.sudoku];
@@ -92,6 +105,11 @@
             }
         }
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.difficultySegmentedController.selectedSegmentIndex = self.difficulty.integerValue;
 }
 
 @end
