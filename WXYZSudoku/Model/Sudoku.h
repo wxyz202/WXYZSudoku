@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly) NSUInteger difficulty;
 @property (nonatomic, readonly) NSUInteger playSeconds;
+@property (nonatomic) NSUInteger finishSeconds;
 @property (nonatomic, readonly) NSString *identifier;
 
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty;

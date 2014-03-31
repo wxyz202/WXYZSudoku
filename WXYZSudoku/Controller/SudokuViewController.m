@@ -79,8 +79,9 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
+        self.sudoku.finishSeconds = self.sudoku.playSeconds;
         [self finish];
-        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.playSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
+        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.finishSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
         congratulationView.tag = CONGRATULATION_ALERT_VIEW_TAG;
         [congratulationView show];
     }
@@ -196,17 +197,17 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
         NSString *playerName = congratulationAlertView.inputName;
-        NSUInteger playSeconds = self.sudoku.playSeconds;
-        [self addRecordWithPlayerName:playerName withPlaySeconds:@(playSeconds)];
+        NSUInteger finishSeconds = self.sudoku.finishSeconds;
+        [self addRecordWithPlayerName:playerName withFinishSeconds:@(finishSeconds)];
     }
 }
 
-- (void)addRecordWithPlayerName:(NSString *)playerName withPlaySeconds:(NSNumber *)playSeconds
+- (void)addRecordWithPlayerName:(NSString *)playerName withFinishSeconds:(NSNumber *)finishSeconds
 {
     RankRecord *record = [RankRecord newRankRecordInManagedObjectContext:self.managedObjectContext];
     record.sudoku = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
     record.playerName = playerName;
-    record.finishSeconds = playSeconds;
+    record.finishSeconds = finishSeconds;
     record.difficulty = @(self.sudoku.difficulty);
 }
 

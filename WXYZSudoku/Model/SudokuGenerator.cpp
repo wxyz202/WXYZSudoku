@@ -18,7 +18,7 @@ const int DIFFICULTY_EASY = 0;
 const int DIFFICULTY_NORMAL = 1;
 const int DIFFICULTY_HARD = 2;
 
-static const int MAX_EMPTY_GRIDS[3] = {1, 55, 65};
+static const int MAX_EMPTY_GRIDS[3] = {45, 55, 65};
 static const int MAX_EMPTY_GRIDS_PER_BLOCK[3] = {5, 6, 9};
 
 static const int sudokuCount = 2;
@@ -53,19 +53,67 @@ int myrand(int i)
     return rand()%i;
 }
 
+void myrandOrder(int map[], int start, int end)
+{
+    for (int i=start; i<=end; i++) {
+        map[i]=i;
+    }
+    random_shuffle(map+start, map+end, myrand);
+}
+
 void randomChange(int input[][9])
 {
     int map[10],i,j;
-    for (i=1;i<=9; i++) {
-        map[i]=i;
-    }
-    random_shuffle(map+1, map+10, myrand);
+    myrandOrder(map, 1, 9);
     for (i=0; i<9; i++) {
         for (j=0; j<9; j++) {
             input[i][j]=map[input[i][j]];
         }
     }
 }
+
+void randomArrangeRow(int input[][9])
+{
+    int map1[3],map2[3],i,j,k,ninput[9][9];
+    myrandOrder(map1, 0, 2);
+    for (i=0; i<3; i++) {
+        myrandOrder(map2, 0, 2);
+        for (j=0; j<3; j++) {
+            int old_row = i*3 + j;
+            int new_row = map1[i]*3 + map2[j];
+            for (k=0; k<9; k++) {
+                ninput[new_row][k] = input[old_row][k];
+            }
+        }
+    }
+    for (i=0; i<9; i++) {
+        for (j=0; j<9; j++) {
+            input[i][j] = ninput[i][j];
+        }
+    }
+}
+
+void randomArrangeColumn(int input[][9])
+{
+    int map1[3],map2[3],i,j,k,ninput[9][9];
+    myrandOrder(map1, 0, 2);
+    for (i=0; i<3; i++) {
+        myrandOrder(map2, 0, 2);
+        for (j=0; j<3; j++) {
+            int old_column = i*3 + j;
+            int new_column = map1[i]*3 + map2[j];
+            for (k=0; k<9; k++) {
+                ninput[k][new_column] = input[k][old_column];
+            }
+        }
+    }
+    for (i=0; i<9; i++) {
+        for (j=0; j<9; j++) {
+            input[i][j] = ninput[i][j];
+        }
+    }
+}
+
 
 bool check_difficulty(int temp[][9], int difficulty)
 {
@@ -195,5 +243,7 @@ void generate(int input[][9], int difficulty)
         }
     }
     randomChange(input);
+    randomArrangeRow(input);
+    randomArrangeColumn(input);
     randomRemove(input, difficulty);
 }
