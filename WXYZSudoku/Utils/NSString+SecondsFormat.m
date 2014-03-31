@@ -21,4 +21,11 @@
     }
 }
 
++ (NSString *)stringWithSecondsInShort:(NSUInteger)seconds
+{
+    NSUInteger minute = seconds / 60;
+    NSUInteger second = seconds % 60;
+    return [NSString stringWithFormat:@"%@:%@", @(minute), @(second)];
+}
+
 @end

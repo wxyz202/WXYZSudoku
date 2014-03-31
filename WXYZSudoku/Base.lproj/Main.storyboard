@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="149" y="-119"/>
         </scene>
-        <!--Sudoku View Controller - Sudoku-->
+        <!--Sudoku Play View Controller - Sudoku-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="SudokuViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="SudokuPlayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pgF-Bs-FEs"/>
                         <viewControllerLayoutGuide type="bottom" id="3ah-CV-Vz3"/>
@@ -333,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="-119"/>
+            <point key="canvasLocation" x="1052" y="-119"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kkL-at-8gZ">
@@ -378,7 +378,7 @@
                             </connections>
                         </segmentedControl>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Rank Record Cell" textLabel="nfB-Hl-O9S" detailTextLabel="hP9-Rd-U9v" style="IBUITableViewCellStyleValue1" id="tEf-xJ-96V">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Rank Record Cell" textLabel="nfB-Hl-O9S" detailTextLabel="hP9-Rd-U9v" style="IBUITableViewCellStyleValue1" id="tEf-xJ-96V">
                                 <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEf-xJ-96V" id="Ds5-KU-DxZ">
@@ -402,7 +402,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" identifier="show record" id="o2u-kt-ImP"/>
+                                    <segue destination="0XA-ne-geZ" kind="push" identifier="show record" id="CmV-VC-avD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -421,6 +421,40 @@
             </objects>
             <point key="canvasLocation" x="540" y="635"/>
         </scene>
+        <!--Sudoku View Controller - Review-->
+        <scene sceneID="1eT-WS-EsF">
+            <objects>
+                <viewController id="0XA-ne-geZ" customClass="SudokuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tqz-Tb-MNv"/>
+                        <viewControllerLayoutGuide type="bottom" id="AWI-QK-1Ee"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gR9-44-nf2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zck-27-K1P" customClass="SudokuGridView">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="Ow3-bK-aYa"/>
+                                    <constraint firstAttribute="width" constant="320" id="a21-8t-rPz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Zck-27-K1P" secondAttribute="centerY" id="ge0-Hu-Pkz"/>
+                            <constraint firstAttribute="centerX" secondItem="Zck-27-K1P" secondAttribute="centerX" id="xa5-QI-5eR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Review" id="BzM-lu-C4Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUN-AS-C0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="635"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -428,6 +462,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o2u-kt-ImP"/>
+        <segue reference="s9l-v7-Nch"/>
     </inferredMetricsTieBreakers>
 </document>

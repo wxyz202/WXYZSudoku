@@ -10,13 +10,21 @@
 #import "SudokuGridView.h"
 #import "Sudoku.h"
 
+extern const NSInteger SUDOKU_VIEW_TAG;
+
 @interface SudokuViewController : UIViewController
 
 @property (strong, nonatomic)NSManagedObjectContext *managedObjectContext;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *restartButton;
 
-- (void)newGameWithDifficulty:(NSUInteger)difficulty;
-- (void)loadSudoku;
+@property (strong, nonatomic)SudokuGridView *sudokuView;
+@property (strong, nonatomic)Sudoku *sudoku;
+@property (weak, nonatomic) IBOutlet UIButton *undoButton;
+@property (weak, nonatomic) IBOutlet UIButton *redoButton;
+
 - (void)loadSudokuWithData:(NSData *)data;
+- (void)updateTitleWithDifficulty:(NSUInteger)difficulty;
+- (void)updateUI;
+- (IBAction)clickUndoButton;
+- (IBAction)clickRedoButton;
 
 @end

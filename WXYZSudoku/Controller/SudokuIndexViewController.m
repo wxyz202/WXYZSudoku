@@ -8,7 +8,7 @@
 
 #import "SudokuIndexViewController.h"
 #import "SudokuGenerator.h"
-#import "SudokuViewController.h"
+#import "SudokuPlayViewController.h"
 #import "SudokuRankRecordCDTVC.h"
 #import "RankRecordDatabaseAvailability.h"
 
@@ -59,11 +59,11 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"new game"]) {
-        SudokuViewController *viewController = segue.destinationViewController;
+        SudokuPlayViewController *viewController = segue.destinationViewController;
         [viewController newGameWithDifficulty:[sender unsignedIntegerValue]];
         viewController.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"resume"]) {
-        SudokuViewController *viewController = segue.destinationViewController;
+        SudokuPlayViewController *viewController = segue.destinationViewController;
         [viewController loadSudoku];
         viewController.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"show rank"]) {

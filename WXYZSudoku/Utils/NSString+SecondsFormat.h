@@ -10,4 +10,5 @@
 
 @interface NSString (SecondsFormat)
 + (NSString *)stringWithSeconds:(NSUInteger)seconds;
++ (NSString *)stringWithSecondsInShort:(NSUInteger)seconds;
 @end

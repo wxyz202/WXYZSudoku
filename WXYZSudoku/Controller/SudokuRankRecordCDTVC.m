@@ -91,7 +91,6 @@
 - (void)prepareInViewController:(SudokuViewController *)controller withRecord:(RankRecord *)record
 {
     [controller loadSudokuWithData:record.sudoku];
-    controller.restartButton.enabled = NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
