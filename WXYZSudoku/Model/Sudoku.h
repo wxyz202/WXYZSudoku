@@ -12,9 +12,8 @@
 @interface Sudoku : NSObject
 
 @property (nonatomic, readonly) NSUInteger difficulty;
-@property (nonatomic, readonly) NSUInteger playSeconds;
+@property (nonatomic) NSUInteger playSeconds;
 @property (nonatomic) NSUInteger finishSeconds;
-@property (nonatomic, readonly) NSString *identifier;
 
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty;
 
@@ -30,8 +29,5 @@
 - (void)redo;
 - (void)solve;
 - (BOOL)isFinished;
-
-- (void)pause;
-- (void)resume;
 
 @end

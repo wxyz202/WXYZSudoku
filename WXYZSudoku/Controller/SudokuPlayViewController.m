@@ -14,6 +14,7 @@
 @interface SudokuPlayViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *clearGridButton;
+@property (strong, nonatomic) NSTimer *oneSecondTimer;
 
 @end
 
@@ -102,6 +103,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 # pragma mark - restart and finish
 
 - (void)finish {
+    [self pause];
     [self.undoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     self.undoButton.enabled = NO;
     [self.redoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -134,7 +136,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
         [self removeSavedSudoku];
         [self newGameWithDifficulty:self.sudoku.difficulty];
-        [self.sudoku resume];
+        [self resume];
         [self updateUI];
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
@@ -153,24 +155,55 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     record.difficulty = @(self.sudoku.difficulty);
 }
 
+# pragma mark - timer
+
+static const NSUInteger SECONDS_FOR_AUTO_SAVE = 10;
+
+- (void)passOneSecond:(NSTimer *)timer
+{
+    self.sudoku.playSeconds++;
+    if (self.sudoku.playSeconds % SECONDS_FOR_AUTO_SAVE == 0) {
+        [self saveSudoku];
+    }
+    self.title = [NSString stringWithSecondsInShort:self.sudoku.playSeconds];
+}
+
+- (void)pause
+{
+    [self.oneSecondTimer setFireDate:[NSDate distantFuture]];
+}
+
+- (void)resume
+{
+    [self.oneSecondTimer setFireDate:[NSDate distantPast]];
+}
+
 # pragma mark - other
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.oneSecondTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(passOneSecond:) userInfo:nil repeats:YES];
+    [self pause];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.sudoku resume];
+    [self resume];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self saveSudoku];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.sudoku pause];
+    [self pause];
 }
 
 - (void)didReceiveMemoryWarning
