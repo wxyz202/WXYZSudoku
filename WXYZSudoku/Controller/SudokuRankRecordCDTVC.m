@@ -15,7 +15,7 @@
 @interface SudokuRankRecordCDTVC ()
 
 @property (nonatomic, strong) NSNumber *difficulty;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedController;
+@property (strong, nonatomic) UISegmentedControl *difficultySegmentedController;
 
 @end
 
@@ -106,10 +106,35 @@
     }
 }
 
+- (UISegmentedControl *)difficultySegmentedController
+{
+    if (!_difficultySegmentedController) {
+        _difficultySegmentedController = [[UISegmentedControl alloc] initWithItems:@[@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell"]];
+        _difficultySegmentedController.backgroundColor = [UIColor whiteColor];
+        CGRect rect = _difficultySegmentedController.frame;
+        rect.size.width = self.view.frame.size.width;
+        _difficultySegmentedController.frame = rect;
+        [_difficultySegmentedController addTarget:self action:@selector(changeDifficulty:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _difficultySegmentedController;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return self.difficultySegmentedController;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.difficultySegmentedController.selectedSegmentIndex = self.difficulty.integerValue;
+    
+    
 }
 
 @end
