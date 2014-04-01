@@ -13,7 +13,6 @@
 		183B5F7118E842DD00A8D48A /* RankRecord+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7018E842DD00A8D48A /* RankRecord+Create.m */; };
 		183B5F7A18E8493300A8D48A /* SudokuIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7718E8493300A8D48A /* SudokuIndexViewController.m */; };
 		183B5F7B18E8493300A8D48A /* SudokuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7918E8493300A8D48A /* SudokuViewController.m */; };
-		183B5F7F18E84A2700A8D48A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7E18E84A2700A8D48A /* CoreDataTableViewController.m */; };
 		183B5F8218E84F6D00A8D48A /* SudokuRankRecordCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */; };
 		183B5F8B18E85E9200A8D48A /* RankRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F8A18E85E9200A8D48A /* RankRecord.m */; };
 		1842B4731877BCB3009EF61B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842B4721877BCB3009EF61B /* Foundation.framework */; };
@@ -34,10 +33,11 @@
 		1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842B4B31879803A009EF61B /* SudokuGrid.m */; };
 		18635C5618E9263600250632 /* SudokuPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18635C5518E9263600250632 /* SudokuPlayViewController.m */; };
 		186A53AB1886C5EC0055C3A0 /* SudokuActionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A53AA1886C5EC0055C3A0 /* SudokuActionRecord.m */; };
+		189867AC18E9AB6700BF2CA2 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189867AB18E9AB6700BF2CA2 /* CoreDataTableViewController.m */; };
+		189867B018E9AD6000BF2CA2 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 189867AF18E9AD6000BF2CA2 /* KxMenu.m */; };
 		18AADAFF18E88ED800A01505 /* NSString+SecondsFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AADAFE18E88ED800A01505 /* NSString+SecondsFormat.m */; };
 		18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A01A1880499000771855 /* SudokuSolver.cpp */; };
 		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
-		67CCD31A3BCE4FFA97F9A571 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22971FEEFD4D45AC9A9F96D1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +63,6 @@
 		183B5F7718E8493300A8D48A /* SudokuIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuIndexViewController.m; path = Controller/SudokuIndexViewController.m; sourceTree = "<group>"; };
 		183B5F7818E8493300A8D48A /* SudokuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuViewController.h; path = Controller/SudokuViewController.h; sourceTree = "<group>"; };
 		183B5F7918E8493300A8D48A /* SudokuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuViewController.m; path = Controller/SudokuViewController.m; sourceTree = "<group>"; };
-		183B5F7D18E84A2700A8D48A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
-		183B5F7E18E84A2700A8D48A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		183B5F8018E84F6D00A8D48A /* SudokuRankRecordCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuRankRecordCDTVC.h; path = Controller/SudokuRankRecordCDTVC.h; sourceTree = "<group>"; };
 		183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuRankRecordCDTVC.m; path = Controller/SudokuRankRecordCDTVC.m; sourceTree = "<group>"; };
 		183B5F8918E85E9200A8D48A /* RankRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankRecord.h; path = Model/CoreData/RankRecord.h; sourceTree = "<group>"; };
@@ -96,14 +94,16 @@
 		18635C5518E9263600250632 /* SudokuPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuPlayViewController.m; path = Controller/SudokuPlayViewController.m; sourceTree = "<group>"; };
 		186A53A91886C5EC0055C3A0 /* SudokuActionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuActionRecord.h; path = Model/SudokuActionRecord.h; sourceTree = "<group>"; };
 		186A53AA1886C5EC0055C3A0 /* SudokuActionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuActionRecord.m; path = Model/SudokuActionRecord.m; sourceTree = "<group>"; };
+		189867AA18E9AB6700BF2CA2 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		189867AB18E9AB6700BF2CA2 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		189867AE18E9AD6000BF2CA2 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		189867AF18E9AD6000BF2CA2 /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		18AADAFD18E88ED800A01505 /* NSString+SecondsFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SecondsFormat.h"; path = "Utils/NSString+SecondsFormat.h"; sourceTree = "<group>"; };
 		18AADAFE18E88ED800A01505 /* NSString+SecondsFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SecondsFormat.m"; path = "Utils/NSString+SecondsFormat.m"; sourceTree = "<group>"; };
 		18B6A0191880497A00771855 /* SudokuSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuSolver.h; path = Model/SudokuSolver.h; sourceTree = "<group>"; };
 		18B6A01A1880499000771855 /* SudokuSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuSolver.cpp; path = Model/SudokuSolver.cpp; sourceTree = "<group>"; };
 		18D7CDAA188113EC00E6786D /* SudokuGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuGenerator.h; path = Model/SudokuGenerator.h; sourceTree = "<group>"; };
 		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
-		22971FEEFD4D45AC9A9F96D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9635CC0BEDF42A69527CAC7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,6 @@
 				1842B4751877BCB3009EF61B /* CoreGraphics.framework in Frameworks */,
 				1842B4771877BCB3009EF61B /* UIKit.framework in Frameworks */,
 				1842B4731877BCB3009EF61B /* Foundation.framework in Frameworks */,
-				67CCD31A3BCE4FFA97F9A571 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +156,6 @@
 		183B5F7518E8483200A8D48A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				183B5F7C18E84A2700A8D48A /* CoreDataTableViewController */,
 				183B5F7618E8493300A8D48A /* SudokuIndexViewController.h */,
 				183B5F7718E8493300A8D48A /* SudokuIndexViewController.m */,
 				183B5F7818E8493300A8D48A /* SudokuViewController.h */,
@@ -170,16 +168,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		183B5F7C18E84A2700A8D48A /* CoreDataTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				183B5F7D18E84A2700A8D48A /* CoreDataTableViewController.h */,
-				183B5F7E18E84A2700A8D48A /* CoreDataTableViewController.m */,
-			);
-			name = CoreDataTableViewController;
-			path = Controller/CoreDataTableViewController;
-			sourceTree = "<group>";
-		};
 		1842B4661877BCB3009EF61B = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +175,6 @@
 				1842B4971877BCB3009EF61B /* WXYZSudokuTests */,
 				1842B4711877BCB3009EF61B /* Frameworks */,
 				1842B4701877BCB3009EF61B /* Products */,
-				D9635CC0BEDF42A69527CAC7 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,7 +194,6 @@
 				1842B4741877BCB3009EF61B /* CoreGraphics.framework */,
 				1842B4761877BCB3009EF61B /* UIKit.framework */,
 				1842B4911877BCB3009EF61B /* XCTest.framework */,
-				22971FEEFD4D45AC9A9F96D1 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,6 +205,7 @@
 				1842B4821877BCB3009EF61B /* SudokuAppDelegate.m */,
 				183B5F7418E8475D00A8D48A /* RankRecordDatabaseAvailability.h */,
 				1842B4841877BCB3009EF61B /* Main.storyboard */,
+				189867A818E9AB6700BF2CA2 /* Library */,
 				183B5F5518E831BE00A8D48A /* Utils */,
 				1842B4B1187971EA009EF61B /* Model */,
 				1842B4AA1877E064009EF61B /* View */,
@@ -287,6 +274,33 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		189867A818E9AB6700BF2CA2 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				189867AD18E9AD6000BF2CA2 /* KxMenu */,
+				189867A918E9AB6700BF2CA2 /* CoreDataTableViewController */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		189867A918E9AB6700BF2CA2 /* CoreDataTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				189867AA18E9AB6700BF2CA2 /* CoreDataTableViewController.h */,
+				189867AB18E9AB6700BF2CA2 /* CoreDataTableViewController.m */,
+			);
+			path = CoreDataTableViewController;
+			sourceTree = "<group>";
+		};
+		189867AD18E9AD6000BF2CA2 /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				189867AE18E9AD6000BF2CA2 /* KxMenu.h */,
+				189867AF18E9AD6000BF2CA2 /* KxMenu.m */,
+			);
+			path = KxMenu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -294,11 +308,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1842B4A11877BCB3009EF61B /* Build configuration list for PBXNativeTarget "WXYZSudoku" */;
 			buildPhases = (
-				DBE718729F31461EB0E07933 /* Check Pods Manifest.lock */,
 				1842B46B1877BCB3009EF61B /* Sources */,
 				1842B46C1877BCB3009EF61B /* Frameworks */,
 				1842B46D1877BCB3009EF61B /* Resources */,
-				FEE584C14D3849FF8432660A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,39 +394,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		DBE718729F31461EB0E07933 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FEE584C14D3849FF8432660A /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1842B46B1877BCB3009EF61B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -425,8 +404,9 @@
 				18AADAFF18E88ED800A01505 /* NSString+SecondsFormat.m in Sources */,
 				183B5F7A18E8493300A8D48A /* SudokuIndexViewController.m in Sources */,
 				183B5F6218E8361B00A8D48A /* Sudoku.xcdatamodeld in Sources */,
+				189867AC18E9AB6700BF2CA2 /* CoreDataTableViewController.m in Sources */,
 				1842B47F1877BCB3009EF61B /* main.m in Sources */,
-				183B5F7F18E84A2700A8D48A /* CoreDataTableViewController.m in Sources */,
+				189867B018E9AD6000BF2CA2 /* KxMenu.m in Sources */,
 				18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */,
 				183B5F8218E84F6D00A8D48A /* SudokuRankRecordCDTVC.m in Sources */,
 				183B5F7118E842DD00A8D48A /* RankRecord+Create.m in Sources */,
@@ -560,7 +540,6 @@
 		};
 		1842B4A21877BCB3009EF61B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9635CC0BEDF42A69527CAC7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -574,7 +553,6 @@
 		};
 		1842B4A31877BCB3009EF61B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9635CC0BEDF42A69527CAC7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

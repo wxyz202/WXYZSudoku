@@ -318,16 +318,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sudoku" id="wev-8Q-RYt">
-                        <barButtonItem key="rightBarButtonItem" title="Restart" id="Eid-RI-eTT">
+                        <barButtonItem key="rightBarButtonItem" title="☰" id="Eid-RI-eTT">
                             <connections>
-                                <action selector="clickRestartButton" destination="vXZ-lx-hvc" id="Xll-U5-SOo"/>
+                                <action selector="showMoreMenu:" destination="vXZ-lx-hvc" id="icQ-dX-XZW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="clearGridButton" destination="ctm-wN-AJj" id="5rh-kF-yLx"/>
                         <outlet property="redoButton" destination="cbZ-bv-qFi" id="bdT-J4-lHA"/>
-                        <outlet property="restartButton" destination="Eid-RI-eTT" id="ARx-6I-okV"/>
                         <outlet property="undoButton" destination="i6Q-Fd-kg7" id="tY2-sr-zda"/>
                     </connections>
                 </viewController>

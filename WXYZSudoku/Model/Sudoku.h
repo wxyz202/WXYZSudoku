@@ -20,6 +20,7 @@
 - (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (BOOL)gridsWithValueFinish:(NSUInteger)value;
 
+- (void)clearAllGridsStatus;
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (void)clearChosenGrid;
 - (void)fillChosenGridWithValue:(NSUInteger)value;

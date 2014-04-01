@@ -213,4 +213,20 @@ static const CGFloat EDGE_SIZE = 10.0;
     return [[self.buttons objectAtIndex:row] objectAtIndex:column];
 }
 
+- (void)jumpButtons
+{
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            UIButton *button = [self getButtonInRow:row inColumn:column];
+            CGPoint currentPoint = button.center;
+            CGPoint jumpPoint = CGPointMake(button.center.x, button.center.y-5);
+            [UIView animateWithDuration:0.2 delay:(arc4random()%100)/100.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+                button.center = jumpPoint;
+            } completion:^(BOOL fin){
+                button.center = currentPoint;
+            }];
+        }
+    }
+}
+
 @end

@@ -18,6 +18,7 @@ extern const NSInteger SUDOKU_VIEW_TAG;
 
 @property (strong, nonatomic)SudokuGridView *sudokuView;
 @property (strong, nonatomic)Sudoku *sudoku;
+@property (nonatomic) BOOL alreadyAnimate;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
 

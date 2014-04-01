@@ -20,4 +20,6 @@
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
+- (void)jumpButtons;
+
 @end

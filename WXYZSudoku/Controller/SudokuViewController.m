@@ -47,6 +47,33 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
         }
     }
 }
+- (void)showSudokuWithAnimate
+{
+    UIView *coverView1 = [[UIView alloc] init];
+    UIView *coverView2 = [[UIView alloc] init];
+    SudokuGridView *sudokuView = self.sudokuView;
+    coverView1.frame = sudokuView.frame;
+    coverView2.frame = sudokuView.frame;
+    coverView1.backgroundColor = [UIColor whiteColor];
+    coverView2.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:coverView1];
+    [self.view addSubview:coverView2];
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        CGRect tempRect = coverView1.frame;
+        tempRect.origin.x += tempRect.size.width;
+        tempRect.size.width = 0;
+        coverView1.frame = tempRect;
+        tempRect = coverView2.frame;
+        tempRect.origin.y += tempRect.size.height;
+        tempRect.size.height = 0;
+        coverView2.frame = tempRect;
+    } completion:^(BOOL fin){
+        [coverView1 removeFromSuperview];
+        [coverView2 removeFromSuperview];
+    }];
+}
+
 
 - (void)updateUI
 {
@@ -94,6 +121,11 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
         [self.redoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         self.redoButton.enabled = NO;
     }
+    
+    if (!self.alreadyAnimate) {
+        [self showSudokuWithAnimate];
+        self.alreadyAnimate = YES;
+    }
 }
 
 # pragma mark - play
@@ -139,6 +171,7 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
 {
     [super viewDidLoad];
     [self createSubView];
+    self.alreadyAnimate = NO;
 }
 
 - (void)didReceiveMemoryWarning

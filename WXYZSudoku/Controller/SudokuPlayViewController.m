@@ -10,6 +10,7 @@
 #import "SudokuCongratulationAlertView.h"
 #import "RankRecord+Create.h"
 #import "NSString+SecondsFormat.h"
+#import "KxMenu.h"
 
 @interface SudokuPlayViewController ()
 
@@ -61,6 +62,8 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [self saveSudoku];
     [self updateUI];
     if ([self.sudoku isFinished]) {
+        [self.sudoku clearAllGridsStatus];
+        [self updateUI];
         self.sudoku.finishSeconds = self.sudoku.playSeconds;
         [self finish];
         SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.finishSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
@@ -100,6 +103,20 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     }
 }
 
+- (IBAction)showMoreMenu:(UIBarButtonItem *)sender {
+    NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"Restart"
+                     image:nil
+                    target:self
+                    action:@selector(clickRestartButton)]
+      ];
+    [KxMenu showMenuInView:self.view
+                  fromRect:CGRectMake(self.view.frame.size.width, self.navigationController.navigationBar.frame.origin.y, -40, self.navigationController.navigationBar.frame.size.height)
+                 menuItems:menuItems];
+}
+
 # pragma mark - restart and finish
 
 - (void)finish {
@@ -137,12 +154,14 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
         [self removeSavedSudoku];
         [self newGameWithDifficulty:self.sudoku.difficulty];
         [self resume];
+        self.alreadyAnimate = NO;
         [self updateUI];
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
         NSString *playerName = congratulationAlertView.inputName;
         NSUInteger finishSeconds = self.sudoku.finishSeconds;
         [self addRecordWithPlayerName:playerName withFinishSeconds:@(finishSeconds)];
+        [self.sudokuView jumpButtons];
     }
 }
 
@@ -196,7 +215,9 @@ static const NSUInteger SECONDS_FOR_AUTO_SAVE = 10;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self saveSudoku];
+    if (!self.sudoku.isFinished) {
+        [self saveSudoku];
+    }
     [super viewWillDisappear:animated];
 }
 

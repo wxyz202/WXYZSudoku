@@ -10,8 +10,6 @@
 
 @interface SudokuPlayViewController : SudokuViewController
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *restartButton;
-
 - (void)newGameWithDifficulty:(NSUInteger)difficulty;
 - (void)loadSudoku;
 
