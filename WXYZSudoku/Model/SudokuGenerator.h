@@ -12,6 +12,8 @@
 extern const int DIFFICULTY_EASY;
 extern const int DIFFICULTY_NORMAL;
 extern const int DIFFICULTY_HARD;
+extern const int DIFFICULTY_NIGHTMARE;
+extern const int DIFFICULTY_HELL;
 
 void generate(int input[][9], int difficulty);
 
