@@ -108,6 +108,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.difficultySegmentedController.selectedSegmentIndex = self.difficulty.integerValue;
 }
 
