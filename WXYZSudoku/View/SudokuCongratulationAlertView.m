@@ -14,11 +14,12 @@
 
 @implementation SudokuCongratulationAlertView
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitle:(NSString *)otherButtonTitle {
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitle:(NSString *)otherButtonTitle defaultName:(NSString *)defaultName {
     self = [super initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles: otherButtonTitle, nil];
     
     if (self) {
         self.alertViewStyle = UIAlertViewStylePlainTextInput;
+        self.nameTextField.text = defaultName;
     }
     
     return self;

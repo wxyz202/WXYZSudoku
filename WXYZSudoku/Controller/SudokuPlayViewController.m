@@ -55,6 +55,21 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     [defaults synchronize];
 }
 
+# pragma mark - store playername
+
+- (void)savePlayerName:(NSString *)name
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:name forKey:@"storedPlayerName"];
+    [defaults synchronize];
+}
+
+- (NSString *)loadPlayerName
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"storedPlayerName"];
+}
+
 # pragma mark - play
 
 - (IBAction)chooseNumber:(UIButton *)sender {
@@ -66,7 +81,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
         [self updateUI];
         self.sudoku.finishSeconds = self.sudoku.playSeconds;
         [self finish];
-        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.finishSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK"];
+        SudokuCongratulationAlertView *congratulationView = [[SudokuCongratulationAlertView alloc] initWithTitle:@"Congratulaion!" message:[NSString stringWithFormat:@"Solve in %@. Please input your name.", [NSString stringWithSeconds:self.sudoku.finishSeconds]] delegate:self cancelButtonTitle:nil otherButtonTitle:@"OK" defaultName:[self loadPlayerName]];
         congratulationView.tag = CONGRATULATION_ALERT_VIEW_TAG;
         [congratulationView show];
     }
@@ -159,6 +174,7 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
     } else if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
         NSString *playerName = congratulationAlertView.inputName;
+        [self savePlayerName:playerName];
         NSUInteger finishSeconds = self.sudoku.finishSeconds;
         [self addRecordWithPlayerName:playerName withFinishSeconds:@(finishSeconds)];
         [self.sudokuView jumpButtons];
