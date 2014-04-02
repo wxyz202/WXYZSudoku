@@ -19,9 +19,10 @@ const int DIFFICULTY_NORMAL = 1;
 const int DIFFICULTY_HARD = 2;
 const int DIFFICULTY_NIGHTMARE = 3;
 const int DIFFICULTY_HELL = 4;
+const int DIFFICULTY_DEMO = 5;
 
-static const int MAX_EMPTY_GRIDS[5] = {35, 40, 50, 60, 65};
-static const int MAX_EMPTY_GRIDS_PER_BLOCK[5] = {4, 5, 6, 7, 9};
+static const int MAX_EMPTY_GRIDS[6] = {35, 40, 50, 60, 65, 10};
+static const int MAX_EMPTY_GRIDS_PER_BLOCK[6] = {4, 5, 6, 7, 9, 3};
 
 static const int sudokuCount = 2;
 

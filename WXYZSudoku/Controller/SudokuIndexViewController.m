@@ -33,7 +33,7 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 
 
 - (IBAction)touchNewGameButton {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"choose difficulty" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"choose difficulty" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell", @"Demo", nil];
     alertView.tag = NEW_GAME_ALERT_VIEW_TAG;
     [alertView show];
 }
@@ -53,7 +53,8 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
                                          @"Normal":@(DIFFICULTY_NORMAL),
                                          @"Hard":@(DIFFICULTY_HARD),
                                          @"Nightmare":@(DIFFICULTY_NIGHTMARE),
-                                         @"Hell":@(DIFFICULTY_HELL)};
+                                         @"Hell":@(DIFFICULTY_HELL),
+                                         @"Demo":@(DIFFICULTY_DEMO)};
         [self performSegueWithIdentifier:@"new game" sender:[difficultyDict objectForKey:difficulty]];
     }
 }

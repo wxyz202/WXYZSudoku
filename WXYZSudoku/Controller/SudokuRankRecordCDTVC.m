@@ -109,7 +109,7 @@
 - (UISegmentedControl *)difficultySegmentedController
 {
     if (!_difficultySegmentedController) {
-        _difficultySegmentedController = [[UISegmentedControl alloc] initWithItems:@[@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell"]];
+        _difficultySegmentedController = [[UISegmentedControl alloc] initWithItems:@[@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell", @"Demo"]];
         _difficultySegmentedController.backgroundColor = [UIColor whiteColor];
         CGRect rect = _difficultySegmentedController.frame;
         rect.size.width = self.view.frame.size.width;

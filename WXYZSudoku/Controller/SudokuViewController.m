@@ -33,7 +33,8 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
                                      @(DIFFICULTY_NORMAL): @"Normal",
                                      @(DIFFICULTY_HARD): @"Hard",
                                      @(DIFFICULTY_NIGHTMARE): @"Nightmare",
-                                     @(DIFFICULTY_HELL): @"Hell"
+                                     @(DIFFICULTY_HELL): @"Hell",
+                                     @(DIFFICULTY_DEMO): @"Demo"
                                  };
     NSString *difficultyName = difficultyDict[@(difficulty)];
     self.title = [NSString stringWithFormat:@"%@ Sudoku", difficultyName];
