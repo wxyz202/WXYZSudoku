@@ -94,18 +94,20 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
                 [button setBackgroundColor:[SudokuGridView chosenGridBackgroundColor]];
             } else if (grid.isRelated){
                 [button setBackgroundColor:[SudokuGridView relatedGridBackgroundColor]];
+            } else if (grid.isConstant) {
+                [button setBackgroundColor:[SudokuGridView constantValueGridBackgroundColor]];
             } else {
-                 [button setBackgroundColor:[SudokuGridView otherGridBackgroundColor]];
+                 [button setBackgroundColor:[SudokuGridView normalGridBackgroundColor]];
             }
             
             if (grid.isConfilcting) {
                 [button setTitleColor:[SudokuGridView conflictingGridTitleColor] forState:UIControlStateNormal];
             } else if (grid.isSameAsChosen) {
-                [button setTitleColor:[SudokuGridView sameValueGridTitileColor] forState:UIControlStateNormal];
+                [button setTitleColor:[SudokuGridView sameValueGridTitleColor] forState:UIControlStateNormal];
             } else if (grid.isConstant){
                 [button setTitleColor:[SudokuGridView constantValueGridTitleColor] forState:UIControlStateNormal];
             } else {
-                [button setTitleColor:[SudokuGridView otherGridTitleColor] forState:UIControlStateNormal];
+                [button setTitleColor:[SudokuGridView normalGridTitleColor] forState:UIControlStateNormal];
             }
         }
     }

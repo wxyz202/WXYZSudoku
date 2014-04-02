@@ -10,9 +10,10 @@
 #import "SudokuCongratulationAlertView.h"
 #import "RankRecord+Create.h"
 #import "NSString+SecondsFormat.h"
+#import "SudokuColorAlertView.h"
 #import "KxMenu.h"
 
-@interface SudokuPlayViewController ()
+@interface SudokuPlayViewController () <CustomIOS7AlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *clearGridButton;
 @property (strong, nonatomic) NSTimer *oneSecondTimer;
@@ -21,6 +22,7 @@
 
 static const NSInteger RESTART_ALERT_VIEW_TAG = 101;
 static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
+static const NSInteger COLOR_ALERT_VIEW_TAG = 103;
 
 @implementation SudokuPlayViewController
 
@@ -121,15 +123,33 @@ static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
 - (IBAction)showMoreMenu:(UIBarButtonItem *)sender {
     NSArray *menuItems =
     @[
-      
       [KxMenuItem menuItem:@"Restart"
                      image:nil
                     target:self
-                    action:@selector(clickRestartButton)]
+                    action:@selector(clickRestartButton)],
+      
+      [KxMenuItem menuItem:@"Color"
+                     image:nil
+                    target:self
+                    action:@selector(clickColorButton)]
       ];
     [KxMenu showMenuInView:self.view
                   fromRect:CGRectMake(self.view.frame.size.width, self.navigationController.navigationBar.frame.origin.y, -40, self.navigationController.navigationBar.frame.size.height)
                  menuItems:menuItems];
+}
+
+# pragma mark - change color
+
+- (void)customIOS7dialogButtonTouchUpInside:(id)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [alertView close];
+}
+
+- (void)clickColorButton {
+    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithColorArray:[SudokuGridView normalGridTitleColorArray] currentColor:[SudokuGridView normalGridTitleColor]];
+    alertView.tag = COLOR_ALERT_VIEW_TAG;
+    [alertView setDelegate:self];
+    [alertView show];
 }
 
 # pragma mark - restart and finish

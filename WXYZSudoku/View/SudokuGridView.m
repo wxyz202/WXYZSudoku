@@ -14,7 +14,19 @@
 @property (strong, nonatomic) NSArray *buttons;
 @end
 
+static NSNumber *gNormalGridTitleColorNum;
+
 @implementation SudokuGridView
+
++ (NSArray *)normalGridTitleColorArray
+{
+    return @[
+        [UIColor brownColor],
+        [UIColor colorWithRed:0.2 green:0.6 blue:0.6 alpha:1.0],
+        [UIColor colorWithRed:0.2 green:0.6 blue:0.4 alpha:1.0],
+        [UIColor colorWithRed:0.8 green:0.2 blue:0.6 alpha:1.0]
+    ];
+}
 
 + (UIColor *)chosenGridBackgroundColor
 {
@@ -26,7 +38,12 @@
     return [UIColor colorWithRed:1.0 green:1.0 blue:0.8 alpha:1.0];
 }
 
-+ (UIColor *)otherGridBackgroundColor
++ (UIColor *)constantValueGridBackgroundColor
+{
+    return [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
+}
+
++ (UIColor *)normalGridBackgroundColor
 {
     return [UIColor clearColor];
 }
@@ -36,7 +53,7 @@
     return [UIColor redColor];
 }
 
-+ (UIColor *)sameValueGridTitileColor
++ (UIColor *)sameValueGridTitleColor
 {
     return [UIColor blueColor];
 }
@@ -46,9 +63,13 @@
     return [UIColor blackColor];
 }
 
-+ (UIColor *)otherGridTitleColor
++ (UIColor *)normalGridTitleColor
 {
-    return [UIColor brownColor];
+    if (gNormalGridTitleColorNum) {
+        return [SudokuGridView normalGridTitleColorArray][gNormalGridTitleColorNum.integerValue];
+    } else {
+        return [SudokuGridView normalGridTitleColorArray][2];
+    }
 }
 
 - (UIColor *)lineColor

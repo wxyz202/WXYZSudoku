@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		181FED481898D9D50002EA3C /* SudokuCongratulationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FED471898D9D50002EA3C /* SudokuCongratulationAlertView.m */; };
+		1828481B18EC5B6E00B431E1 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828481A18EC5B6E00B431E1 /* CustomIOS7AlertView.m */; };
+		1828481E18EC5C8700B431E1 /* SudokuColorAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828481D18EC5C8700B431E1 /* SudokuColorAlertView.m */; };
 		183B5F5B18E8350500A8D48A /* UDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F5A18E8350500A8D48A /* UDID.m */; };
 		183B5F6218E8361B00A8D48A /* Sudoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F6018E8361B00A8D48A /* Sudoku.xcdatamodeld */; };
 		183B5F7118E842DD00A8D48A /* RankRecord+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7018E842DD00A8D48A /* RankRecord+Create.m */; };
@@ -53,6 +55,10 @@
 /* Begin PBXFileReference section */
 		181FED461898D9D50002EA3C /* SudokuCongratulationAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuCongratulationAlertView.h; path = View/SudokuCongratulationAlertView.h; sourceTree = "<group>"; };
 		181FED471898D9D50002EA3C /* SudokuCongratulationAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuCongratulationAlertView.m; path = View/SudokuCongratulationAlertView.m; sourceTree = "<group>"; };
+		1828481918EC5B6E00B431E1 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
+		1828481A18EC5B6E00B431E1 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
+		1828481C18EC5C8700B431E1 /* SudokuColorAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuColorAlertView.h; path = View/SudokuColorAlertView.h; sourceTree = "<group>"; };
+		1828481D18EC5C8700B431E1 /* SudokuColorAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuColorAlertView.m; path = View/SudokuColorAlertView.m; sourceTree = "<group>"; };
 		183B5F5918E8350500A8D48A /* UDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDID.h; path = Utils/UDID.h; sourceTree = "<group>"; };
 		183B5F5A18E8350500A8D48A /* UDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDID.m; path = Utils/UDID.m; sourceTree = "<group>"; };
 		183B5F6118E8361B00A8D48A /* Sudoku.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sudoku.xcdatamodel; sourceTree = "<group>"; };
@@ -130,6 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1828481818EC5B6E00B431E1 /* CustomIOS7AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				1828481918EC5B6E00B431E1 /* CustomIOS7AlertView.h */,
+				1828481A18EC5B6E00B431E1 /* CustomIOS7AlertView.m */,
+			);
+			path = CustomIOS7AlertView;
+			sourceTree = "<group>";
+		};
 		183B5F5518E831BE00A8D48A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +267,8 @@
 				1842B4AC1877E147009EF61B /* SudokuGridView.m */,
 				181FED461898D9D50002EA3C /* SudokuCongratulationAlertView.h */,
 				181FED471898D9D50002EA3C /* SudokuCongratulationAlertView.m */,
+				1828481C18EC5C8700B431E1 /* SudokuColorAlertView.h */,
+				1828481D18EC5C8700B431E1 /* SudokuColorAlertView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -277,6 +294,7 @@
 		189867A818E9AB6700BF2CA2 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1828481818EC5B6E00B431E1 /* CustomIOS7AlertView */,
 				189867AD18E9AD6000BF2CA2 /* KxMenu */,
 				189867A918E9AB6700BF2CA2 /* CoreDataTableViewController */,
 			);
@@ -411,7 +429,9 @@
 				183B5F8218E84F6D00A8D48A /* SudokuRankRecordCDTVC.m in Sources */,
 				183B5F7118E842DD00A8D48A /* RankRecord+Create.m in Sources */,
 				1842B4831877BCB3009EF61B /* SudokuAppDelegate.m in Sources */,
+				1828481B18EC5B6E00B431E1 /* CustomIOS7AlertView.m in Sources */,
 				1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */,
+				1828481E18EC5C8700B431E1 /* SudokuColorAlertView.m in Sources */,
 				1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */,
 				183B5F7B18E8493300A8D48A /* SudokuViewController.m in Sources */,
 				18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */,

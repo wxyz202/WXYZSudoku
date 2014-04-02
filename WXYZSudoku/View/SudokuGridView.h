@@ -10,13 +10,16 @@
 
 @interface SudokuGridView : UIView
 
++ (NSArray *)normalGridTitleColorArray;
+
 + (UIColor *)chosenGridBackgroundColor;
 + (UIColor *)relatedGridBackgroundColor;
-+ (UIColor *)otherGridBackgroundColor;
++ (UIColor *)constantValueGridBackgroundColor;
++ (UIColor *)normalGridBackgroundColor;
 + (UIColor *)conflictingGridTitleColor;
-+ (UIColor *)sameValueGridTitileColor;
++ (UIColor *)sameValueGridTitleColor;
 + (UIColor *)constantValueGridTitleColor;
-+ (UIColor *)otherGridTitleColor;
++ (UIColor *)normalGridTitleColor;
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
