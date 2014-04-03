@@ -10,8 +10,9 @@
 
 @interface SudokuColorAlertView : CustomIOS7AlertView
 
-- (instancetype)initWithColorArray:(NSArray *)colorArray currentColor:(UIColor *)currentColor;
+@property (nonatomic, readonly) NSUInteger chosenColorIndex;
+
+- (instancetype)initWithColorArray:(NSArray *)colorArray currentColorIndex:(NSUInteger)currentColorIndex;
 - (BOOL)isConfirmChangeColorButton:(NSInteger)buttonIndex;
-- (UIColor *)chosenColor;
 
 @end

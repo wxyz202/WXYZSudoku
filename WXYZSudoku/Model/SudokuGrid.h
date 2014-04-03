@@ -11,6 +11,7 @@
 @interface SudokuGrid : NSObject
 
 @property (nonatomic) NSUInteger value;
+@property (nonatomic) NSUInteger traceGroup;
 
 @property (nonatomic, getter = isChosen) BOOL chosen;
 @property (nonatomic, getter = isRelated) BOOL related;

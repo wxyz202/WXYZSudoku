@@ -12,6 +12,7 @@
 @interface Sudoku : NSObject
 
 @property (nonatomic, readonly) NSUInteger difficulty;
+@property (nonatomic) NSUInteger currentTraceGroup;
 @property (nonatomic) NSUInteger playSeconds;
 @property (nonatomic) NSUInteger finishSeconds;
 

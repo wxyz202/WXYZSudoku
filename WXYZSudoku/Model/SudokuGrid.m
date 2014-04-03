@@ -35,18 +35,21 @@
 {
     [encoder encodeObject:@(self.value) forKey:@"value"];
     [encoder encodeObject:@(self.constant) forKey:@"constant"];
+    [encoder encodeObject:@(self.traceGroup) forKey:@"traceGroup"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     NSUInteger value = [[decoder decodeObjectForKey:@"value"] unsignedIntegerValue];
     BOOL constant = [[decoder decodeObjectForKey:@"constant"] boolValue];
+    NSUInteger traceGroup = [[decoder decodeObjectForKey:@"traceGroup"] unsignedIntegerValue];
     if (constant) {
         return [self initGridConstWithValue:value];
     } else {
         self = [self initGridEmpty];
         if (self) {
             self.value = value;
+            self.traceGroup = traceGroup;
         }
         return self;
     }
@@ -58,6 +61,7 @@
     if (self){
         self.constant = NO;
         self.value = 0;
+        self.traceGroup = 0;
     }
     return self;
 }

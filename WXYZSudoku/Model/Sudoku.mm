@@ -26,6 +26,7 @@
 {
     [encoder encodeObject:self.grids forKey:@"grids"];
     [encoder encodeObject:@(self.difficulty) forKey:@"difficulty"];
+    [encoder encodeObject:@(self.currentTraceGroup) forKey:@"currentTraceGroup"];
     [encoder encodeObject:self.actionRecord forKey:@"actionRecord"];
     [encoder encodeObject:@(self.playSeconds) forKey:@"playSeconds"];
 }
@@ -34,6 +35,7 @@
 {
     NSArray *grids = [decoder decodeObjectForKey:@"grids"];
     NSUInteger difficulty = [[decoder decodeObjectForKey:@"difficulty"] unsignedIntegerValue];
+    NSUInteger currentTraceGroup = [[decoder decodeObjectForKey:@"currentTraceGroup"] unsignedIntegerValue];
     SudokuActionRecord *actionRecord = [decoder decodeObjectForKey:@"actionRecord"];
     NSUInteger playSeconds = [[decoder decodeObjectForKey:@"playSeconds"] unsignedIntegerValue];
     
@@ -41,6 +43,7 @@
     if (self) {
         self.grids = grids;
         self.difficulty = difficulty;
+        self.currentTraceGroup = currentTraceGroup;
         self.actionRecord = actionRecord;
         self.playSeconds = playSeconds;
         [self updateAllGridsStatus];
@@ -52,6 +55,7 @@
 {
     self = [super init];
     if (self) {
+        self.currentTraceGroup = 0;
         self.playSeconds = 0;
     }
     return self;
@@ -216,9 +220,10 @@
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
-                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:0];
+                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:0 fromTraceGroup:grid.traceGroup toTraceGroup:self.currentTraceGroup];
                 [self.actionRecord pushAction:action];
                 grid.value = 0;
+                grid.traceGroup = self.currentTraceGroup;
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
             }
@@ -233,9 +238,10 @@
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
-                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:value];
+                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:value fromTraceGroup:grid.traceGroup toTraceGroup:self.currentTraceGroup];
                 [self.actionRecord pushAction:action];
                 grid.value = value;
+                grid.traceGroup = self.currentTraceGroup;
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
             }
@@ -322,7 +328,9 @@
 {
     SudokuAction *action = [self.actionRecord undo];
     if (action) {
-        [self getGridInRow:action.row inColumn:action.column].value = action.fromValue;
+        SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
+        grid.value = action.fromValue;
+        grid.traceGroup = action.fromTraceGroup;
         [self chooseGridInRow:action.row inColumn:action.column];
     }
 }
@@ -331,7 +339,9 @@
 {
     SudokuAction *action = [self.actionRecord redo];
     if (action) {
-        [self getGridInRow:action.row inColumn:action.column].value = action.toValue;
+        SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
+        grid.value = action.toValue;
+        grid.traceGroup = action.toTraceGroup;
         [self chooseGridInRow:action.row inColumn:action.column];
     }
 }

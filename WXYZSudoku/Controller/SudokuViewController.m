@@ -107,7 +107,7 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
             } else if (grid.isConstant){
                 [button setTitleColor:[SudokuGridView constantValueGridTitleColor] forState:UIControlStateNormal];
             } else {
-                [button setTitleColor:[SudokuGridView normalGridTitleColor] forState:UIControlStateNormal];
+                [button setTitleColor:[SudokuGridView normalGridTitleColorArray][grid.traceGroup] forState:UIControlStateNormal];
             }
         }
     }

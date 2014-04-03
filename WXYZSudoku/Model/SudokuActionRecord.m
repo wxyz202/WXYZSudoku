@@ -13,6 +13,8 @@
 @property (nonatomic, readwrite) NSUInteger column;
 @property (nonatomic, readwrite) NSUInteger fromValue;
 @property (nonatomic, readwrite) NSUInteger toValue;
+@property (nonatomic, readwrite) NSUInteger fromTraceGroup;
+@property (nonatomic, readwrite) NSUInteger toTraceGroup;
 @end
 
 @implementation SudokuAction
@@ -23,6 +25,8 @@
     [encoder encodeObject:@(self.column) forKey:@"column"];
     [encoder encodeObject:@(self.fromValue) forKey:@"fromValue"];
     [encoder encodeObject:@(self.toValue) forKey:@"toValue"];
+    [encoder encodeObject:@(self.fromTraceGroup) forKey:@"fromTraceGroup"];
+    [encoder encodeObject:@(self.toTraceGroup) forKey:@"toTraceGroup"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
@@ -31,11 +35,13 @@
     NSUInteger column = [[decoder decodeObjectForKey:@"column"] unsignedIntegerValue];
     NSUInteger fromValue = [[decoder decodeObjectForKey:@"fromValue"] unsignedIntegerValue];
     NSUInteger toValue = [[decoder decodeObjectForKey:@"toValue"] unsignedIntegerValue];
+    NSUInteger fromTraceGroup = [[decoder decodeObjectForKey:@"fromTraceGroup"] unsignedIntegerValue];
+    NSUInteger toTraceGroup = [[decoder decodeObjectForKey:@"toTraceGroup"] unsignedIntegerValue];
     
-    return [self initWithRow:row withColumn:column fromValue:fromValue toValue:toValue];
+    return [self initWithRow:row withColumn:column fromValue:fromValue toValue:toValue fromTraceGroup:fromTraceGroup toTraceGroup:toTraceGroup];
 }
 
-- (instancetype)initWithRow:(NSUInteger)row withColumn:(NSUInteger)column fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue
+- (instancetype)initWithRow:(NSUInteger)row withColumn:(NSUInteger)column fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue fromTraceGroup:(NSUInteger)fromTraceGroup toTraceGroup:(NSUInteger)toTraceGroup
 {
     self = [super init];
     if (self) {
@@ -43,6 +49,8 @@
         self.column = column;
         self.fromValue = fromValue;
         self.toValue = toValue;
+        self.fromTraceGroup = fromTraceGroup;
+        self.toTraceGroup = toTraceGroup;
     }
     return self;
 }

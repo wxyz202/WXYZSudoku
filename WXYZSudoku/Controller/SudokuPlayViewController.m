@@ -142,11 +142,15 @@ static const NSInteger COLOR_ALERT_VIEW_TAG = 103;
 
 - (void)customIOS7dialogButtonTouchUpInside:(id)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if ([alertView isConfirmChangeColorButton:buttonIndex]) {
+        self.sudoku.currentTraceGroup = ((SudokuColorAlertView *)alertView).chosenColorIndex;
+        NSLog(@"%d", self.sudoku.currentTraceGroup);
+    }
     [alertView close];
 }
 
 - (void)clickColorButton {
-    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithColorArray:[SudokuGridView normalGridTitleColorArray] currentColor:[SudokuGridView normalGridTitleColor]];
+    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithColorArray:[SudokuGridView normalGridTitleColorArray] currentColorIndex:self.sudoku.currentTraceGroup];
     alertView.tag = COLOR_ALERT_VIEW_TAG;
     [alertView setDelegate:self];
     [alertView show];

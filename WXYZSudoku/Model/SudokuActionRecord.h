@@ -14,8 +14,10 @@
 @property (nonatomic, readonly) NSUInteger column;
 @property (nonatomic, readonly) NSUInteger fromValue;
 @property (nonatomic, readonly) NSUInteger toValue;
+@property (nonatomic, readonly) NSUInteger fromTraceGroup;
+@property (nonatomic, readonly) NSUInteger toTraceGroup;
 
-- (instancetype)initWithRow:(NSUInteger)row withColumn:(NSUInteger)column fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue;
+- (instancetype)initWithRow:(NSUInteger)row withColumn:(NSUInteger)column fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue fromTraceGroup:(NSUInteger)fromTraceGroup toTraceGroup:(NSUInteger)toTraceGroup;
 
 @end
 

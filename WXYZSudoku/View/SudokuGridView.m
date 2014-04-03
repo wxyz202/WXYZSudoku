@@ -14,15 +14,13 @@
 @property (strong, nonatomic) NSArray *buttons;
 @end
 
-static NSNumber *gNormalGridTitleColorNum;
-
 @implementation SudokuGridView
 
 + (NSArray *)normalGridTitleColorArray
 {
     return @[
         [UIColor brownColor],
-        [UIColor colorWithRed:0.2 green:0.6 blue:0.6 alpha:1.0],
+        [UIColor colorWithRed:0.9 green:0.7 blue:0.2 alpha:1.0],
         [UIColor colorWithRed:0.2 green:0.6 blue:0.4 alpha:1.0],
         [UIColor colorWithRed:0.8 green:0.2 blue:0.6 alpha:1.0]
     ];
@@ -61,15 +59,6 @@ static NSNumber *gNormalGridTitleColorNum;
 + (UIColor *)constantValueGridTitleColor
 {
     return [UIColor blackColor];
-}
-
-+ (UIColor *)normalGridTitleColor
-{
-    if (gNormalGridTitleColorNum) {
-        return [SudokuGridView normalGridTitleColorArray][gNormalGridTitleColorNum.integerValue];
-    } else {
-        return [SudokuGridView normalGridTitleColorArray][2];
-    }
 }
 
 - (UIColor *)lineColor
@@ -240,8 +229,8 @@ static const CGFloat EDGE_SIZE = 10.0;
         for (int column = 0; column < 9; column++) {
             UIButton *button = [self getButtonInRow:row inColumn:column];
             CGPoint currentPoint = button.center;
-            CGPoint jumpPoint = CGPointMake(button.center.x, button.center.y-5);
-            [UIView animateWithDuration:0.2 delay:(arc4random()%100)/100.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+            CGPoint jumpPoint = CGPointMake(button.center.x, button.center.y-8);
+            [UIView animateWithDuration:0.2 delay:(arc4random()%100)/100.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveEaseOut animations:^{
                 button.center = jumpPoint;
             } completion:^(BOOL fin){
                 button.center = currentPoint;

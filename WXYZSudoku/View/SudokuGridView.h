@@ -19,7 +19,6 @@
 + (UIColor *)conflictingGridTitleColor;
 + (UIColor *)sameValueGridTitleColor;
 + (UIColor *)constantValueGridTitleColor;
-+ (UIColor *)normalGridTitleColor;
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
