@@ -25,6 +25,7 @@
 - (void)chooseGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (void)clearChosenGrid;
 - (void)fillChosenGridWithValue:(NSUInteger)value;
+- (void)clearGridWithTraceGroup:(NSUInteger)traceGroup;
 - (BOOL)canUndo;
 - (BOOL)canRedo;
 - (void)undo;

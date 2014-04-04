@@ -57,6 +57,8 @@
 
 @end
 
+
+
 @interface SudokuActionRecord ()
 @property (strong, nonatomic) NSMutableArray *actions;
 @property (nonatomic) NSInteger currentIndex;
@@ -110,33 +112,33 @@
     return [self.actions count] > 0 && self.currentIndex >= 0;
 }
 
-- (SudokuAction *)undo
+- (NSArray *)undo
 {
     if ([self canUndo]) {
-        SudokuAction *currentAction = self.actions[self.currentIndex];
+        NSArray *currentActions = self.actions[self.currentIndex];
         self.currentIndex--;
-        return currentAction;
+        return currentActions;
     } else {
         return nil;
     }
 }
 
-- (SudokuAction *)redo
+- (NSArray *)redo
 {
     if ([self canRedo]) {
         self.currentIndex++;
-        SudokuAction *currentAction = self.actions[self.currentIndex];
-        return currentAction;
+        NSArray *currentActions = self.actions[self.currentIndex];
+        return currentActions;
     } else {
         return nil;
     }
 }
 
-- (void)pushAction:(SudokuAction *)action;
+- (void)pushActions:(NSArray *)actions;
 {
     self.currentIndex++;
     [self.actions removeObjectsInRange:NSMakeRange(self.currentIndex, [self.actions count] - self.currentIndex)];
-    [self.actions addObject:action];
+    [self.actions addObject:actions];
 }
 
 @end

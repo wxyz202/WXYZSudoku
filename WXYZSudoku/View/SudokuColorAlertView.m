@@ -10,6 +10,7 @@
 
 @interface SudokuColorAlertView ()
 
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSArray *colorArray;
 @property (nonatomic, readwrite) NSUInteger chosenColorIndex;
 
@@ -19,9 +20,10 @@ static const NSInteger COLOR_BUTTON_TAG_BASE = 1000;
 
 @implementation SudokuColorAlertView
 
-- (instancetype)initWithColorArray:(NSArray *)colorArray currentColorIndex:(NSUInteger)currentColorIndex;
+- (instancetype)initWithTitle:(NSString *)title withColorArray:(NSArray *)colorArray currentColorIndex:(NSUInteger)currentColorIndex
 {
     self = [super init];
+    self.title = title;
     self.colorArray = colorArray;
     self.chosenColorIndex = currentColorIndex;
     [self setButtonTitles:[SudokuColorAlertView buttonTitles]];
@@ -57,7 +59,7 @@ static const NSInteger COLOR_BUTTON_TAG_BASE = 1000;
 
 - (void)addTitleView
 {
-    NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Choose Your Pen Color" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont labelFontSize]]}];
+    NSAttributedString *title = [[NSAttributedString alloc] initWithString:self.title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont labelFontSize]]}];
     CGRect rect = self.dialogView.bounds;
     rect.size.height /= 5.0;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:rect];

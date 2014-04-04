@@ -12,7 +12,7 @@
 
 @property (nonatomic, readonly) NSUInteger chosenColorIndex;
 
-- (instancetype)initWithColorArray:(NSArray *)colorArray currentColorIndex:(NSUInteger)currentColorIndex;
+- (instancetype)initWithTitle:(NSString *)title withColorArray:(NSArray *)colorArray currentColorIndex:(NSUInteger)currentColorIndex;
 - (BOOL)isConfirmChangeColorButton:(NSInteger)buttonIndex;
 
 @end

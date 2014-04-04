@@ -213,6 +213,13 @@
     [self updateAllGridsStatus];
 }
 
+- (void)clearGridInRow:(NSUInteger)row inColumn:(NSUInteger)column
+{
+    SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+    grid.value = 0;
+    grid.traceGroup = self.currentTraceGroup;
+}
+
 - (void)clearChosenGrid
 {
     BOOL finished = NO;
@@ -220,10 +227,13 @@
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
+                if (grid.value == 0) {
+                    finished = YES;
+                    continue;
+                }
                 SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:0 fromTraceGroup:grid.traceGroup toTraceGroup:self.currentTraceGroup];
-                [self.actionRecord pushAction:action];
-                grid.value = 0;
-                grid.traceGroup = self.currentTraceGroup;
+                [self.actionRecord pushActions:@[action]];
+                [self clearGridInRow:row inColumn:column];
                 [self chooseGridInRow:row inColumn:column];
                 finished = YES;
             }
@@ -238,8 +248,12 @@
         for (int column = 0; !finished && column < 9; column++) {
             SudokuGrid *grid = [self getGridInRow:row inColumn:column];
             if (grid.isChosen && !grid.isConstant) {
+                if (grid.value == value && grid.traceGroup == self.currentTraceGroup) {
+                    finished = YES;
+                    continue;
+                }
                 SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:value fromTraceGroup:grid.traceGroup toTraceGroup:self.currentTraceGroup];
-                [self.actionRecord pushAction:action];
+                [self.actionRecord pushActions:@[action]];
                 grid.value = value;
                 grid.traceGroup = self.currentTraceGroup;
                 [self chooseGridInRow:row inColumn:column];
@@ -247,6 +261,33 @@
             }
         }
     }
+}
+
+- (void)clearGridWithTraceGroup:(NSUInteger)traceGroup
+{
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            SudokuGrid *grid = [self getGridInRow:row inColumn:column];
+            if (!grid.isConstant && grid.traceGroup == traceGroup) {
+                if (grid.value == 0) {
+                    continue;
+                }
+                SudokuAction *action = [[SudokuAction alloc] initWithRow:row withColumn:column fromValue:grid.value toValue:0 fromTraceGroup:grid.traceGroup toTraceGroup:self.currentTraceGroup];
+                [actions addObject:action];
+                [self clearGridInRow:row inColumn:column];
+            }
+        }
+    }
+    
+    if ([actions count] == 0) {
+        return;
+    }
+    
+    [self.actionRecord pushActions:actions];
+    [self clearAllGridsStatus];
+    [self updateAllGridsStatus];
 }
 
 - (void)solve
@@ -326,23 +367,27 @@
 
 - (void)undo
 {
-    SudokuAction *action = [self.actionRecord undo];
-    if (action) {
-        SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
-        grid.value = action.fromValue;
-        grid.traceGroup = action.fromTraceGroup;
-        [self chooseGridInRow:action.row inColumn:action.column];
+    NSArray *actions = [self.actionRecord undo];
+    if (actions) {
+        for (SudokuAction *action in [[actions reverseObjectEnumerator] allObjects]) {
+            SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
+            grid.value = action.fromValue;
+            grid.traceGroup = action.fromTraceGroup;
+            [self chooseGridInRow:action.row inColumn:action.column];
+        }
     }
 }
 
 - (void)redo
 {
-    SudokuAction *action = [self.actionRecord redo];
-    if (action) {
-        SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
-        grid.value = action.toValue;
-        grid.traceGroup = action.toTraceGroup;
-        [self chooseGridInRow:action.row inColumn:action.column];
+    NSArray *actions = [self.actionRecord redo];
+    if (actions) {
+        for (SudokuAction *action in actions) {
+            SudokuGrid *grid = [self getGridInRow:action.row inColumn:action.column];
+            grid.value = action.toValue;
+            grid.traceGroup = action.toTraceGroup;
+            [self chooseGridInRow:action.row inColumn:action.column];
+        }
     }
 }
 

@@ -21,12 +21,13 @@
 
 @end
 
+
 @interface SudokuActionRecord : NSObject
 
 - (BOOL)canRedo;
 - (BOOL)canUndo;
-- (SudokuAction *)undo;
-- (SudokuAction *)redo;
-- (void)pushAction:(SudokuAction *)action;
+- (NSArray *)undo;
+- (NSArray *)redo;
+- (void)pushActions:(NSArray *)actions;
 
 @end

@@ -22,7 +22,8 @@
 
 static const NSInteger RESTART_ALERT_VIEW_TAG = 101;
 static const NSInteger CONGRATULATION_ALERT_VIEW_TAG = 102;
-static const NSInteger COLOR_ALERT_VIEW_TAG = 103;
+static const NSInteger CHOOSE_COLOR_ALERT_VIEW_TAG = 103;
+static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
 
 @implementation SudokuPlayViewController
 
@@ -128,11 +129,17 @@ static const NSInteger COLOR_ALERT_VIEW_TAG = 103;
                     target:self
                     action:@selector(clickRestartButton)],
       
-      [KxMenuItem menuItem:@"Color"
+      [KxMenuItem menuItem:@"Choose Color"
                      image:nil
                     target:self
-                    action:@selector(clickColorButton)]
-      ];
+                    action:@selector(clickChooseColorButton)],
+      
+      [KxMenuItem menuItem:@"Clear Color"
+                   image:nil
+                  target:self
+                  action:@selector(clickClearColorButton)]
+    ];
+
     [KxMenu showMenuInView:self.view
                   fromRect:CGRectMake(self.view.frame.size.width, self.navigationController.navigationBar.frame.origin.y, -40, self.navigationController.navigationBar.frame.size.height)
                  menuItems:menuItems];
@@ -142,16 +149,29 @@ static const NSInteger COLOR_ALERT_VIEW_TAG = 103;
 
 - (void)customIOS7dialogButtonTouchUpInside:(id)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([alertView isConfirmChangeColorButton:buttonIndex]) {
-        self.sudoku.currentTraceGroup = ((SudokuColorAlertView *)alertView).chosenColorIndex;
-        NSLog(@"%d", self.sudoku.currentTraceGroup);
+    if (((UIView *)alertView).tag == CHOOSE_COLOR_ALERT_VIEW_TAG) {
+        if ([alertView isConfirmChangeColorButton:buttonIndex]) {
+            self.sudoku.currentTraceGroup = ((SudokuColorAlertView *)alertView).chosenColorIndex;
+        }
+    } else if (((UIView *)alertView).tag == CLEAR_COLOR_ALERT_VIEW_TAG) {
+        if ([alertView isConfirmChangeColorButton:buttonIndex]) {
+            [self.sudoku clearGridWithTraceGroup:((SudokuColorAlertView *)alertView).chosenColorIndex];
+            [self updateUI];
+        }
     }
     [alertView close];
 }
 
-- (void)clickColorButton {
-    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithColorArray:[SudokuGridView normalGridTitleColorArray] currentColorIndex:self.sudoku.currentTraceGroup];
-    alertView.tag = COLOR_ALERT_VIEW_TAG;
+- (void)clickChooseColorButton {
+    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithTitle:@"Choose Pen Color" withColorArray:[SudokuGridView normalGridTitleColorArray] currentColorIndex:self.sudoku.currentTraceGroup];
+    alertView.tag = CHOOSE_COLOR_ALERT_VIEW_TAG;
+    [alertView setDelegate:self];
+    [alertView show];
+}
+
+- (void)clickClearColorButton {
+    SudokuColorAlertView *alertView = [[SudokuColorAlertView alloc] initWithTitle:@"Choose a Color to Clear" withColorArray:[SudokuGridView normalGridTitleColorArray] currentColorIndex:self.sudoku.currentTraceGroup];
+    alertView.tag = CLEAR_COLOR_ALERT_VIEW_TAG;
     [alertView setDelegate:self];
     [alertView show];
 }
