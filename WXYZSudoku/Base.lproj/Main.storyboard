@@ -398,8 +398,16 @@
                             <outlet property="delegate" destination="ceY-Yf-okn" id="Ssw-gE-2co"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="jam-dv-Ejj"/>
-                    <navigationItem key="navigationItem" title="Rank" id="NEF-cC-DuP"/>
+                    <navigationItem key="navigationItem" title="Rank" id="NEF-cC-DuP">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="yE8-m1-j1c">
+                            <connections>
+                                <action selector="switchScope:" destination="ceY-Yf-okn" id="TY0-CF-SLD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scopeSwitcher" destination="yE8-m1-j1c" id="Jm2-9q-FyS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRj-qE-QWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

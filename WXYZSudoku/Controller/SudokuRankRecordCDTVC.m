@@ -11,11 +11,18 @@
 #import "SudokuGenerator.h"
 #import "NSString+SecondsFormat.h"
 #import "SudokuViewController.h"
+#import "UDID.h"
+
+
+static const NSUInteger SCOPE_LOCAL = 0;
+static const NSUInteger SCOPE_GLOBAL = 1;
 
 @interface SudokuRankRecordCDTVC ()
 
 @property (nonatomic, strong) NSNumber *difficulty;
+@property (nonatomic, strong) NSNumber *scope;
 @property (strong, nonatomic) UISegmentedControl *difficultySegmentedController;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scopeSwitcher;
 
 @end
 
@@ -31,14 +38,15 @@
     if (!self.difficulty) {
         self.difficulty = @(DIFFICULTY_EASY);
     }
+    if (!self.scope) {
+        self.scope = @(SCOPE_LOCAL);
+    }
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
-    if (self.managedObjectContext != nil && self.difficulty != nil) {
-        [self startFetch];
-    }
+    [self startFetch];
 }
 
 - (void)setDifficulty:(NSNumber *)difficulty
@@ -48,15 +56,35 @@
     [defaults setObject:difficulty forKey:@"rankRecordDifficulty"];
     [defaults synchronize];
     
-    if (self.managedObjectContext != nil && self.difficulty != nil) {
-        [self startFetch];
+    [self startFetch];
+}
+
+- (void)setScope:(NSNumber *)scope
+{
+    _scope = scope;
+    if (scope.unsignedIntegerValue == SCOPE_LOCAL) {
+        self.scopeSwitcher.title = @"Global";
+        self.title = @"Local Rank";
+    } else {
+        self.scopeSwitcher.title = @"Local";
+        self.title = @"Global Rank";
     }
+    
+    [self startFetch];
 }
 
 - (void)startFetch
 {
+    if (self.managedObjectContext == nil || self.difficulty == nil || self.scope == nil) {
+        return;
+    }
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"RankRecord"];
-    request.predicate = [NSPredicate predicateWithFormat:@"difficulty = %@", self.difficulty];
+    if (self.scope.unsignedIntegerValue == SCOPE_LOCAL) {
+        request.predicate = [NSPredicate predicateWithFormat:@"difficulty = %@ && playerID = %@", self.difficulty, [UDID identifier]];
+    } else {
+        request.predicate = [NSPredicate predicateWithFormat:@"difficulty = %@", self.difficulty];
+    }
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"finishSeconds"
                                                               ascending:YES
                                  ]
@@ -81,11 +109,23 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [NSString stringWithSeconds:record.finishSeconds.unsignedIntegerValue]];
     cell.imageView.image = nil;//[UIImage imageWithData:photo.thumbnail];
     
+    if (self.scope.unsignedIntegerValue == SCOPE_GLOBAL && [record.playerID isEqualToString:[UDID identifier]]) {
+        cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.8 alpha:1.0];
+    }
+    
     return cell;
 }
 
 - (IBAction)changeDifficulty:(UISegmentedControl *)sender {
     self.difficulty = @(sender.selectedSegmentIndex);
+}
+
+- (IBAction)switchScope:(UIBarButtonItem *)sender {
+    if (self.scope.unsignedIntegerValue == SCOPE_LOCAL) {
+        self.scope = @(SCOPE_GLOBAL);
+    } else {
+        self.scope = @(SCOPE_LOCAL);
+    }
 }
 
 - (void)prepareInViewController:(SudokuViewController *)controller withRecord:(RankRecord *)record
@@ -133,8 +173,6 @@
 {
     [super viewWillAppear:animated];
     self.difficultySegmentedController.selectedSegmentIndex = self.difficulty.integerValue;
-    
-    
 }
 
 @end
