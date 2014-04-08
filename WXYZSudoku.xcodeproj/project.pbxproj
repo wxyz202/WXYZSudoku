@@ -39,6 +39,8 @@
 		189867B018E9AD6000BF2CA2 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 189867AF18E9AD6000BF2CA2 /* KxMenu.m */; };
 		18AADAFF18E88ED800A01505 /* NSString+SecondsFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AADAFE18E88ED800A01505 /* NSString+SecondsFormat.m */; };
 		18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A01A1880499000771855 /* SudokuSolver.cpp */; };
+		18B7274E18F4178800404F43 /* SudokuServerInterfceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7274D18F4178800404F43 /* SudokuServerInterfceConnection.m */; };
+		18B7275118F422BD00404F43 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7275018F422BD00404F43 /* NSString+MD5.m */; };
 		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +111,10 @@
 		18B6A0191880497A00771855 /* SudokuSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuSolver.h; path = Model/SudokuSolver.h; sourceTree = "<group>"; };
 		18B6A01A1880499000771855 /* SudokuSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuSolver.cpp; path = Model/SudokuSolver.cpp; sourceTree = "<group>"; };
 		18B7274B18F3FC7E00404F43 /* SudokuSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudokuSetting.h; sourceTree = "<group>"; };
+		18B7274C18F4178800404F43 /* SudokuServerInterfceConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuServerInterfceConnection.h; path = Utils/SudokuServerInterfceConnection.h; sourceTree = "<group>"; };
+		18B7274D18F4178800404F43 /* SudokuServerInterfceConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuServerInterfceConnection.m; path = Utils/SudokuServerInterfceConnection.m; sourceTree = "<group>"; };
+		18B7274F18F422BD00404F43 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "Utils/NSString+MD5.h"; sourceTree = "<group>"; };
+		18B7275018F422BD00404F43 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "Utils/NSString+MD5.m"; sourceTree = "<group>"; };
 		18D7CDAA188113EC00E6786D /* SudokuGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuGenerator.h; path = Model/SudokuGenerator.h; sourceTree = "<group>"; };
 		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +159,10 @@
 				183B5F5A18E8350500A8D48A /* UDID.m */,
 				18AADAFD18E88ED800A01505 /* NSString+SecondsFormat.h */,
 				18AADAFE18E88ED800A01505 /* NSString+SecondsFormat.m */,
+				18B7274F18F422BD00404F43 /* NSString+MD5.h */,
+				18B7275018F422BD00404F43 /* NSString+MD5.m */,
+				18B7274C18F4178800404F43 /* SudokuServerInterfceConnection.h */,
+				18B7274D18F4178800404F43 /* SudokuServerInterfceConnection.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -433,9 +443,11 @@
 				1842B4831877BCB3009EF61B /* SudokuAppDelegate.m in Sources */,
 				1828481B18EC5B6E00B431E1 /* CustomIOS7AlertView.m in Sources */,
 				1842B4AD1877E147009EF61B /* SudokuGridView.m in Sources */,
+				18B7274E18F4178800404F43 /* SudokuServerInterfceConnection.m in Sources */,
 				1828481E18EC5C8700B431E1 /* SudokuColorAlertView.m in Sources */,
 				1842B4B41879803A009EF61B /* SudokuGrid.m in Sources */,
 				183B5F7B18E8493300A8D48A /* SudokuViewController.m in Sources */,
+				18B7275118F422BD00404F43 /* NSString+MD5.m in Sources */,
 				18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */,
 				181FED481898D9D50002EA3C /* SudokuCongratulationAlertView.m in Sources */,
 				1842B4B0187971E0009EF61B /* Sudoku.mm in Sources */,

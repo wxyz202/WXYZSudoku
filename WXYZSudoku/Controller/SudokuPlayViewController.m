@@ -12,6 +12,7 @@
 #import "NSString+SecondsFormat.h"
 #import "SudokuColorAlertView.h"
 #import "KxMenu.h"
+#import "SudokuServerInterfceConnection.h"
 
 @interface SudokuPlayViewController () <CustomIOS7AlertViewDelegate>
 
@@ -232,6 +233,9 @@ static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
     record.playerName = playerName;
     record.finishSeconds = finishSeconds;
     record.difficulty = @(self.sudoku.difficulty);
+    
+    SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
+    [connection postSudokuRecord:record delegate:self];
 }
 
 # pragma mark - timer
@@ -256,6 +260,11 @@ static const NSUInteger SECONDS_FOR_AUTO_SAVE = 10;
 {
     [self.oneSecondTimer setFireDate:[NSDate distantPast]];
 }
+
+
+# pragma mark - SudokuServerInterfceConnection
+
+
 
 # pragma mark - other
 

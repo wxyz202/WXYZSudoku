@@ -51,9 +51,14 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
         return;
     }
     if (alertView.tag == NEW_GAME_ALERT_VIEW_TAG) {
-        NSString *difficulty = [alertView buttonTitleAtIndex:buttonIndex];
+        NSString *difficultyName = [alertView buttonTitleAtIndex:buttonIndex];
         NSDictionary *difficultyDict = DIFFICULTY_NAME_DICT;
-        [self performSegueWithIdentifier:@"new game" sender:[difficultyDict objectForKey:difficulty]];
+        for (NSNumber *difficulty in ALL_DIFFICULTY_ARRAY) {
+            if ([difficultyDict[difficulty] isEqualToString:difficultyName]) {
+                [self performSegueWithIdentifier:@"new game" sender:difficulty];
+                break;
+            }
+        }
     }
 }
 
