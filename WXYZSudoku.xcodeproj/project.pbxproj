@@ -108,6 +108,7 @@
 		18AADAFE18E88ED800A01505 /* NSString+SecondsFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SecondsFormat.m"; path = "Utils/NSString+SecondsFormat.m"; sourceTree = "<group>"; };
 		18B6A0191880497A00771855 /* SudokuSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuSolver.h; path = Model/SudokuSolver.h; sourceTree = "<group>"; };
 		18B6A01A1880499000771855 /* SudokuSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuSolver.cpp; path = Model/SudokuSolver.cpp; sourceTree = "<group>"; };
+		18B7274B18F3FC7E00404F43 /* SudokuSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudokuSetting.h; sourceTree = "<group>"; };
 		18D7CDAA188113EC00E6786D /* SudokuGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuGenerator.h; path = Model/SudokuGenerator.h; sourceTree = "<group>"; };
 		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +220,7 @@
 				1842B4811877BCB3009EF61B /* SudokuAppDelegate.h */,
 				1842B4821877BCB3009EF61B /* SudokuAppDelegate.m */,
 				183B5F7418E8475D00A8D48A /* RankRecordDatabaseAvailability.h */,
+				18B7274B18F3FC7E00404F43 /* SudokuSetting.h */,
 				1842B4841877BCB3009EF61B /* Main.storyboard */,
 				189867A818E9AB6700BF2CA2 /* Library */,
 				183B5F5518E831BE00A8D48A /* Utils */,

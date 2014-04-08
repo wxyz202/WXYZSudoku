@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 wxyz. All rights reserved.
 //
 
-#import "SudokuGenerator.h"
+#import "SudokuSetting.h"
 #import "SudokuViewController.h"
 
 @interface SudokuViewController ()
@@ -29,14 +29,7 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
 
 - (void)updateTitleWithDifficulty:(NSUInteger)difficulty
 {
-    NSDictionary *difficultyDict = @{@(DIFFICULTY_EASY): @"Easy",
-                                     @(DIFFICULTY_NORMAL): @"Normal",
-                                     @(DIFFICULTY_HARD): @"Hard",
-                                     @(DIFFICULTY_NIGHTMARE): @"Nightmare",
-                                     @(DIFFICULTY_HELL): @"Hell",
-                                     @(DIFFICULTY_DEMO): @"Demo"
-                                 };
-    NSString *difficultyName = difficultyDict[@(difficulty)];
+    NSString *difficultyName = DIFFICULTY_NAME_DICT[@(difficulty)];
     self.title = [NSString stringWithFormat:@"%@ Sudoku", difficultyName];
 }
 

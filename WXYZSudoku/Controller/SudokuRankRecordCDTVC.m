@@ -8,7 +8,7 @@
 
 #import "SudokuRankRecordCDTVC.h"
 #import "RankRecord.h"
-#import "SudokuGenerator.h"
+#import "SudokuSetting.h"
 #import "NSString+SecondsFormat.h"
 #import "SudokuViewController.h"
 #import "UDID.h"
@@ -149,7 +149,7 @@ static const NSUInteger SCOPE_GLOBAL = 1;
 - (UISegmentedControl *)difficultySegmentedController
 {
     if (!_difficultySegmentedController) {
-        _difficultySegmentedController = [[UISegmentedControl alloc] initWithItems:@[@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell", @"Demo"]];
+        _difficultySegmentedController = [[UISegmentedControl alloc] initWithItems:DIFFICULTY_NAME_ARRAY];
         _difficultySegmentedController.backgroundColor = [UIColor whiteColor];
         CGRect rect = _difficultySegmentedController.frame;
         rect.size.width = self.view.frame.size.width;

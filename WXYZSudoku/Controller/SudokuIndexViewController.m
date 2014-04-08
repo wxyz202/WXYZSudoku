@@ -7,7 +7,7 @@
 //
 
 #import "SudokuIndexViewController.h"
-#import "SudokuGenerator.h"
+#import "SudokuSetting.h"
 #import "SudokuPlayViewController.h"
 #import "SudokuRankRecordCDTVC.h"
 #import "RankRecordDatabaseAvailability.h"
@@ -33,7 +33,10 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
 
 
 - (IBAction)touchNewGameButton {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"choose difficulty" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Easy", @"Normal", @"Hard", @"Nightmare", @"Hell", @"Demo", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"choose difficulty" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    for (NSString *titile in DIFFICULTY_NAME_ARRAY) {
+        [alertView addButtonWithTitle:titile];
+    }
     alertView.tag = NEW_GAME_ALERT_VIEW_TAG;
     [alertView show];
 }
@@ -49,12 +52,7 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     }
     if (alertView.tag == NEW_GAME_ALERT_VIEW_TAG) {
         NSString *difficulty = [alertView buttonTitleAtIndex:buttonIndex];
-        NSDictionary *difficultyDict = @{@"Easy":@(DIFFICULTY_EASY),
-                                         @"Normal":@(DIFFICULTY_NORMAL),
-                                         @"Hard":@(DIFFICULTY_HARD),
-                                         @"Nightmare":@(DIFFICULTY_NIGHTMARE),
-                                         @"Hell":@(DIFFICULTY_HELL),
-                                         @"Demo":@(DIFFICULTY_DEMO)};
+        NSDictionary *difficultyDict = DIFFICULTY_NAME_DICT;
         [self performSegueWithIdentifier:@"new game" sender:[difficultyDict objectForKey:difficulty]];
     }
 }
