@@ -21,6 +21,7 @@
 + (UIColor *)constantValueGridTitleColor;
 
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column;
+- (void)resetGrid;
 
 - (void)jumpButtons;
 

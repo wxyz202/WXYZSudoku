@@ -198,7 +198,7 @@ static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
     if (alertView.tag == CONGRATULATION_ALERT_VIEW_TAG) {
         SudokuCongratulationAlertView *congratulationAlertView = (SudokuCongratulationAlertView *)alertView;
-        if ([congratulationAlertView.inputName isEqualToString:@""]) {
+        if ([congratulationAlertView.inputName isEqualToString:@""] || [congratulationAlertView.inputName length] > 64) {
             return NO;
         }
     }
@@ -213,6 +213,7 @@ static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
     if (alertView.tag == RESTART_ALERT_VIEW_TAG) {
         [self removeSavedSudoku];
         [self newGameWithDifficulty:self.sudoku.difficulty];
+        [self resetSudokuView];
         [self resume];
         self.alreadyAnimate = NO;
         [self updateUI];
@@ -236,6 +237,13 @@ static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
     
     SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
     [connection postSudokuRecord:record delegate:self];
+}
+
+- (void)resetSudokuView
+{
+    [self.sudokuView resetGrid];
+    [self.sudokuView setNeedsDisplay];
+    [self createSubView];
 }
 
 # pragma mark - timer

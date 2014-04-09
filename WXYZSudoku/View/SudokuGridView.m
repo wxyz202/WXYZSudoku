@@ -196,7 +196,6 @@ static const CGFloat EDGE_SIZE = 10.0;
 
 - (NSArray *)createButtons
 {
-
     NSMutableArray *buttons = [[NSMutableArray alloc] init];
     for (int row = 0; row < 9; row++) {
         NSMutableArray *rowButtons = [[NSMutableArray alloc] init];
@@ -221,6 +220,16 @@ static const CGFloat EDGE_SIZE = 10.0;
 - (UIButton *)getButtonInRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
     return [[self.buttons objectAtIndex:row] objectAtIndex:column];
+}
+
+- (void)resetGrid
+{
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            [[self getButtonInRow:row inColumn:column] removeFromSuperview];
+        }
+    }
+    self.buttons = nil;
 }
 
 - (void)jumpButtons
