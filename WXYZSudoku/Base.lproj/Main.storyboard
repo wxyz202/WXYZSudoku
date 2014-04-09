@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ5-1W-nMx">
-                                <rect key="frame" x="136" y="303" width="48" height="38"/>
+                                <rect key="frame" x="136" y="341" width="48" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Rank">
@@ -51,15 +51,28 @@
                                     <segue destination="ceY-Yf-okn" kind="push" identifier="show rank" id="XAH-h1-RgG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rft-9f-Fkk">
+                                <rect key="frame" x="114" y="303" width="93" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Challenge">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9Ns-TV-g06" kind="push" identifier="challenge" id="cmg-LC-6j0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XZ5-1W-nMx" firstAttribute="top" secondItem="rft-9f-Fkk" secondAttribute="bottom" id="4FA-oy-AGc"/>
+                            <constraint firstItem="rft-9f-Fkk" firstAttribute="top" secondItem="XLw-So-Kde" secondAttribute="bottom" id="4GO-Gd-AAN"/>
                             <constraint firstAttribute="centerX" secondItem="XZ5-1W-nMx" secondAttribute="centerX" id="5bk-sq-REf"/>
                             <constraint firstItem="XLw-So-Kde" firstAttribute="top" secondItem="We9-Sv-EZC" secondAttribute="bottom" id="7Lx-Tw-sZ7"/>
                             <constraint firstAttribute="centerX" secondItem="XLw-So-Kde" secondAttribute="centerX" id="8r8-4a-YVN"/>
+                            <constraint firstAttribute="centerX" secondItem="rft-9f-Fkk" secondAttribute="centerX" id="KYJ-le-rg5"/>
                             <constraint firstAttribute="centerY" secondItem="XLw-So-Kde" secondAttribute="centerY" id="Tlh-tJ-Off"/>
                             <constraint firstAttribute="centerX" secondItem="We9-Sv-EZC" secondAttribute="centerX" id="YJB-au-173"/>
-                            <constraint firstItem="XZ5-1W-nMx" firstAttribute="top" secondItem="XLw-So-Kde" secondAttribute="bottom" id="qMF-UJ-D1z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GLs-sz-TNr"/>
@@ -413,6 +426,61 @@
             </objects>
             <point key="canvasLocation" x="540" y="635"/>
         </scene>
+        <!--Sudoku Challenge Table View Controller - Challenge-->
+        <scene sceneID="6sT-OF-W4a">
+            <objects>
+                <tableViewController id="9Ns-TV-g06" customClass="SudokuChallengeTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RwF-sg-3PP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="a6F-0q-axh">
+                            <rect key="frame" x="0.0" y="130" width="320" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Challenge Cell" textLabel="yyK-VZ-oy5" detailTextLabel="vZm-AX-QaZ" style="IBUITableViewCellStyleValue1" id="zqC-l8-vOS">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zqC-l8-vOS" id="Uhw-PH-Z6y">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyK-VZ-oy5">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vZm-AX-QaZ">
+                                            <rect key="frame" x="241" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="push" id="UyK-2F-0dX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9Ns-TV-g06" id="Lb4-AY-jHe"/>
+                            <outlet property="delegate" destination="9Ns-TV-g06" id="jov-mZ-Udz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Challenge" id="ywN-NF-K4S"/>
+                    <connections>
+                        <outlet property="otherRefreshControl" destination="a6F-0q-axh" id="4L6-dg-YDB"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyU-7h-rT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="-921"/>
+        </scene>
         <!--Sudoku View Controller - Review-->
         <scene sceneID="1eT-WS-EsF">
             <objects>
@@ -454,6 +522,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="s9l-v7-Nch"/>
+        <segue reference="UyK-2F-0dX"/>
     </inferredMetricsTieBreakers>
 </document>

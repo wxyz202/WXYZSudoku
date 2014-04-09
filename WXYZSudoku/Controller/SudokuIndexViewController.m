@@ -10,6 +10,7 @@
 #import "SudokuSetting.h"
 #import "SudokuPlayViewController.h"
 #import "SudokuRankRecordCDTVC.h"
+#import "SudokuChallengeTableViewController.h"
 #import "RankRecordDatabaseAvailability.h"
 
 static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
@@ -75,6 +76,9 @@ static const NSUInteger NEW_GAME_ALERT_VIEW_TAG = 100;
     } else if ([segue.identifier isEqualToString:@"show rank"]) {
         SudokuRankRecordCDTVC *sudokuRankRecordCDTVC = segue.destinationViewController;
         sudokuRankRecordCDTVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"challenge"]) {
+        SudokuChallengeTableViewController *sudokuChallengeController = segue.destinationViewController;
+        sudokuChallengeController.managedObjectContext = self.managedObjectContext;
     }
 }
 

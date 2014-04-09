@@ -104,6 +104,9 @@ static const NSUInteger SCOPE_GLOBAL = 1;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Rank Record Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Rank Record Cell"];
+    }
 
     RankRecord *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -183,7 +186,6 @@ static const NSUInteger SCOPE_GLOBAL = 1;
 
 - (void)SudokuServerInterfaceConnection:(SudokuServerInterfceConnection*)connection recordList:(NSArray *)recordList
 {
-    NSLog(@"%d", [recordList count]);
     for (NSDictionary *recordDict in recordList) {
         RankRecord *record = [RankRecord rankRecordWithSudokuID:recordDict[@"sudoku_id"] withPlayerID:recordDict[@"player_id"] inManagedObjectContext:self.managedObjectContext];
         record.difficulty = recordDict[@"difficulty"];
@@ -191,7 +193,6 @@ static const NSUInteger SCOPE_GLOBAL = 1;
         record.finishSeconds = recordDict[@"finish_seconds"];
         record.playerName = recordDict[@"player_name"];
         record.sudoku = recordDict[@"sudoku"];
-        NSLog(@"%@ %@", record.difficulty, record.playerID);
     }
 }
 

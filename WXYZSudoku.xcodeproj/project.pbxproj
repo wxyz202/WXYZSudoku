@@ -42,6 +42,7 @@
 		18B7275118F422BD00404F43 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7275018F422BD00404F43 /* NSString+MD5.m */; };
 		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
 		18EB102E18F51C7C00E7E6DA /* RankRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB102D18F51C7C00E7E6DA /* RankRecord.m */; };
+		18EB103118F542CD00E7E6DA /* SudokuChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB103018F542CD00E7E6DA /* SudokuChallengeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
 		18EB102C18F51C7C00E7E6DA /* RankRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankRecord.h; path = Model/CoreData/RankRecord.h; sourceTree = "<group>"; };
 		18EB102D18F51C7C00E7E6DA /* RankRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankRecord.m; path = Model/CoreData/RankRecord.m; sourceTree = "<group>"; };
+		18EB102F18F542CD00E7E6DA /* SudokuChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuChallengeTableViewController.h; path = Controller/SudokuChallengeTableViewController.h; sourceTree = "<group>"; };
+		18EB103018F542CD00E7E6DA /* SudokuChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuChallengeTableViewController.m; path = Controller/SudokuChallengeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 				18635C5518E9263600250632 /* SudokuPlayViewController.m */,
 				183B5F8018E84F6D00A8D48A /* SudokuRankRecordCDTVC.h */,
 				183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */,
+				18EB102F18F542CD00E7E6DA /* SudokuChallengeTableViewController.h */,
+				18EB103018F542CD00E7E6DA /* SudokuChallengeTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EB103118F542CD00E7E6DA /* SudokuChallengeTableViewController.m in Sources */,
 				183B5F5B18E8350500A8D48A /* UDID.m in Sources */,
 				18AADAFF18E88ED800A01505 /* NSString+SecondsFormat.m in Sources */,
 				18EB102E18F51C7C00E7E6DA /* RankRecord.m in Sources */,

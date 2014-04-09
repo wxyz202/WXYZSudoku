@@ -12,10 +12,12 @@
 #define SHARED_KEY @"$F$#GagG#GgGH("
 
 #define GET_TOP_SUDOKU_RECORD_URL @"http://wxyz-sudoku.webapp.163.com/top_rank?difficulty=%@"
+#define GET_CHALLENGE_SUDOKU_RECORD_URL @"http://wxyz-sudoku.webapp.163.com/challenge_record?player_id=%@"
 #define POST_SUDOKU_RECORD_URL @"http://wxyz-sudoku.webapp.163.com/upload_record"
 
 #define TYPE_POST_RECORD @"TYPE_POST_RECORD"
 #define TYPE_GET_RECORD @"TYPE_GET_RECORD"
+#define TYPE_GET_CHALLENGE_RECORD @"TYPE_GET_CHALLENGE_RECORD"
 
 
 @interface SudokuServerInterfceConnection ()
@@ -59,13 +61,14 @@
         NSDictionary *connectionInfo = self.connectionPool[connectionIndex];
         if (connection == connectionInfo[@"connection"]) {
             NSString *responseString = [[NSString alloc] initWithData:connectionInfo[@"data"] encoding:NSUTF8StringEncoding];
-            
             if ([connectionInfo[@"type"] isEqualToString:TYPE_GET_RECORD]) {
                 NSArray *recordList = [self analyzeResponse:responseString];
-                NSLog(@"%d", [recordList count]);
+                [self.delegate SudokuServerInterfaceConnection:self recordList:recordList];
+            } else if ([connectionInfo[@"type"] isEqualToString:TYPE_GET_CHALLENGE_RECORD]) {
+                NSArray *recordList = [self analyzeResponse:responseString];
                 [self.delegate SudokuServerInterfaceConnection:self recordList:recordList];
             }
-                 
+                
             break;
         }
     }
@@ -84,11 +87,15 @@
     for (NSDictionary *record in jsonObject[@"result"]) {
         NSMutableDictionary *mutableRecord = [record mutableCopy];
         
-        mutableRecord[@"sudoku"] = [[NSData alloc] initWithBase64EncodedString:mutableRecord[@"sudoku"] options:0];
+        if ([mutableRecord objectForKey:@"sudoku"] != nil) {
+            mutableRecord[@"sudoku"] = [[NSData alloc] initWithBase64EncodedString:mutableRecord[@"sudoku"] options:0];
+        }
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-        mutableRecord[@"finish_date"] = [dateFormatter dateFromString:mutableRecord[@"finish_date"]];
+        if ([mutableRecord objectForKey:@"finish_date"] != nil) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+            mutableRecord[@"finish_date"] = [dateFormatter dateFromString:mutableRecord[@"finish_date"]];
+        }
         
         [records addObject:[mutableRecord copy]];
     }
@@ -149,6 +156,17 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [self startConnection:connection withType:TYPE_GET_RECORD];
+}
+
+- (void)getChallengeSudokuRecordWithPlayerID:(NSString *)playerID delegate:(id)delegate
+{
+    self.delegate = delegate;
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:GET_CHALLENGE_SUDOKU_RECORD_URL, playerID]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [self startConnection:connection withType:TYPE_GET_CHALLENGE_RECORD];
 }
 
 @end
