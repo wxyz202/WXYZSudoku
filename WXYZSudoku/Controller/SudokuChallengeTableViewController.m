@@ -11,16 +11,25 @@
 #import "UDID.h"
 #import "SudokuSetting.h"
 #import "NSString+SecondsFormat.h"
+#import "SudokuChallengeViewController.h"
 
 @interface SudokuChallengeTableViewController ()
 @property (nonatomic, strong) NSArray *challengeRecordList;
+@property (nonatomic) BOOL downloading;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *otherRefreshControl;
 @end
 
 @implementation SudokuChallengeTableViewController
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    [self downloadChallengeRecordFromServer];
+}
+
 - (void)downloadChallengeRecordFromServer
 {
+    self.downloading = YES;
     SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
     [connection getChallengeSudokuRecordWithPlayerID:[UDID identifier] delegate:self];
 }
@@ -28,6 +37,7 @@
 - (void)SudokuServerInterfaceConnection:(SudokuServerInterfceConnection*)connection recordList:(NSArray *)recordList
 {
     self.challengeRecordList = recordList;
+    self.downloading = NO;
     [self.otherRefreshControl stopAnimating];
     [self.tableView reloadData];
 }
@@ -35,9 +45,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.otherRefreshControl startAnimating];
-    self.otherRefreshControl.hidesWhenStopped = YES;
-    [self downloadChallengeRecordFromServer];
+    if (self.downloading) {
+        [self.otherRefreshControl startAnimating];
+        self.otherRefreshControl.hidesWhenStopped = YES;
+    }
 }
 
 #pragma mark - Table view data source
@@ -108,15 +119,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareInViewController:(SudokuChallengeViewController *)controller withRecord:(NSDictionary *)record
+{
+    controller.managedObjectContext = self.managedObjectContext;
+    controller.challengeSeconds = [record[@"finish_seconds"] unsignedIntegerValue];
+    [controller loadSudokuWithID:record[@"sudoku_id"] withDifficulty:[record[@"difficulty"] unsignedIntegerValue]];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            if ([segue.identifier isEqualToString:@"challenge sudoku"]) {
+                [self prepareInViewController:segue.destinationViewController
+                                   withRecord:[self.challengeRecordList objectAtIndex:indexPath.row]];
+                NSMutableArray *newChallengeRecordList = [self.challengeRecordList mutableCopy];
+                [newChallengeRecordList removeObjectAtIndex:indexPath.row];
+                self.challengeRecordList = [newChallengeRecordList copy];
+                [self.tableView reloadData];
+            }
+        }
+    }
 }
-*/
 
 @end

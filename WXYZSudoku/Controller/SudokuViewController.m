@@ -19,6 +19,11 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
 
 # pragma mark - load data
 
+- (void)loadSudokuWithID:(NSString *)sudokuID withDifficulty:(NSUInteger)difficulty;
+{
+    self.sudoku = [[Sudoku alloc] initWithIdentifier:sudokuID withDifficulty:difficulty];
+}
+
 - (void)loadSudokuWithData:(NSData *)data
 {
     self.sudoku = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -48,6 +53,7 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
     UIView *coverView1 = [[UIView alloc] init];
     UIView *coverView2 = [[UIView alloc] init];
     SudokuGridView *sudokuView = self.sudokuView;
+    [sudokuView setNeedsUpdateConstraints];
     coverView1.frame = sudokuView.frame;
     coverView2.frame = sudokuView.frame;
     coverView1.backgroundColor = [UIColor whiteColor];
@@ -159,11 +165,13 @@ const NSInteger SUDOKU_VIEW_TAG = 100;
 
 # pragma mark - other
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLayoutSubviews
 {
-    [super viewWillAppear:animated];
+    [super viewDidLayoutSubviews];
     [self updateUI];
+    [self.view layoutSubviews];
 }
+
 
 - (void)viewDidLoad
 {

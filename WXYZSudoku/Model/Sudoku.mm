@@ -62,6 +62,33 @@
     return self;
 }
 
+- (instancetype)initWithIdentifier:(NSString *)identifier withDifficulty:(NSUInteger)difficulty
+{
+    self = [self init];
+    if (self) {
+        self.difficulty = difficulty;
+        
+        NSMutableArray *totalGrids = [[NSMutableArray alloc] init];
+        int index = 0;
+        for (int row = 0; row < 9; row++) {
+            NSMutableArray *rowGrids = [[NSMutableArray alloc] init];
+            for (int column = 0; column < 9; column++) {
+                NSUInteger value = [identifier characterAtIndex:index] - '0';
+                if (value != 0) {
+                    [rowGrids addObject:[[SudokuGrid alloc] initGridConstWithValue:value]];
+                } else {
+                    [rowGrids addObject:[[SudokuGrid alloc] initGridEmpty]];
+                }
+                index++;
+            }
+            [totalGrids addObject:[rowGrids copy]];
+        }
+        self.grids = [totalGrids copy];
+    }
+    return self;
+}
+
+
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty
 {
     self = [self init];

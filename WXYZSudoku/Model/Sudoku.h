@@ -17,6 +17,7 @@
 @property (nonatomic) NSUInteger playSeconds;
 @property (nonatomic) NSUInteger finishSeconds;
 
+- (instancetype)initWithIdentifier:(NSString *)identifier withDifficulty:(NSUInteger)difficulty;
 - (instancetype)initWithDifficulty:(NSUInteger)difficulty;
 
 - (SudokuGrid *)getGridInRow:(NSUInteger)row inColumn:(NSUInteger)column;

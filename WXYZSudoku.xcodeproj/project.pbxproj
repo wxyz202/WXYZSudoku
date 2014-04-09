@@ -43,6 +43,7 @@
 		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
 		18EB102E18F51C7C00E7E6DA /* RankRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB102D18F51C7C00E7E6DA /* RankRecord.m */; };
 		18EB103118F542CD00E7E6DA /* SudokuChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB103018F542CD00E7E6DA /* SudokuChallengeTableViewController.m */; };
+		18FE379E18F5836E001F0E8C /* SudokuChallengeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE379D18F5836E001F0E8C /* SudokuChallengeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		18EB102D18F51C7C00E7E6DA /* RankRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankRecord.m; path = Model/CoreData/RankRecord.m; sourceTree = "<group>"; };
 		18EB102F18F542CD00E7E6DA /* SudokuChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuChallengeTableViewController.h; path = Controller/SudokuChallengeTableViewController.h; sourceTree = "<group>"; };
 		18EB103018F542CD00E7E6DA /* SudokuChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuChallengeTableViewController.m; path = Controller/SudokuChallengeTableViewController.m; sourceTree = "<group>"; };
+		18FE379C18F5836E001F0E8C /* SudokuChallengeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuChallengeViewController.h; path = Controller/SudokuChallengeViewController.h; sourceTree = "<group>"; };
+		18FE379D18F5836E001F0E8C /* SudokuChallengeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuChallengeViewController.m; path = Controller/SudokuChallengeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 				183B5F7918E8493300A8D48A /* SudokuViewController.m */,
 				18635C5418E9263600250632 /* SudokuPlayViewController.h */,
 				18635C5518E9263600250632 /* SudokuPlayViewController.m */,
+				18FE379C18F5836E001F0E8C /* SudokuChallengeViewController.h */,
+				18FE379D18F5836E001F0E8C /* SudokuChallengeViewController.m */,
 				183B5F8018E84F6D00A8D48A /* SudokuRankRecordCDTVC.h */,
 				183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */,
 				18EB102F18F542CD00E7E6DA /* SudokuChallengeTableViewController.h */,
@@ -443,6 +448,7 @@
 				189867AC18E9AB6700BF2CA2 /* CoreDataTableViewController.m in Sources */,
 				1842B47F1877BCB3009EF61B /* main.m in Sources */,
 				189867B018E9AD6000BF2CA2 /* KxMenu.m in Sources */,
+				18FE379E18F5836E001F0E8C /* SudokuChallengeViewController.m in Sources */,
 				18B6A01B1880499000771855 /* SudokuSolver.cpp in Sources */,
 				183B5F8218E84F6D00A8D48A /* SudokuRankRecordCDTVC.m in Sources */,
 				183B5F7118E842DD00A8D48A /* RankRecord+Create.m in Sources */,

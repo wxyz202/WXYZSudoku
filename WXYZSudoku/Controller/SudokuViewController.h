@@ -22,6 +22,7 @@ extern const NSInteger SUDOKU_VIEW_TAG;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
 
+- (void)loadSudokuWithID:(NSString *)sudokuID withDifficulty:(NSUInteger)difficulty;
 - (void)loadSudokuWithData:(NSData *)data;
 - (void)createSubView;
 - (void)updateTitleWithDifficulty:(NSUInteger)difficulty;

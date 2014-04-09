@@ -61,6 +61,7 @@
         NSDictionary *connectionInfo = self.connectionPool[connectionIndex];
         if (connection == connectionInfo[@"connection"]) {
             NSString *responseString = [[NSString alloc] initWithData:connectionInfo[@"data"] encoding:NSUTF8StringEncoding];
+                        
             if ([connectionInfo[@"type"] isEqualToString:TYPE_GET_RECORD]) {
                 NSArray *recordList = [self analyzeResponse:responseString];
                 [self.delegate SudokuServerInterfaceConnection:self recordList:recordList];

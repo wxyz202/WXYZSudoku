@@ -13,4 +13,9 @@
 - (void)newGameWithDifficulty:(NSUInteger)difficulty;
 - (void)loadSudoku;
 
+- (void)clickChooseColorButton;
+- (void)clickClearColorButton;
+
+- (void)passOneSecond:(NSTimer *)timer;
+
 @end

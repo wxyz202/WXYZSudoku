@@ -14,8 +14,8 @@
 
 using namespace std;
 
-static const int MAX_EMPTY_GRIDS[6] = {35, 40, 50, 60, 65, 1};
-static const int MAX_EMPTY_GRIDS_PER_BLOCK[6] = {4, 5, 6, 7, 9, 3};
+static const int MAX_EMPTY_GRIDS[6] = {35, 40, 50, 60, 65, 8};
+static const int MAX_EMPTY_GRIDS_PER_BLOCK[6] = {4, 5, 6, 7, 9, 2};
 
 static const int sudokuCount = 2;
 
