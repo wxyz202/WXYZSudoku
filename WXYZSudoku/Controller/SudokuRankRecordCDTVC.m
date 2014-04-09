@@ -7,11 +7,12 @@
 //
 
 #import "SudokuRankRecordCDTVC.h"
-#import "RankRecord.h"
+#import "RankRecord+Create.h"
 #import "SudokuSetting.h"
 #import "NSString+SecondsFormat.h"
 #import "SudokuViewController.h"
 #import "UDID.h"
+#import "SudokuServerInterfceConnection.h"
 
 
 static const NSUInteger SCOPE_LOCAL = 0;
@@ -47,6 +48,7 @@ static const NSUInteger SCOPE_GLOBAL = 1;
 {
     _managedObjectContext = managedObjectContext;
     [self startFetch];
+    [self downloadRecordFromServer];
 }
 
 - (void)setDifficulty:(NSNumber *)difficulty
@@ -111,6 +113,8 @@ static const NSUInteger SCOPE_GLOBAL = 1;
     
     if (self.scope.unsignedIntegerValue == SCOPE_GLOBAL && [record.playerID isEqualToString:[UDID identifier]]) {
         cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.8 alpha:1.0];
+    } else {
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -167,6 +171,28 @@ static const NSUInteger SCOPE_GLOBAL = 1;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 30;
+}
+
+- (void)downloadRecordFromServer
+{
+    SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
+    for (NSNumber *difficulty in ALL_DIFFICULTY_ARRAY) {
+        [connection getTopSudokuRecordWithDifficulty:difficulty delegate:self];
+    }
+}
+
+- (void)SudokuServerInterfaceConnection:(SudokuServerInterfceConnection*)connection recordList:(NSArray *)recordList
+{
+    NSLog(@"%d", [recordList count]);
+    for (NSDictionary *recordDict in recordList) {
+        RankRecord *record = [RankRecord rankRecordWithSudokuID:recordDict[@"sudoku_id"] withPlayerID:recordDict[@"player_id"] inManagedObjectContext:self.managedObjectContext];
+        record.difficulty = recordDict[@"difficulty"];
+        record.finishDate = recordDict[@"finish_date"];
+        record.finishSeconds = recordDict[@"finish_seconds"];
+        record.playerName = recordDict[@"player_name"];
+        record.sudoku = recordDict[@"sudoku"];
+        NSLog(@"%@ %@", record.difficulty, record.playerID);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

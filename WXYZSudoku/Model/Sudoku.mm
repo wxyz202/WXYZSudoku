@@ -14,6 +14,7 @@
 @interface Sudoku ()
 
 @property (nonatomic, readwrite) NSUInteger difficulty;
+@property (nonatomic, readwrite, strong) NSString *identifier;
 @property (strong, nonatomic) NSArray *grids;
 @property (strong, nonatomic) SudokuActionRecord *actionRecord;
 
@@ -69,6 +70,25 @@
         self.grids = [self createRandomGeneratedGridsWithDifficulty:self.difficulty];
     }
     return self;
+}
+
+- (NSString *)identifier
+{
+    if (!_identifier) {
+        NSMutableString *s = [[NSMutableString alloc] init];
+        for (int row = 0; row < 9; row++) {
+            for (int column = 0; column < 9; column++) {
+                SudokuGrid *grid = self.grids[row][column];
+                if (grid.isConstant) {
+                    [s appendString:[NSString stringWithFormat:@"%@", @(grid.value)]];
+                } else {
+                    [s appendString:@"0"];
+                }
+            }
+        }
+        _identifier = [s copy];
+    }
+    return _identifier;
 }
 
 - (NSArray *)createEmptyGrids

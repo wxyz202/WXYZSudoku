@@ -16,7 +16,6 @@
 		183B5F7A18E8493300A8D48A /* SudokuIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7718E8493300A8D48A /* SudokuIndexViewController.m */; };
 		183B5F7B18E8493300A8D48A /* SudokuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F7918E8493300A8D48A /* SudokuViewController.m */; };
 		183B5F8218E84F6D00A8D48A /* SudokuRankRecordCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */; };
-		183B5F8B18E85E9200A8D48A /* RankRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B5F8A18E85E9200A8D48A /* RankRecord.m */; };
 		1842B4731877BCB3009EF61B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842B4721877BCB3009EF61B /* Foundation.framework */; };
 		1842B4751877BCB3009EF61B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842B4741877BCB3009EF61B /* CoreGraphics.framework */; };
 		1842B4771877BCB3009EF61B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842B4761877BCB3009EF61B /* UIKit.framework */; };
@@ -42,6 +41,7 @@
 		18B7274E18F4178800404F43 /* SudokuServerInterfceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7274D18F4178800404F43 /* SudokuServerInterfceConnection.m */; };
 		18B7275118F422BD00404F43 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7275018F422BD00404F43 /* NSString+MD5.m */; };
 		18D7CDAC1881141A00E6786D /* SudokuGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */; };
+		18EB102E18F51C7C00E7E6DA /* RankRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB102D18F51C7C00E7E6DA /* RankRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +73,6 @@
 		183B5F7918E8493300A8D48A /* SudokuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuViewController.m; path = Controller/SudokuViewController.m; sourceTree = "<group>"; };
 		183B5F8018E84F6D00A8D48A /* SudokuRankRecordCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SudokuRankRecordCDTVC.h; path = Controller/SudokuRankRecordCDTVC.h; sourceTree = "<group>"; };
 		183B5F8118E84F6D00A8D48A /* SudokuRankRecordCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SudokuRankRecordCDTVC.m; path = Controller/SudokuRankRecordCDTVC.m; sourceTree = "<group>"; };
-		183B5F8918E85E9200A8D48A /* RankRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankRecord.h; path = Model/CoreData/RankRecord.h; sourceTree = "<group>"; };
-		183B5F8A18E85E9200A8D48A /* RankRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankRecord.m; path = Model/CoreData/RankRecord.m; sourceTree = "<group>"; };
 		1842B46F1877BCB3009EF61B /* WXYZSudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXYZSudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1842B4721877BCB3009EF61B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1842B4741877BCB3009EF61B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +115,8 @@
 		18B7275018F422BD00404F43 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "Utils/NSString+MD5.m"; sourceTree = "<group>"; };
 		18D7CDAA188113EC00E6786D /* SudokuGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SudokuGenerator.h; path = Model/SudokuGenerator.h; sourceTree = "<group>"; };
 		18D7CDAB1881141A00E6786D /* SudokuGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SudokuGenerator.cpp; path = Model/SudokuGenerator.cpp; sourceTree = "<group>"; };
+		18EB102C18F51C7C00E7E6DA /* RankRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankRecord.h; path = Model/CoreData/RankRecord.h; sourceTree = "<group>"; };
+		18EB102D18F51C7C00E7E6DA /* RankRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankRecord.m; path = Model/CoreData/RankRecord.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				183B5F6018E8361B00A8D48A /* Sudoku.xcdatamodeld */,
-				183B5F8918E85E9200A8D48A /* RankRecord.h */,
-				183B5F8A18E85E9200A8D48A /* RankRecord.m */,
+				18EB102C18F51C7C00E7E6DA /* RankRecord.h */,
+				18EB102D18F51C7C00E7E6DA /* RankRecord.m */,
 				183B5F6F18E842DD00A8D48A /* RankRecord+Create.h */,
 				183B5F7018E842DD00A8D48A /* RankRecord+Create.m */,
 			);
@@ -430,8 +430,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				183B5F5B18E8350500A8D48A /* UDID.m in Sources */,
-				183B5F8B18E85E9200A8D48A /* RankRecord.m in Sources */,
 				18AADAFF18E88ED800A01505 /* NSString+SecondsFormat.m in Sources */,
+				18EB102E18F51C7C00E7E6DA /* RankRecord.m in Sources */,
 				183B5F7A18E8493300A8D48A /* SudokuIndexViewController.m in Sources */,
 				183B5F6218E8361B00A8D48A /* Sudoku.xcdatamodeld in Sources */,
 				189867AC18E9AB6700BF2CA2 /* CoreDataTableViewController.m in Sources */,

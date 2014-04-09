@@ -2,7 +2,7 @@
 //  RankRecord.m
 //  WXYZSudoku
 //
-//  Created by wxyz on 14-3-30.
+//  Created by wxyz on 14-4-9.
 //  Copyright (c) 2014年 wxyz. All rights reserved.
 //
 
@@ -11,11 +11,12 @@
 
 @implementation RankRecord
 
+@dynamic difficulty;
+@dynamic finishDate;
+@dynamic finishSeconds;
 @dynamic playerID;
 @dynamic playerName;
-@dynamic finishSeconds;
-@dynamic finishDate;
 @dynamic sudoku;
-@dynamic difficulty;
+@dynamic sudokuID;
 
 @end

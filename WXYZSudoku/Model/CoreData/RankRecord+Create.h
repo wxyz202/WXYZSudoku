@@ -10,5 +10,5 @@
 #import "Sudoku.h"
 
 @interface RankRecord (Create)
-+ (RankRecord *)newRankRecordInManagedObjectContext:(NSManagedObjectContext *)context;
++ (RankRecord *)rankRecordWithSudokuID:(NSString *)sudokuID withPlayerID:(NSString *)playerID inManagedObjectContext:(NSManagedObjectContext *)context;
 @end

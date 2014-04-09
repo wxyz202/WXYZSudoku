@@ -12,6 +12,7 @@
 
 @interface SudokuServerInterfceConnection : NSObject
 
+- (void)getTopSudokuRecordWithDifficulty:(NSNumber *)difficulty delegate:(id)delegate;
 - (void)postSudokuRecord:(RankRecord *)record delegate:(id)delegate;
 
 @end

@@ -12,6 +12,7 @@
 #import "NSString+SecondsFormat.h"
 #import "SudokuColorAlertView.h"
 #import "KxMenu.h"
+#import "UDID.h"
 #import "SudokuServerInterfceConnection.h"
 
 @interface SudokuPlayViewController () <CustomIOS7AlertViewDelegate>
@@ -229,14 +230,16 @@ static const NSInteger CLEAR_COLOR_ALERT_VIEW_TAG = 104;
 
 - (void)addRecordWithPlayerName:(NSString *)playerName withFinishSeconds:(NSNumber *)finishSeconds
 {
-    RankRecord *record = [RankRecord newRankRecordInManagedObjectContext:self.managedObjectContext];
-    record.sudoku = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
-    record.playerName = playerName;
-    record.finishSeconds = finishSeconds;
-    record.difficulty = @(self.sudoku.difficulty);
+    RankRecord *record = [RankRecord rankRecordWithSudokuID:self.sudoku.identifier withPlayerID:[UDID identifier] inManagedObjectContext:self.managedObjectContext];
+    if ([finishSeconds unsignedIntegerValue] < [record.finishSeconds unsignedIntegerValue]) {
+        //
+        record.sudoku = [NSKeyedArchiver archivedDataWithRootObject:self.sudoku];
+        record.playerName = playerName;
+        record.finishSeconds = finishSeconds;
+        record.difficulty = @(self.sudoku.difficulty);
+    }
     
-    SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
-    [connection postSudokuRecord:record delegate:self];
+    [self sendSudokuRecordToServer:record];
 }
 
 - (void)resetSudokuView
@@ -272,7 +275,11 @@ static const NSUInteger SECONDS_FOR_AUTO_SAVE = 10;
 
 # pragma mark - SudokuServerInterfceConnection
 
-
+- (void)sendSudokuRecordToServer:(RankRecord *)record
+{
+    SudokuServerInterfceConnection *connection = [[SudokuServerInterfceConnection alloc] init];
+    [connection postSudokuRecord:record delegate:self];
+}
 
 # pragma mark - other
 

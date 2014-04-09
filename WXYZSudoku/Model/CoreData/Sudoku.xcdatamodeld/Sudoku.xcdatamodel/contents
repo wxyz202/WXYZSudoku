@@ -3,12 +3,13 @@
     <entity name="RankRecord" representedClassName="RankRecord" syncable="YES">
         <attribute name="difficulty" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="finishDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="finishSeconds" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="finishSeconds" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="playerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="playerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sudoku" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="sudokuID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="RankRecord" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="RankRecord" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
