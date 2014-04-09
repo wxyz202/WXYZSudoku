@@ -89,7 +89,8 @@ static const NSUInteger SCOPE_GLOBAL = 1;
     }
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"finishSeconds"
                                                               ascending:YES
-                                 ]
+                                 ],
+                                [NSSortDescriptor sortDescriptorWithKey:@"finishDate" ascending:YES]
                                 ];
     request.fetchLimit = RECORD_COUNT;
     
